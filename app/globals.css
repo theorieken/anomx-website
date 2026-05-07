@@ -683,8 +683,13 @@ svg {
 }
 
 .final-cta-section::before {
+  inset-block: calc(var(--section-fade-overlap) * -1) 0;
   mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 100%);
   -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 100%);
+}
+
+.legal-section::before {
+  inset-block: calc(var(--section-fade-overlap) * -1) 0;
 }
 
 .hero-shell {

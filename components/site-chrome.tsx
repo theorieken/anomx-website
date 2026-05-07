@@ -54,6 +54,14 @@ export function SiteHeader({ anchorPrefix = "" }: SiteChromeProps) {
   return (
     <header
       className={`site-header${isMenuOpen ? " site-header-menu-open" : ""}${isAtTop ? " site-header-at-top" : ""}`}
+      style={
+        isAtTop && !isMenuOpen
+          ? undefined
+          : {
+              WebkitBackdropFilter: "blur(24px)",
+              backdropFilter: "blur(24px)"
+            }
+      }
     >
       <div className="site-header-inner">
         <div className="site-header-start">
