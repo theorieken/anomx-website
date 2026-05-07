@@ -38,16 +38,16 @@ const themeScript = `
     };
 
     const resolveTheme = (preference) => {
-      if (preference === "dark" || preference === "light") {
-        return preference;
+      if (preference === "light") {
+        return "light";
       }
 
-      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      return "dark";
     };
 
     try {
       const storedPreference = localStorage.getItem(storageKey);
-      const preference = validPreferences.has(storedPreference) ? storedPreference : "system";
+      const preference = validPreferences.has(storedPreference) ? storedPreference : "dark";
       const resolvedTheme = resolveTheme(preference);
 
       document.documentElement.dataset.themePreference = preference;
@@ -59,8 +59,8 @@ const themeScript = `
       document.documentElement.dataset.language = language;
       document.documentElement.lang = language;
     } catch {
-      document.documentElement.dataset.themePreference = "system";
-      document.documentElement.dataset.theme = resolveTheme("system");
+      document.documentElement.dataset.themePreference = "dark";
+      document.documentElement.dataset.theme = "dark";
       document.documentElement.dataset.language = detectLanguage();
       document.documentElement.lang = document.documentElement.dataset.language;
     }

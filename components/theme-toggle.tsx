@@ -8,11 +8,11 @@ type ResolvedTheme = "dark" | "light";
 const storageKey = "anomx-theme-preference";
 
 function resolveTheme(preference: ThemePreference) {
-  if (preference === "light" || preference === "dark") {
-    return preference;
+  if (preference === "light") {
+    return "light";
   }
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return "dark";
 }
 
 function applyTheme(preference: ThemePreference) {
@@ -30,12 +30,12 @@ function emitThemeChange() {
 
 function readPreference(): ThemePreference {
   if (typeof document === "undefined") {
-    return "system";
+    return "dark";
   }
 
   const value = document.documentElement.dataset.themePreference;
 
-  return value === "light" || value === "dark" || value === "system" ? value : "system";
+  return value === "light" || value === "dark" || value === "system" ? value : "dark";
 }
 
 function readResolvedTheme(): ResolvedTheme {
@@ -92,7 +92,7 @@ function getSnapshot() {
 }
 
 function getServerSnapshot(): ResolvedTheme {
-  return "light";
+  return "dark";
 }
 
 type ThemeToggleProps = {
