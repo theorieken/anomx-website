@@ -606,6 +606,7 @@ svg {
 
 .final-cta-section {
   --section-gradient: linear-gradient(118deg, rgba(241, 143, 31, 0.06), transparent 48%, rgba(0, 159, 223, 0.08));
+  padding-bottom: 0;
 }
 
 .legal-section {
@@ -1276,13 +1277,7 @@ svg {
 }
 
 .language-switcher-unlabeled legend {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
+  display: none;
 }
 
 .theme-switch,
