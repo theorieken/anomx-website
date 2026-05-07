@@ -1,0 +1,17 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="620" height="400" rx="30" fill="#F8FBFD" stroke="#D7E4EC"/>
+  <rect x="84" y="68" width="472" height="284" rx="30" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <text x="122" y="116" fill="#009FDF" font-family="Arial, sans-serif" font-size="14" font-weight="700">Finding</text>
+  <text x="122" y="146" fill="#102331" font-family="Arial, sans-serif" font-size="22" font-weight="700">Cryogenic drift anomaly</text>
+  <rect x="122" y="178" width="124" height="86" rx="22" fill="#F7FAFC" stroke="#D7E4EC"/>
+  <rect x="258" y="178" width="124" height="86" rx="22" fill="#F7FAFC" stroke="#D7E4EC"/>
+  <rect x="394" y="178" width="124" height="86" rx="22" fill="#F7FAFC" stroke="#D7E4EC"/>
+  <text x="148" y="206" fill="#009FDF" font-family="Arial, sans-serif" font-size="12" font-weight="700">Impact</text>
+  <text x="148" y="230" fill="#102331" font-family="Arial, sans-serif" font-size="14" font-weight="700">High</text>
+  <text x="280" y="206" fill="#009FDF" font-family="Arial, sans-serif" font-size="12" font-weight="700">Likely source</text>
+  <text x="280" y="230" fill="#102331" font-family="Arial, sans-serif" font-size="14" font-weight="700">Cooling loop</text>
+  <text x="424" y="206" fill="#009FDF" font-family="Arial, sans-serif" font-size="12" font-weight="700">Confidence</text>
+  <text x="424" y="230" fill="#102331" font-family="Arial, sans-serif" font-size="14" font-weight="700">94%</text>
+  <rect x="122" y="290" width="396" height="22" rx="11" fill="#009FDF" fill-opacity="0.14"/>
+  <rect x="122" y="324" width="286" height="14" rx="7" fill="#102331" fill-opacity="0.1"/>
+</svg>

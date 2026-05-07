@@ -68,9 +68,72 @@ const themeScript = `
 `;
 
 export const metadata: Metadata = {
-  title: "Anomx | System Intelligence",
+  applicationName: "Anomx",
+  alternates: {
+    canonical: "/"
+  },
+  category: "technology",
+  creator: "Anomx",
   description:
-    "Anomx is a real-time System Intelligence platform for anomaly detection, predictive insight, and confident decision-making in complex systems."
+    "Anomx is a System Intelligence platform that detects abnormal behavior across live data streams, explains what changed, and helps teams act before deviations become critical.",
+  keywords: [
+    "Anomx",
+    "System Intelligence",
+    "anomaly detection",
+    "predictive maintenance",
+    "operational intelligence",
+    "DESY",
+    "time-series monitoring"
+  ],
+  metadataBase: new URL("https://anomx.io"),
+  openGraph: {
+    description:
+      "Understand your system before it fails. Anomx detects abnormal behavior across live data streams and explains what changed.",
+    images: [
+      {
+        alt: "Anomx System Intelligence platform preview",
+        height: 1278,
+        url: "/images/og-image.jpg",
+        width: 1920
+      }
+    ],
+    locale: "en_US",
+    siteName: "Anomx",
+    title: "Anomx | The Platform for System Intelligence",
+    type: "website",
+    url: "/",
+    videos: [
+      {
+        height: 1080,
+        type: "video/mp4",
+        url: "https://anomx.io/video/anomix-dark-hd.mp4",
+        width: 1920
+      }
+    ]
+  },
+  publisher: "Anomx",
+  robots: {
+    follow: true,
+    googleBot: {
+      follow: true,
+      index: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1
+    },
+    index: true
+  },
+  title: {
+    default: "Anomx | The Platform for System Intelligence",
+    template: "%s | Anomx"
+  },
+  twitter: {
+    card: "summary_large_image",
+    description:
+      "Detect abnormal behavior across live data streams, explain what changed, and act before small deviations become critical.",
+    images: ["/images/og-image.jpg"],
+    title: "Anomx | The Platform for System Intelligence"
+  }
 };
 
 export const viewport: Viewport = {

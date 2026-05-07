@@ -1,6 +1,16 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { CursorAtmosphere } from "@/components/cursor-atmosphere";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/coming-soon"
+  },
+  description:
+    "Anomx is in research with petabyte-scale DESY data and preparing an alpha phase for early customers.",
+  title: "Coming Soon"
+};
 
 export default function ComingSoonPage() {
   return (
@@ -12,15 +22,16 @@ export default function ComingSoonPage() {
         <article className="legal-document">
           <h1>Coming Soon</h1>
           <p>
-            The Anomx application login is not publicly available yet. This page is a
-            placeholder for the future product entry point.
+            Anomx is currently in its research phase, working with petabyte-scale data
+            from the largest linear particle accelerator on earth at DESY in Hamburg.
           </p>
           <p>
-            Early access is currently handled through the waitlist while the platform is
-            prepared for selected enterprise, research, and technical teams.
+            We are turning that work into a System Intelligence platform for teams that
+            operate complex, high-value systems. A first alpha phase for early customers
+            is planned soon.
           </p>
-          <Link className="legal-back-link" href="/#early-access">
-            Join Waitlist
+          <Link className="legal-back-link" href="/join-waitlist">
+            Join the Waitlist
           </Link>
         </article>
 

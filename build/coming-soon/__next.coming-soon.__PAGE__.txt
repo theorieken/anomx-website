@@ -1,0 +1,9 @@
+1:"$Sreact.fragment"
+2:I[96267,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0j-s9c9x_j8gs.js"],"CursorAtmosphere"]
+3:I[71939,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0j-s9c9x_j8gs.js"],"SiteHeader"]
+4:I[22016,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0j-s9c9x_j8gs.js"],""]
+5:I[71939,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0j-s9c9x_j8gs.js"],"SiteFooter"]
+6:I[97367,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"className":"page-shell legal-page","id":"top","children":[["$","$L2",null,{}],["$","$L3",null,{"anchorPrefix":"/"}],["$","section",null,{"className":"section legal-section","children":[["$","article",null,{"className":"legal-document","children":[["$","h1",null,{"children":"Coming Soon"}],["$","p",null,{"children":"Anomx is currently in its research phase, working with petabyte-scale data from the largest linear particle accelerator on earth at DESY in Hamburg."}],["$","p",null,{"children":"We are turning that work into a System Intelligence platform for teams that operate complex, high-value systems. A first alpha phase for early customers is planned soon."}],["$","$L4",null,{"className":"legal-back-link","href":"/join-waitlist","children":"Join the Waitlist"}]]}],["$","$L5",null,{"anchorPrefix":"/"}]]}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/0j-s9c9x_j8gs.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"A1t21BhvkNwc_XlJNF9Fn"}
+8:null

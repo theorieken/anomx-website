@@ -1,0 +1,19 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="620" height="400" rx="30" fill="#F9FBFC" stroke="#D7E4EC"/>
+  <rect x="52" y="112" width="186" height="196" rx="28" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <text x="78" y="150" fill="#009FDF" font-family="Arial, sans-serif" font-size="14" font-weight="700">Signal event</text>
+  <rect x="78" y="176" width="136" height="16" rx="8" fill="#009FDF" fill-opacity="0.18"/>
+  <rect x="78" y="204" width="118" height="16" rx="8" fill="#102331" fill-opacity="0.1"/>
+  <rect x="78" y="232" width="148" height="16" rx="8" fill="#F18F1F" fill-opacity="0.18"/>
+  <rect x="78" y="260" width="98" height="16" rx="8" fill="#102331" fill-opacity="0.1"/>
+  <path d="M238 210H304" stroke="#009FDF" stroke-width="3" stroke-linecap="round"/>
+  <rect x="326" y="74" width="248" height="72" rx="24" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <rect x="326" y="174" width="248" height="72" rx="24" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <rect x="326" y="274" width="248" height="72" rx="24" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <text x="352" y="104" fill="#009FDF" font-family="Arial, sans-serif" font-size="12" font-weight="700">Channel drift</text>
+  <text x="352" y="124" fill="#102331" font-family="Arial, sans-serif" font-size="13">Cooling loop variance rising</text>
+  <text x="352" y="204" fill="#009FDF" font-family="Arial, sans-serif" font-size="12" font-weight="700">Rate change</text>
+  <text x="352" y="224" fill="#102331" font-family="Arial, sans-serif" font-size="13">Output rate dropped 8.4%</text>
+  <text x="352" y="304" fill="#009FDF" font-family="Arial, sans-serif" font-size="12" font-weight="700">Related signal</text>
+  <text x="352" y="324" fill="#102331" font-family="Arial, sans-serif" font-size="13">Previous pattern seen 12 days ago</text>
+</svg>

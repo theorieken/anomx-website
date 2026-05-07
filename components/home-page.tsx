@@ -65,7 +65,7 @@ export function HomePage() {
           <p className="hero-subline">{copy.hero.subtitle}</p>
 
           <div className="hero-actions">
-            <a className="button button-primary" href="#early-access">
+            <a className="button button-primary" href="/join-waitlist">
               {copy.actions.joinWaitlist}
             </a>
             <a className="button button-secondary" href="mailto:hello@anomx.io">
@@ -78,14 +78,25 @@ export function HomePage() {
           <div className="media-preview-shell">
             <video
               autoPlay
-              className="product-video"
+              className="product-video product-video-light"
               loop
               muted
               playsInline
               poster="/images/auth-bg.webp"
               preload="metadata"
             >
-              <source src="/video/anomix-auth.mp4" type="video/mp4" />
+              <source src="/video/anomx-light-hd.mp4" type="video/mp4" />
+            </video>
+            <video
+              autoPlay
+              className="product-video product-video-dark"
+              loop
+              muted
+              playsInline
+              poster="/images/auth-bg.webp"
+              preload="metadata"
+            >
+              <source src="/video/anomix-dark-hd.mp4" type="video/mp4" />
             </video>
             <div className="media-preview-gradient" aria-hidden="true" />
           </div>
@@ -144,10 +155,6 @@ export function HomePage() {
                 </li>
               ))}
             </ul>
-
-            <a className="button button-platform" href="mailto:hello@anomx.io">
-              {copy.actions.talkToUs}
-            </a>
           </div>
 
           <div className="platform-dark-media">

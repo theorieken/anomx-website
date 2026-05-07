@@ -16,6 +16,7 @@ export function SiteHeader({ anchorPrefix = "" }: SiteChromeProps) {
   const copy = homeCopy[language];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeNavIndex, setActiveNavIndex] = useState<number | null>(null);
+  const [isAtTop, setIsAtTop] = useState(true);
 
   const navItems = [
     { href: `${anchorPrefix}#product`, label: copy.nav.product },
@@ -37,13 +38,22 @@ export function SiteHeader({ anchorPrefix = "" }: SiteChromeProps) {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsAtTop(window.scrollY <= 4);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <header
-      className={`site-header${isMenuOpen ? " site-header-menu-open" : ""}`}
-      style={{
-        WebkitBackdropFilter: "blur(24px)",
-        backdropFilter: "blur(24px)"
-      }}
+      className={`site-header${isMenuOpen ? " site-header-menu-open" : ""}${isAtTop ? " site-header-at-top" : ""}`}
     >
       <div className="site-header-inner">
         <div className="site-header-start">
@@ -79,9 +89,9 @@ export function SiteHeader({ anchorPrefix = "" }: SiteChromeProps) {
           <Link className="button button-text" href="/coming-soon">
             {copy.actions.logIn}
           </Link>
-          <a className="button button-primary" href={`${anchorPrefix}#early-access`}>
+          <Link className="button button-primary" href="/join-waitlist">
             {copy.actions.joinWaitlist}
-          </a>
+          </Link>
           <a className="button button-secondary" href="mailto:hello@anomx.io">
             {copy.actions.talkToUs}
           </a>

@@ -3,25 +3,31 @@ export type Language = "de" | "en";
 export type LocalizedText = Record<Language, string>;
 
 export type CardVisualVariant =
-  | "architecture"
-  | "compute"
-  | "connectors"
-  | "control"
-  | "data"
-  | "detect"
-  | "enterprise"
-  | "explain"
-  | "forecast"
-  | "human"
-  | "memory"
-  | "network"
-  | "operations"
-  | "radar"
-  | "research"
-  | "realtime"
-  | "signal"
-  | "stack"
-  | "workflow";
+  | "abnormal-detection"
+  | "changed-context"
+  | "connect-sources"
+  | "data-agnostic"
+  | "data-enterprise"
+  | "edge-compute"
+  | "energy-infrastructure"
+  | "enterprise-foundation"
+  | "explain-signal"
+  | "explainable-findings"
+  | "focused-start"
+  | "guide-step"
+  | "high-dimensional"
+  | "human-control"
+  | "industrial-ops"
+  | "modular-connectors"
+  | "operational-memory"
+  | "operational-pain"
+  | "operator-workspace"
+  | "predict-next"
+  | "realtime-design"
+  | "repeatable-workflows"
+  | "research-facilities"
+  | "technical-depth"
+  | "detect-change";
 
 export type SliderCard = {
   body: LocalizedText;
@@ -141,7 +147,7 @@ export const homeCopy = {
       earlyAccess: "Early Access"
     },
     actions: {
-      joinWaitlist: "Join Waitlist",
+      joinWaitlist: "Join the Waitlist",
       logIn: "Log in",
       menu: "Menu",
       talkToUs: "Talk to Us"
@@ -200,7 +206,7 @@ export const homeCopy = {
       copyright: "© 2026 Anomx. All rights reserved."
     },
     waitlist: {
-      buttonLabel: "Join Waitlist",
+      buttonLabel: "Join the Waitlist",
       company: "Company",
       companyPlaceholder: "Analytical Systems GmbH",
       email: "Work email",
@@ -229,7 +235,7 @@ export const sliderCards: SliderCard[] = [
       de: "Live-Streams, historische Daten, Dateien, Kontrollsysteme, Datenbanken und eigene Pipelines zusammenführen.",
       en: "Bring together live streams, historical records, files, control systems, databases, and custom pipelines."
     },
-    visual: "network"
+    visual: "connect-sources"
   },
   {
     title: {
@@ -240,7 +246,7 @@ export const sliderCards: SliderCard[] = [
       de: "Abnormales Verhalten in hochdimensionalen Zeitreihen finden, bevor es im Dashboard offensichtlich wird.",
       en: "Find abnormal behavior across high-dimensional time-series before it becomes obvious on a dashboard."
     },
-    visual: "detect"
+    visual: "detect-change"
   },
   {
     title: {
@@ -251,7 +257,7 @@ export const sliderCards: SliderCard[] = [
       de: "Die Kanäle, Kontexte und aktuellen Veränderungen sichtbar machen, die für ein Ereignis entscheidend sind.",
       en: "Surface the channels, context, and recent changes that matter most to the event."
     },
-    visual: "explain"
+    visual: "explain-signal"
   },
   {
     title: {
@@ -262,7 +268,7 @@ export const sliderCards: SliderCard[] = [
       de: "Modelle und historisches Verhalten nutzen, um mögliche Entwicklungen zu verstehen, nicht nur den aktuellen Zustand.",
       en: "Use models and historical behavior to understand possible outcomes, not just current state."
     },
-    visual: "forecast"
+    visual: "predict-next"
   },
   {
     title: {
@@ -273,7 +279,7 @@ export const sliderCards: SliderCard[] = [
       de: "Findings in Operator-Review, KI-gestützte Workflows, Tickets, Reports oder Folgejobs überführen.",
       en: "Turn findings into operator review, AI-assisted workflows, tickets, reports, or follow-up jobs."
     },
-    visual: "workflow"
+    visual: "guide-step"
   },
   {
     title: {
@@ -284,7 +290,7 @@ export const sliderCards: SliderCard[] = [
       de: "Expertinnen und Experten bestätigen, annotieren und verfeinern Findings, damit das System mit Betriebswissen besser wird.",
       en: "Let experts confirm, annotate, and refine findings so the system improves with operational knowledge."
     },
-    visual: "human"
+    visual: "human-control"
   }
 ];
 
@@ -298,7 +304,7 @@ export const complexSystemsCards: GridCard[] = [
       de: "Live-Streams analysieren, während sie sich verändern, nicht erst Stunden nach dem Ereignis.",
       en: "Analyze live operational streams as they change, not hours after the event."
     },
-    visual: "realtime",
+    visual: "realtime-design",
     size: "wide"
   },
   {
@@ -310,7 +316,7 @@ export const complexSystemsCards: GridCard[] = [
       de: "Heterogene Quellen nutzen, ohne jedes Team in ein starres Datenmodell zu zwingen.",
       en: "Work across heterogeneous sources without forcing every team into one rigid data model."
     },
-    visual: "data",
+    visual: "data-agnostic",
     size: "wide"
   },
   {
@@ -322,7 +328,7 @@ export const complexSystemsCards: GridCard[] = [
       de: "Muster erkennen, die über viele Kanäle entstehen, nicht nur einzelne Schwellenwertbrüche.",
       en: "Detect patterns that emerge across many channels, not only single-metric threshold breaks."
     },
-    visual: "signal",
+    visual: "high-dimensional",
     size: "standard"
   },
   {
@@ -334,7 +340,7 @@ export const complexSystemsCards: GridCard[] = [
       de: "Von \"etwas stimmt nicht\" zu \"das hat sich verändert, deshalb ist es relevant\" wechseln.",
       en: "Move from \"something is wrong\" to \"this changed, here is why it matters.\""
     },
-    visual: "explain",
+    visual: "explainable-findings",
     size: "standard"
   },
   {
@@ -346,7 +352,7 @@ export const complexSystemsCards: GridCard[] = [
       de: "Organisationen, Nutzer, Integrationen, Jobs, Dateien, Benachrichtigungen, Audit Logs und Systemobjekte gehören zum Plattformmodell.",
       en: "Organizations, users, integrations, jobs, files, notifications, audit logs, and system objects are part of the platform model."
     },
-    visual: "enterprise",
+    visual: "enterprise-foundation",
     size: "compact"
   },
   {
@@ -358,7 +364,7 @@ export const complexSystemsCards: GridCard[] = [
       de: "Auf Findings, Feedback, System-Monitoring und Handlung ausgerichtet, nicht nur auf Charts.",
       en: "Built around findings, feedback, system monitoring, and action, not just charts."
     },
-    visual: "operations",
+    visual: "operator-workspace",
     size: "compact"
   }
 ];
@@ -373,7 +379,7 @@ export const anomalyIntelligenceCards: GridCard[] = [
       de: "Fragile Schwellenwertregeln durch adaptive Anomalieerkennung über Live- und historische Signale ersetzen.",
       en: "Replace fragile threshold rules with adaptive anomaly detection across live and historical signals."
     },
-    visual: "radar",
+    visual: "abnormal-detection",
     size: "wide"
   },
   {
@@ -385,7 +391,7 @@ export const anomalyIntelligenceCards: GridCard[] = [
       de: "Sehen, welche Quellen, Kanäle, Jobs oder Bedingungen zu einem Finding beigetragen haben.",
       en: "See which sources, channels, jobs, or conditions contributed to a finding."
     },
-    visual: "detect",
+    visual: "changed-context",
     size: "standard"
   },
   {
@@ -397,7 +403,7 @@ export const anomalyIntelligenceCards: GridCard[] = [
       de: "Analyse, Review, Benachrichtigung und Reporting aus demselben Finding auslösen.",
       en: "Trigger analysis, review, notification, and reporting workflows from the same finding."
     },
-    visual: "workflow",
+    visual: "repeatable-workflows",
     size: "standard"
   },
   {
@@ -409,7 +415,7 @@ export const anomalyIntelligenceCards: GridCard[] = [
       de: "Compute Worker für ML, KI und algorithmische Jobs nutzen, ohne Detection von Operations zu trennen.",
       en: "Use compute workers for ML, AI, and algorithmic jobs without separating detection from operations."
     },
-    visual: "compute",
+    visual: "edge-compute",
     size: "standard"
   },
   {
@@ -421,7 +427,7 @@ export const anomalyIntelligenceCards: GridCard[] = [
       de: "Findings, Feedback, Runs, Artefakte und Kontext speichern, damit jede Untersuchung das System verbessert.",
       en: "Store findings, feedback, runs, artifacts, and context so every investigation makes the system smarter."
     },
-    visual: "memory",
+    visual: "operational-memory",
     size: "compact"
   },
   {
@@ -433,7 +439,7 @@ export const anomalyIntelligenceCards: GridCard[] = [
       de: "Bestehende Infrastruktur über modulare Connectors und Worker anbinden.",
       en: "Connect to existing infrastructure through modular connectors and workers."
     },
-    visual: "connectors",
+    visual: "modular-connectors",
     size: "compact"
   }
 ];
@@ -491,7 +497,7 @@ export const earlyPreviewCards = [
       de: "Komplexe Organisationen erzeugen mehr Daten, als Teams interpretieren können. Kritische Signale verschwinden im Rauschen.",
       en: "Complex organizations generate more data than teams can interpret. Critical signals get buried in noise."
     },
-    visual: "control" as const
+    visual: "operational-pain" as const
   },
   {
     title: {
@@ -502,7 +508,7 @@ export const earlyPreviewCards = [
       de: "Von Kontrollsystemen und Datenaufnahme bis zu Compute Jobs und Modellartefakten ist Anomx um reale Infrastruktur herum gebaut.",
       en: "From control systems and data acquisition to compute jobs and model artifacts, Anomx is built around real infrastructure."
     },
-    visual: "architecture" as const
+    visual: "technical-depth" as const
   },
   {
     title: {
@@ -513,7 +519,7 @@ export const earlyPreviewCards = [
       de: "Early Access richtet sich an Unternehmen und Forschungseinrichtungen mit hochwertigen Systemen und ernsthaften Anforderungen an Anomalieerkennung.",
       en: "Early access is intended for enterprises and research facilities with high-value systems and serious anomaly detection needs."
     },
-    visual: "stack" as const
+    visual: "focused-start" as const
   }
 ];
 
@@ -527,7 +533,7 @@ export const useCases: UseCaseCard[] = [
       de: "Abnormales Verhalten über Beschleuniger, Beamlines, Detektoren, Experimente und unterstützende Infrastruktur erkennen.",
       en: "Detect abnormal behavior across accelerators, beamlines, detectors, experiments, and supporting infrastructure."
     },
-    visual: "research"
+    visual: "research-facilities"
   },
   {
     title: {
@@ -538,7 +544,7 @@ export const useCases: UseCaseCard[] = [
       de: "Abweichungen in Produktionslinien, Anlagen, Energieverbrauch, Prozesssignalen und Qualitätsdaten finden.",
       en: "Find deviations across production lines, equipment, energy usage, process signals, and quality data."
     },
-    visual: "operations"
+    visual: "industrial-ops"
   },
   {
     title: {
@@ -549,7 +555,7 @@ export const useCases: UseCaseCard[] = [
       de: "Verteilte Assets überwachen, operative Drift erkennen und systemweite Veränderungen verstehen, bevor Ausfälle kaskadieren.",
       en: "Monitor distributed assets, detect operational drift, and understand system-wide changes before failures cascade."
     },
-    visual: "network"
+    visual: "energy-infrastructure"
   },
   {
     title: {
@@ -560,7 +566,7 @@ export const useCases: UseCaseCard[] = [
       de: "Statische Dashboards für lebendige, heterogene Datenumgebungen mit komplexen Abhängigkeiten überwinden.",
       en: "Move beyond static dashboards for live, heterogeneous data environments with complex dependencies."
     },
-    visual: "enterprise"
+    visual: "data-enterprise"
   }
 ];
 

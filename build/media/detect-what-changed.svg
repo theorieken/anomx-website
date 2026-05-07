@@ -1,0 +1,12 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="620" height="400" rx="30" fill="#F9FBFC" stroke="#D7E4EC"/>
+  <rect x="48" y="52" width="544" height="316" rx="28" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <path d="M76 300C118 296 146 248 188 248C230 248 264 308 302 308C344 308 366 162 408 162C450 162 472 230 520 230C548 230 564 206 566 176" stroke="#B6CBD8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M76 272C118 270 144 236 186 236C228 236 258 262 300 262C342 262 364 214 406 214C448 214 472 246 518 246C542 246 560 236 566 224" stroke="#D6E3EA" stroke-width="3" stroke-linecap="round"/>
+  <path d="M76 316C118 316 150 302 190 302C228 302 264 324 302 324C344 324 368 282 408 282C448 282 474 300 518 300C544 300 560 290 566 286" stroke="#D6E3EA" stroke-width="3" stroke-linecap="round"/>
+  <path d="M76 288C118 284 146 234 188 234C230 234 264 296 302 296C344 296 366 108 408 108C450 108 472 220 520 220C548 220 564 194 566 156" stroke="#009FDF" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="408" cy="108" r="10" fill="#F18F1F"/>
+  <rect x="430" y="80" width="128" height="52" rx="20" fill="#0F1722"/>
+  <text x="452" y="103" fill="#F4FBFF" font-family="Arial, sans-serif" font-size="11" font-weight="700">Anomaly detected</text>
+  <text x="452" y="121" fill="#C5D6E1" font-family="Arial, sans-serif" font-size="12">Confidence 94%</text>
+</svg>
