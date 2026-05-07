@@ -1,0 +1,13 @@
+{
+  "recipientEmail": "theo.rieken@desy.de",
+  "subjectPrefix": "[Anomx Waitlist]",
+  "smtp": {
+    "fromEmail": "no-reply@anomx.io",
+    "fromName": "Anomx Website",
+    "host": "",
+    "pass": "",
+    "port": 587,
+    "secure": false,
+    "user": ""
+  }
+}

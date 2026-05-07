@@ -1,0 +1,29 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="620" height="400" rx="30" fill="#F8FBFD" stroke="#D7E4EC"/>
+  <rect x="54" y="96" width="132" height="42" rx="21" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <rect x="54" y="158" width="132" height="42" rx="21" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <rect x="54" y="220" width="132" height="42" rx="21" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <rect x="54" y="282" width="132" height="42" rx="21" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <text x="86" y="122" fill="#102331" font-family="Arial, sans-serif" font-size="12" font-weight="700">External systems</text>
+  <text x="86" y="184" fill="#102331" font-family="Arial, sans-serif" font-size="12" font-weight="700">Files</text>
+  <text x="86" y="246" fill="#102331" font-family="Arial, sans-serif" font-size="12" font-weight="700">APIs</text>
+  <text x="86" y="308" fill="#102331" font-family="Arial, sans-serif" font-size="12" font-weight="700">Databases</text>
+  <path d="M186 117H258" stroke="#009FDF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M186 179H258" stroke="#009FDF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M186 241H258" stroke="#009FDF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M186 303H258" stroke="#009FDF" stroke-width="3" stroke-linecap="round"/>
+  <rect x="258" y="102" width="112" height="56" rx="22" fill="#EAF5FA" stroke="#CFE2EC"/>
+  <rect x="258" y="182" width="112" height="56" rx="22" fill="#EAF5FA" stroke="#CFE2EC"/>
+  <rect x="258" y="262" width="112" height="56" rx="22" fill="#EAF5FA" stroke="#CFE2EC"/>
+  <text x="292" y="136" fill="#009FDF" font-family="Arial, sans-serif" font-size="12" font-weight="700">Connector</text>
+  <text x="292" y="216" fill="#009FDF" font-family="Arial, sans-serif" font-size="12" font-weight="700">Connector</text>
+  <text x="292" y="296" fill="#009FDF" font-family="Arial, sans-serif" font-size="12" font-weight="700">Connector</text>
+  <path d="M370 130H440" stroke="#F18F1F" stroke-width="3" stroke-linecap="round"/>
+  <path d="M370 210H440" stroke="#F18F1F" stroke-width="3" stroke-linecap="round"/>
+  <path d="M370 290H440" stroke="#F18F1F" stroke-width="3" stroke-linecap="round"/>
+  <rect x="440" y="136" width="138" height="148" rx="28" fill="#0F1722"/>
+  <text x="468" y="170" fill="#F4FBFF" font-family="Arial, sans-serif" font-size="12" font-weight="700">Anomx bus</text>
+  <rect x="468" y="190" width="72" height="12" rx="6" fill="#009FDF" fill-opacity="0.32"/>
+  <rect x="468" y="214" width="98" height="12" rx="6" fill="#F18F1F" fill-opacity="0.36"/>
+  <rect x="468" y="238" width="88" height="12" rx="6" fill="#FFFFFF" fill-opacity="0.14"/>
+</svg>

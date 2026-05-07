@@ -1,0 +1,34 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="620" height="400" rx="30" fill="#F8FBFD" stroke="#D7E4EC"/>
+  <rect x="44" y="72" width="150" height="42" rx="21" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <rect x="44" y="132" width="150" height="42" rx="21" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <rect x="44" y="192" width="150" height="42" rx="21" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <rect x="44" y="252" width="150" height="42" rx="21" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <text x="68" y="98" fill="#102331" font-family="Arial, sans-serif" font-size="14" font-weight="700">Control system</text>
+  <text x="68" y="158" fill="#102331" font-family="Arial, sans-serif" font-size="14" font-weight="700">Sensor stream</text>
+  <text x="68" y="218" fill="#102331" font-family="Arial, sans-serif" font-size="14" font-weight="700">Database</text>
+  <text x="68" y="278" fill="#102331" font-family="Arial, sans-serif" font-size="14" font-weight="700">Logs</text>
+  <path d="M194 93H248" stroke="#009FDF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M194 153H248" stroke="#009FDF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M194 213H248" stroke="#009FDF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M194 273H248" stroke="#009FDF" stroke-width="3" stroke-linecap="round"/>
+  <rect x="248" y="96" width="10" height="174" rx="5" fill="#009FDF" fill-opacity="0.16"/>
+  <rect x="272" y="120" width="176" height="178" rx="28" fill="#EAF5FA" stroke="#CDE0EB"/>
+  <text x="304" y="162" fill="#009FDF" font-family="Arial, sans-serif" font-size="14" font-weight="700">Anomx intelligence layer</text>
+  <rect x="304" y="182" width="112" height="14" rx="7" fill="#009FDF" fill-opacity="0.18"/>
+  <rect x="304" y="208" width="82" height="14" rx="7" fill="#F18F1F" fill-opacity="0.18"/>
+  <rect x="304" y="234" width="128" height="14" rx="7" fill="#009FDF" fill-opacity="0.18"/>
+  <rect x="304" y="260" width="94" height="14" rx="7" fill="#102331" fill-opacity="0.12"/>
+  <path d="M448 170H488" stroke="#009FDF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M448 220H488" stroke="#009FDF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M448 270H488" stroke="#009FDF" stroke-width="3" stroke-linecap="round"/>
+  <rect x="488" y="138" width="108" height="52" rx="20" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <rect x="488" y="196" width="108" height="52" rx="20" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <rect x="488" y="254" width="108" height="52" rx="20" fill="#FFFFFF" stroke="#D7E4EC"/>
+  <text x="510" y="160" fill="#009FDF" font-family="Arial, sans-serif" font-size="11" font-weight="700">Anomaly detected</text>
+  <text x="510" y="180" fill="#102331" font-family="Arial, sans-serif" font-size="12">Beam variance spike</text>
+  <text x="510" y="218" fill="#009FDF" font-family="Arial, sans-serif" font-size="11" font-weight="700">Likely cause</text>
+  <text x="510" y="238" fill="#102331" font-family="Arial, sans-serif" font-size="12">Cooling drift</text>
+  <text x="510" y="276" fill="#009FDF" font-family="Arial, sans-serif" font-size="11" font-weight="700">Next step</text>
+  <text x="510" y="296" fill="#102331" font-family="Arial, sans-serif" font-size="12">Review and notify</text>
+</svg>
