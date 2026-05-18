@@ -1,4 +1,7 @@
+"use client";
+
 import type { CardVisualVariant } from "@/lib/home-content";
+import { ScrollScene } from "@/components/scroll-scene";
 
 type Tone = "accent" | "default" | "primary" | "soft";
 
@@ -40,86 +43,103 @@ type CardVisualProps = {
   variant: CardVisualVariant;
 };
 
+type MotionProfile = "control" | "explain" | "flow" | "network" | "signal";
+
 const visualSpecs: Record<CardVisualVariant, VisualSpec> = {
   "abnormal-detection": {
     circles: [
-      { cx: 284, cy: 104, r: 10, tone: "primary" },
-      { cx: 268, cy: 198, r: 13, tone: "accent" }
+      { cx: 272, cy: 92, r: 8, tone: "accent" },
+      { cx: 318, cy: 150, r: 7, tone: "primary" }
     ],
-    fills: [{ d: "M200 140 L284 104 A91 91 0 0 1 268 198 Z", tone: "primary" }],
     lines: [
-      { d: "M200 48 V232", tone: "primary" },
-      { d: "M108 140 H292", tone: "soft" }
+      { d: "M42 166 C88 118 126 214 176 148 S276 82 348 126", tone: "soft" },
+      { d: "M42 180 C88 132 126 222 176 166 S276 84 348 110", tone: "primary" },
+      { d: "M42 194 C90 154 124 240 178 194 S278 150 348 176", tone: "accent" }
     ],
-    rings: [
-      { cx: 200, cy: 140, r: 88, tone: "soft" },
-      { cx: 200, cy: 140, r: 56, tone: "soft" },
-      { cx: 200, cy: 140, r: 24, tone: "primary" }
-    ]
+    rects: [{ x: 286, y: 70, width: 56, height: 28, rx: 14, tone: "primary" }],
+    rings: [{ cx: 272, cy: 92, r: 18, tone: "soft" }]
   },
   "changed-context": {
-    circles: [
-      { cx: 86, cy: 86, r: 8, tone: "primary" },
-      { cx: 198, cy: 142, r: 8 },
-      { cx: 314, cy: 196, r: 8, tone: "accent" }
-    ],
+    circles: [{ cx: 80, cy: 140, r: 8, tone: "primary" }, { cx: 314, cy: 145, r: 7, tone: "accent" }],
     lines: [
-      { d: "M116 86 C152 86 136 142 166 142", tone: "primary" },
-      { d: "M230 142 C266 142 252 196 282 196", tone: "accent" }
+      { d: "M118 140 H154 C172 140 166 91 184 91", tone: "soft" },
+      { d: "M118 140 H154 C172 140 166 140 184 140", tone: "primary" },
+      { d: "M118 140 H154 C172 140 166 189 184 189", tone: "soft" },
+      { d: "M268 140 H278", tone: "accent" }
     ],
     rects: [
-      { x: 44, y: 58, width: 84, height: 56, rx: 14 },
-      { x: 166, y: 114, width: 86, height: 56, rx: 14, tone: "primary" },
-      { x: 282, y: 168, width: 76, height: 56, rx: 14, tone: "accent" }
+      { x: 44, y: 116, width: 74, height: 48, rx: 14, tone: "primary" },
+      { x: 184, y: 74, width: 84, height: 34, rx: 14 },
+      { x: 184, y: 123, width: 84, height: 34, rx: 14 },
+      { x: 184, y: 172, width: 84, height: 34, rx: 14 },
+      { x: 278, y: 121, width: 74, height: 48, rx: 16, tone: "accent" }
     ]
   },
   "connect-sources": {
-    circles: [
-      { cx: 54, cy: 158, r: 10, tone: "primary" },
-      { cx: 116, cy: 86, r: 8 },
-      { cx: 188, cy: 126, r: 11, tone: "accent" },
-      { cx: 272, cy: 70, r: 8 },
-      { cx: 334, cy: 116, r: 10, tone: "primary" },
-      { cx: 76, cy: 214, r: 8 },
-      { cx: 154, cy: 160, r: 8, tone: "accent" },
-      { cx: 232, cy: 188, r: 9 },
-      { cx: 314, cy: 136, r: 8, tone: "primary" }
-    ],
+    circles: [{ cx: 357, cy: 140, r: 8, tone: "accent" }],
     lines: [
-      { d: "M54 158 L116 86 L188 126 L272 70 L334 116", tone: "soft" },
-      { d: "M76 214 L154 160 L232 188 L314 136", tone: "primary" }
+      { d: "M124 68 H168", tone: "soft" },
+      { d: "M124 108 H168", tone: "soft" },
+      { d: "M124 148 H168", tone: "soft" },
+      { d: "M124 188 H168", tone: "soft" },
+      { d: "M174 68 V212", tone: "primary" },
+      { d: "M186 140 H244", tone: "primary" },
+      { d: "M326 140 H350", tone: "accent" }
+    ],
+    rects: [
+      { x: 50, y: 54, width: 74, height: 28, rx: 14 },
+      { x: 50, y: 94, width: 74, height: 28, rx: 14 },
+      { x: 50, y: 134, width: 74, height: 28, rx: 14 },
+      { x: 50, y: 174, width: 74, height: 28, rx: 14 },
+      { x: 168, y: 62, width: 12, height: 156, rx: 6, tone: "primary" },
+      { x: 244, y: 94, width: 82, height: 92, rx: 20, tone: "primary" },
+      { x: 350, y: 120, width: 14, height: 40, rx: 7, tone: "accent" }
     ]
   },
   "data-agnostic": {
     lines: [
-      { d: "M92 126 V146 M170 126 V146 M248 126 V146", tone: "soft" },
-      { d: "M120 184 H280", tone: "primary" }
+      { d: "M120 72 H158", tone: "soft" },
+      { d: "M120 112 H158", tone: "soft" },
+      { d: "M120 152 H158", tone: "soft" },
+      { d: "M120 192 H158", tone: "soft" },
+      { d: "M164 72 V204", tone: "primary" },
+      { d: "M176 140 H226", tone: "primary" }
     ],
     rects: [
-      { x: 54, y: 62, width: 76, height: 60, rx: 14 },
-      { x: 142, y: 62, width: 76, height: 60, rx: 14, tone: "primary" },
-      { x: 230, y: 62, width: 76, height: 60, rx: 14 },
-      { x: 92, y: 150, width: 60, height: 52, rx: 12, tone: "accent" },
-      { x: 170, y: 150, width: 60, height: 52, rx: 12 },
-      { x: 248, y: 150, width: 60, height: 52, rx: 12, tone: "primary" }
+      { x: 50, y: 58, width: 70, height: 28, rx: 14 },
+      { x: 50, y: 98, width: 70, height: 28, rx: 14 },
+      { x: 50, y: 138, width: 70, height: 28, rx: 14 },
+      { x: 50, y: 178, width: 70, height: 28, rx: 14 },
+      { x: 158, y: 64, width: 12, height: 148, rx: 6, tone: "primary" },
+      { x: 226, y: 88, width: 112, height: 108, rx: 22, tone: "primary" },
+      { x: 246, y: 112, width: 34, height: 20, rx: 10 },
+      { x: 286, y: 112, width: 34, height: 20, rx: 10 },
+      { x: 246, y: 144, width: 42, height: 20, rx: 10 },
+      { x: 294, y: 144, width: 26, height: 20, rx: 10, tone: "accent" }
     ]
   },
   "data-enterprise": {
-    circles: [
-      { cx: 88, cy: 112, r: 7, tone: "primary" },
-      { cx: 154, cy: 112, r: 7 },
-      { cx: 220, cy: 112, r: 7, tone: "accent" },
-      { cx: 286, cy: 112, r: 7 }
-    ],
+    circles: [{ cx: 226, cy: 140, r: 7, tone: "primary" }],
     lines: [
-      { d: "M88 112 H286", tone: "soft" },
-      { d: "M112 166 H264", tone: "primary" },
-      { d: "M140 206 H236", tone: "accent" }
+      { d: "M114 72 H160", tone: "soft" },
+      { d: "M114 104 H160", tone: "soft" },
+      { d: "M114 136 H160", tone: "soft" },
+      { d: "M114 168 H160", tone: "soft" },
+      { d: "M114 200 H160", tone: "soft" },
+      { d: "M166 72 V208", tone: "primary" },
+      { d: "M178 140 H226", tone: "primary" }
     ],
     rects: [
-      { x: 54, y: 80, width: 268, height: 64, rx: 18 },
-      { x: 92, y: 148, width: 196, height: 44, rx: 14, tone: "primary" },
-      { x: 120, y: 194, width: 140, height: 36, rx: 12, tone: "accent" }
+      { x: 50, y: 58, width: 64, height: 20, rx: 10 },
+      { x: 50, y: 90, width: 64, height: 20, rx: 10 },
+      { x: 50, y: 122, width: 64, height: 20, rx: 10 },
+      { x: 50, y: 154, width: 64, height: 20, rx: 10 },
+      { x: 50, y: 186, width: 64, height: 20, rx: 10 },
+      { x: 160, y: 66, width: 12, height: 148, rx: 6, tone: "primary" },
+      { x: 226, y: 82, width: 114, height: 116, rx: 22, tone: "primary" },
+      { x: 246, y: 104, width: 74, height: 36, rx: 16 },
+      { x: 246, y: 150, width: 34, height: 18, rx: 9, tone: "primary" },
+      { x: 286, y: 150, width: 34, height: 18, rx: 9, tone: "accent" }
     ]
   },
   "detect-change": {
@@ -141,80 +161,88 @@ const visualSpecs: Record<CardVisualVariant, VisualSpec> = {
     ]
   },
   "edge-compute": {
-    circles: [
-      { cx: 104, cy: 190, r: 8, tone: "primary" },
-      { cx: 200, cy: 92, r: 8 },
-      { cx: 296, cy: 190, r: 8, tone: "accent" }
-    ],
+    circles: [{ cx: 88, cy: 140, r: 7, tone: "primary" }, { cx: 312, cy: 140, r: 7, tone: "accent" }],
     lines: [
-      { d: "M104 166 V190 H296 V166", tone: "soft" },
-      { d: "M200 120 V150", tone: "primary" }
+      { d: "M130 140 H168", tone: "primary" },
+      { d: "M240 92 H270", tone: "accent" },
+      { d: "M240 140 H270", tone: "primary" },
+      { d: "M240 188 H270", tone: "accent" }
     ],
     rects: [
-      { x: 68, y: 120, width: 72, height: 48, rx: 12, tone: "primary" },
-      { x: 154, y: 64, width: 92, height: 58, rx: 16 },
-      { x: 260, y: 120, width: 72, height: 48, rx: 12, tone: "accent" },
-      { x: 144, y: 150, width: 112, height: 46, rx: 12, tone: "primary" }
+      { x: 44, y: 102, width: 86, height: 76, rx: 18, tone: "primary" },
+      { x: 168, y: 74, width: 72, height: 36, rx: 14 },
+      { x: 168, y: 122, width: 72, height: 36, rx: 14 },
+      { x: 168, y: 170, width: 72, height: 36, rx: 14 },
+      { x: 270, y: 102, width: 84, height: 76, rx: 18, tone: "accent" }
     ]
   },
   "energy-infrastructure": {
     circles: [
-      { cx: 88, cy: 92, r: 9, tone: "primary" },
-      { cx: 200, cy: 140, r: 10, tone: "accent" },
-      { cx: 312, cy: 92, r: 9, tone: "primary" },
-      { cx: 120, cy: 210, r: 8 },
-      { cx: 280, cy: 210, r: 8 }
+      { cx: 72, cy: 88, r: 8, tone: "primary" },
+      { cx: 136, cy: 68, r: 7 },
+      { cx: 140, cy: 148, r: 9, tone: "primary" },
+      { cx: 78, cy: 192, r: 8 },
+      { cx: 154, cy: 208, r: 7, tone: "accent" }
     ],
     lines: [
-      { d: "M88 92 L200 140 L312 92", tone: "primary" },
-      { d: "M200 140 L120 210 M200 140 L280 210", tone: "soft" },
-      { d: "M178 118 L204 86 L196 126 L224 120 L188 194", tone: "accent" }
+      { d: "M72 88 L136 68 L140 148 L78 192 L154 208", tone: "primary" },
+      { d: "M72 88 L140 148 L154 208", tone: "soft" },
+      { d: "M178 140 H228", tone: "primary" }
+    ],
+    rects: [
+      { x: 228, y: 76, width: 110, height: 74, rx: 18 },
+      { x: 228, y: 162, width: 110, height: 46, rx: 16, tone: "primary" }
     ]
   },
   "enterprise-foundation": {
     lines: [
-      { d: "M92 92 H282", tone: "primary" },
-      { d: "M118 140 H308", tone: "soft" },
-      { d: "M146 188 H322", tone: "accent" }
+      { d: "M146 102 H184", tone: "soft" },
+      { d: "M146 178 H184", tone: "soft" }
     ],
     rects: [
-      { x: 62, y: 62, width: 250, height: 54, rx: 16 },
-      { x: 90, y: 112, width: 250, height: 54, rx: 16, tone: "primary" },
-      { x: 118, y: 162, width: 218, height: 54, rx: 16, tone: "accent" }
+      { x: 50, y: 72, width: 96, height: 60, rx: 18 },
+      { x: 50, y: 148, width: 96, height: 60, rx: 18 },
+      { x: 184, y: 72, width: 154, height: 136, rx: 22, tone: "primary" },
+      { x: 206, y: 96, width: 46, height: 20, rx: 10 },
+      { x: 260, y: 96, width: 54, height: 20, rx: 10 },
+      { x: 206, y: 128, width: 42, height: 20, rx: 10 },
+      { x: 256, y: 128, width: 58, height: 20, rx: 10 },
+      { x: 206, y: 160, width: 38, height: 20, rx: 10 },
+      { x: 252, y: 160, width: 62, height: 20, rx: 10, tone: "accent" }
     ]
   },
   "explain-signal": {
     circles: [
-      { cx: 90, cy: 88, r: 8, tone: "primary" },
-      { cx: 210, cy: 140, r: 8 },
-      { cx: 320, cy: 192, r: 8, tone: "accent" }
+      { cx: 92, cy: 122, r: 7, tone: "primary" },
+      { cx: 92, cy: 150, r: 7 },
+      { cx: 92, cy: 178, r: 7, tone: "accent" }
     ],
     lines: [
-      { d: "M122 88 C150 88 130 140 158 140", tone: "primary" },
-      { d: "M254 140 C286 140 268 192 296 192", tone: "accent" },
-      { d: "M88 226 H304", tone: "soft" }
+      { d: "M136 118 H172 C190 118 188 81 206 81", tone: "soft" },
+      { d: "M136 146 H176 C194 146 192 137 206 137", tone: "primary" },
+      { d: "M136 174 H172 C190 174 188 193 206 193", tone: "accent" },
+      { d: "M72 214 H320", tone: "soft" }
     ],
     rects: [
-      { x: 48, y: 60, width: 84, height: 56, rx: 14 },
-      { x: 158, y: 112, width: 96, height: 56, rx: 14, tone: "primary" },
-      { x: 296, y: 164, width: 70, height: 56, rx: 14, tone: "accent" }
+      { x: 48, y: 92, width: 88, height: 104, rx: 20 },
+      { x: 206, y: 62, width: 118, height: 38, rx: 16 },
+      { x: 206, y: 118, width: 118, height: 38, rx: 16, tone: "primary" },
+      { x: 206, y: 174, width: 118, height: 38, rx: 16, tone: "accent" }
     ]
   },
   "explainable-findings": {
-    circles: [
-      { cx: 114, cy: 88, r: 8, tone: "primary" },
-      { cx: 202, cy: 146, r: 7 },
-      { cx: 290, cy: 198, r: 8, tone: "accent" }
-    ],
+    circles: [{ cx: 104, cy: 122, r: 8, tone: "primary" }, { cx: 206, cy: 116, r: 7 }, { cx: 304, cy: 116, r: 8, tone: "accent" }],
     lines: [
-      { d: "M114 118 V168 C114 192 140 200 166 190", tone: "soft" },
-      { d: "M174 146 H242", tone: "primary" },
-      { d: "M246 174 L290 198", tone: "accent" }
+      { d: "M104 116 V132", tone: "soft" },
+      { d: "M206 116 V132", tone: "primary" },
+      { d: "M304 116 V132", tone: "accent" },
+      { d: "M88 122 H320", tone: "soft" }
     ],
     rects: [
-      { x: 72, y: 58, width: 84, height: 60, rx: 14 },
-      { x: 158, y: 118, width: 88, height: 56, rx: 14, tone: "primary" },
-      { x: 246, y: 174, width: 88, height: 48, rx: 14, tone: "accent" }
+      { x: 64, y: 62, width: 272, height: 52, rx: 18 },
+      { x: 64, y: 134, width: 80, height: 72, rx: 18 },
+      { x: 160, y: 134, width: 92, height: 72, rx: 18, tone: "primary" },
+      { x: 268, y: 134, width: 68, height: 72, rx: 18, tone: "accent" }
     ]
   },
   "focused-start": {
@@ -234,20 +262,19 @@ const visualSpecs: Record<CardVisualVariant, VisualSpec> = {
     ]
   },
   "guide-step": {
-    circles: [
-      { cx: 86, cy: 178, r: 8 },
-      { cx: 192, cy: 120, r: 8, tone: "primary" },
-      { cx: 300, cy: 82, r: 8, tone: "accent" }
-    ],
+    circles: [{ cx: 296, cy: 116, r: 6, tone: "primary" }, { cx: 296, cy: 140, r: 6 }, { cx: 296, cy: 164, r: 6, tone: "accent" }],
     lines: [
-      { d: "M72 178 C124 178 132 120 176 120 S250 82 300 82", tone: "primary" },
-      { d: "M288 70 L304 82 L288 94", tone: "accent" },
-      { d: "M94 214 H288", tone: "soft" }
+      { d: "M118 140 H148", tone: "primary" },
+      { d: "M224 91 H264", tone: "soft" },
+      { d: "M224 140 H264", tone: "primary" },
+      { d: "M224 189 H264", tone: "accent" }
     ],
     rects: [
-      { x: 52, y: 154, width: 68, height: 48, rx: 12 },
-      { x: 158, y: 96, width: 68, height: 48, rx: 12, tone: "primary" },
-      { x: 274, y: 58, width: 68, height: 48, rx: 12, tone: "accent" }
+      { x: 44, y: 116, width: 74, height: 48, rx: 14 },
+      { x: 148, y: 74, width: 76, height: 34, rx: 14 },
+      { x: 148, y: 123, width: 76, height: 34, rx: 14, tone: "primary" },
+      { x: 148, y: 172, width: 76, height: 34, rx: 14 },
+      { x: 264, y: 92, width: 92, height: 96, rx: 20, tone: "primary" }
     ]
   },
   "high-dimensional": {
@@ -269,59 +296,75 @@ const visualSpecs: Record<CardVisualVariant, VisualSpec> = {
   },
   "human-control": {
     circles: [
-      { cx: 200, cy: 116, r: 24, tone: "primary" },
-      { cx: 118, cy: 184, r: 10 },
-      { cx: 282, cy: 184, r: 10, tone: "accent" }
+      { cx: 200, cy: 156, r: 10, tone: "primary" },
+      { cx: 108, cy: 198, r: 6 },
+      { cx: 200, cy: 198, r: 6, tone: "primary" },
+      { cx: 288, cy: 198, r: 6, tone: "accent" }
     ],
     lines: [
-      { d: "M200 140 V196", tone: "primary" },
-      { d: "M158 178 C178 198 222 198 242 178", tone: "soft" },
-      { d: "M118 184 H282", tone: "accent" }
-    ],
-    rings: [{ cx: 200, cy: 140, r: 88, tone: "soft" }]
-  },
-  "industrial-ops": {
-    circles: [
-      { cx: 112, cy: 184, r: 8, tone: "primary" },
-      { cx: 204, cy: 184, r: 8 },
-      { cx: 296, cy: 184, r: 8, tone: "accent" }
-    ],
-    lines: [
-      { d: "M74 150 H326", tone: "soft" },
-      { d: "M112 134 V184 M204 112 V184 M296 136 V184", tone: "primary" }
+      { d: "M108 104 H292", tone: "soft" },
+      { d: "M108 128 H244", tone: "primary" },
+      { d: "M108 152 H204", tone: "accent" },
+      { d: "M200 166 V182", tone: "primary" }
     ],
     rects: [
-      { x: 72, y: 86, width: 80, height: 48, rx: 12 },
-      { x: 164, y: 64, width: 80, height: 48, rx: 12, tone: "primary" },
-      { x: 256, y: 88, width: 80, height: 48, rx: 12, tone: "accent" }
+      { x: 74, y: 72, width: 252, height: 84, rx: 22 },
+      { x: 74, y: 182, width: 72, height: 32, rx: 16, tone: "primary" },
+      { x: 156, y: 182, width: 82, height: 32, rx: 16 },
+      { x: 248, y: 182, width: 78, height: 32, rx: 16, tone: "accent" }
+    ]
+  },
+  "industrial-ops": {
+    circles: [{ cx: 286, cy: 126, r: 7, tone: "accent" }],
+    lines: [
+      { d: "M72 186 H164", tone: "soft" },
+      { d: "M206 126 C230 110 252 120 274 102 C286 92 300 92 320 98", tone: "soft" },
+      { d: "M206 146 C230 132 252 142 274 124 C286 114 300 114 320 120", tone: "primary" },
+      { d: "M206 166 C230 152 252 162 274 144 C286 134 300 134 320 140", tone: "accent" }
+    ],
+    rects: [
+      { x: 48, y: 92, width: 38, height: 78, rx: 12 },
+      { x: 94, y: 118, width: 38, height: 52, rx: 12, tone: "primary" },
+      { x: 140, y: 106, width: 32, height: 64, rx: 10 },
+      { x: 206, y: 92, width: 122, height: 98, rx: 20 },
+      { x: 226, y: 164, width: 86, height: 30, rx: 14, tone: "primary" }
     ]
   },
   "modular-connectors": {
-    circles: [
-      { cx: 96, cy: 100, r: 7, tone: "primary" },
-      { cx: 200, cy: 140, r: 7 },
-      { cx: 304, cy: 180, r: 7, tone: "accent" }
-    ],
+    circles: [{ cx: 314, cy: 140, r: 8, tone: "accent" }],
     lines: [
-      { d: "M128 100 H154 C176 100 166 140 188 140", tone: "primary" },
-      { d: "M212 140 C236 140 226 180 250 180 H272", tone: "accent" }
+      { d: "M114 82 H156", tone: "soft" },
+      { d: "M114 122 H156", tone: "soft" },
+      { d: "M114 162 H156", tone: "soft" },
+      { d: "M232 98 H270", tone: "accent" },
+      { d: "M232 140 H270", tone: "primary" },
+      { d: "M232 182 H270", tone: "accent" }
     ],
     rects: [
-      { x: 54, y: 76, width: 74, height: 48, rx: 12 },
-      { x: 188, y: 116, width: 74, height: 48, rx: 12, tone: "primary" },
-      { x: 272, y: 156, width: 74, height: 48, rx: 12, tone: "accent" }
+      { x: 44, y: 68, width: 70, height: 28, rx: 14 },
+      { x: 44, y: 108, width: 70, height: 28, rx: 14 },
+      { x: 44, y: 148, width: 70, height: 28, rx: 14 },
+      { x: 156, y: 82, width: 76, height: 32, rx: 14, tone: "primary" },
+      { x: 156, y: 124, width: 76, height: 32, rx: 14, tone: "primary" },
+      { x: 156, y: 166, width: 76, height: 32, rx: 14, tone: "primary" },
+      { x: 270, y: 98, width: 72, height: 84, rx: 18 }
     ]
   },
   "operational-memory": {
     lines: [
-      { d: "M94 82 H284", tone: "primary" },
-      { d: "M94 132 H250", tone: "soft" },
-      { d: "M94 182 H304", tone: "accent" }
+      { d: "M64 140 H336", tone: "soft" }
     ],
     rects: [
-      { x: 64, y: 58, width: 252, height: 48, rx: 14 },
-      { x: 64, y: 108, width: 204, height: 48, rx: 14, tone: "primary" },
-      { x: 64, y: 158, width: 270, height: 48, rx: 14, tone: "accent" }
+      { x: 54, y: 72, width: 72, height: 34, rx: 14 },
+      { x: 130, y: 174, width: 72, height: 34, rx: 14 },
+      { x: 206, y: 72, width: 72, height: 34, rx: 14 },
+      { x: 282, y: 174, width: 72, height: 34, rx: 14 }
+    ],
+    circles: [
+      { cx: 90, cy: 140, r: 8, tone: "primary" },
+      { cx: 166, cy: 140, r: 8, tone: "accent" },
+      { cx: 242, cy: 140, r: 8, tone: "primary" },
+      { cx: 318, cy: 140, r: 8 }
     ]
   },
   "operational-pain": {
@@ -341,19 +384,21 @@ const visualSpecs: Record<CardVisualVariant, VisualSpec> = {
   },
   "operator-workspace": {
     circles: [
-      { cx: 110, cy: 196, r: 7, tone: "primary" },
-      { cx: 202, cy: 196, r: 7 },
-      { cx: 294, cy: 196, r: 7, tone: "accent" }
+      { cx: 92, cy: 109, r: 5 },
+      { cx: 108, cy: 109, r: 5, tone: "primary" },
+      { cx: 124, cy: 109, r: 5, tone: "accent" }
     ],
     lines: [
-      { d: "M82 116 H318", tone: "primary" },
-      { d: "M112 156 H286", tone: "soft" },
-      { d: "M98 196 H306", tone: "accent" }
+      { d: "M84 110 H296", tone: "soft" },
+      { d: "M96 140 H240", tone: "primary" },
+      { d: "M96 178 H218", tone: "accent" }
     ],
     rects: [
-      { x: 62, y: 86, width: 276, height: 112, rx: 18 },
-      { x: 82, y: 132, width: 92, height: 40, rx: 12, tone: "primary" },
-      { x: 202, y: 132, width: 96, height: 40, rx: 12, tone: "accent" }
+      { x: 52, y: 68, width: 296, height: 146, rx: 22 },
+      { x: 74, y: 122, width: 252, height: 30, rx: 14 },
+      { x: 74, y: 160, width: 252, height: 30, rx: 14, tone: "primary" },
+      { x: 74, y: 198, width: 252, height: 30, rx: 14 },
+      { x: 258, y: 166, width: 52, height: 18, rx: 9, tone: "accent" }
     ]
   },
   "predict-next": {
@@ -387,35 +432,38 @@ const visualSpecs: Record<CardVisualVariant, VisualSpec> = {
     ]
   },
   "repeatable-workflows": {
-    circles: [
-      { cx: 108, cy: 94, r: 7, tone: "primary" },
-      { cx: 206, cy: 144, r: 7 },
-      { cx: 302, cy: 194, r: 7, tone: "accent" }
-    ],
+    circles: [{ cx: 286, cy: 110, r: 6 }, { cx: 286, cy: 172, r: 6, tone: "accent" }],
     lines: [
-      { d: "M132 94 H154 C176 94 166 144 188 144 H206", tone: "primary" },
-      { d: "M230 144 H250 C272 144 260 194 284 194 H302", tone: "accent" },
-      { d: "M118 214 H302", tone: "soft" }
+      { d: "M116 140 H146", tone: "primary" },
+      { d: "M224 92 H250", tone: "accent" },
+      { d: "M224 140 H250", tone: "primary" },
+      { d: "M224 188 H250", tone: "accent" }
     ],
     rects: [
-      { x: 64, y: 68, width: 78, height: 52, rx: 12 },
-      { x: 176, y: 118, width: 78, height: 52, rx: 12, tone: "primary" },
-      { x: 284, y: 168, width: 78, height: 52, rx: 12, tone: "accent" }
+      { x: 44, y: 116, width: 72, height: 48, rx: 14 },
+      { x: 146, y: 74, width: 78, height: 34, rx: 14 },
+      { x: 146, y: 123, width: 78, height: 34, rx: 14, tone: "primary" },
+      { x: 146, y: 172, width: 78, height: 34, rx: 14 },
+      { x: 250, y: 92, width: 72, height: 36, rx: 14 },
+      { x: 250, y: 154, width: 72, height: 36, rx: 14, tone: "accent" }
     ]
   },
   "research-facilities": {
     circles: [
-      { cx: 78, cy: 140, r: 9, tone: "primary" },
-      { cx: 200, cy: 140, r: 16 },
-      { cx: 322, cy: 140, r: 9, tone: "accent" }
+      { cx: 112, cy: 56, r: 7, tone: "accent" },
+      { cx: 170, cy: 140, r: 7, tone: "accent" },
+      { cx: 112, cy: 224, r: 7, tone: "accent" },
+      { cx: 286, cy: 164, r: 7, tone: "accent" }
     ],
     lines: [
-      { d: "M78 140 H322", tone: "primary" },
-      { d: "M200 62 V218", tone: "soft" },
-      { d: "M112 92 C166 126 234 126 288 92", tone: "accent" },
-      { d: "M112 188 C166 154 234 154 288 188", tone: "soft" }
+      { d: "M112 84 V56", tone: "primary" },
+      { d: "M112 196 V224", tone: "primary" },
+      { d: "M140 140 H170", tone: "primary" },
+      { d: "M170 140 H220", tone: "soft" },
+      { d: "M248 174 C260 154 272 164 286 140 C294 126 304 124 316 128", tone: "primary" }
     ],
-    rings: [{ cx: 200, cy: 140, r: 58, tone: "primary" }]
+    rects: [{ x: 220, y: 96, width: 108, height: 104, rx: 22 }],
+    rings: [{ cx: 112, cy: 140, r: 30, tone: "primary" }, { cx: 112, cy: 140, r: 56, tone: "soft" }]
   },
   "technical-depth": {
     lines: [
@@ -432,6 +480,34 @@ const visualSpecs: Record<CardVisualVariant, VisualSpec> = {
   }
 };
 
+const motionProfiles: Record<CardVisualVariant, MotionProfile> = {
+  "abnormal-detection": "signal",
+  "changed-context": "explain",
+  "connect-sources": "flow",
+  "data-agnostic": "flow",
+  "data-enterprise": "flow",
+  "detect-change": "signal",
+  "edge-compute": "flow",
+  "energy-infrastructure": "network",
+  "enterprise-foundation": "control",
+  "explain-signal": "explain",
+  "explainable-findings": "explain",
+  "focused-start": "network",
+  "guide-step": "control",
+  "high-dimensional": "network",
+  "human-control": "control",
+  "industrial-ops": "network",
+  "modular-connectors": "flow",
+  "operational-memory": "control",
+  "operational-pain": "signal",
+  "operator-workspace": "control",
+  "predict-next": "signal",
+  "realtime-design": "signal",
+  "repeatable-workflows": "control",
+  "research-facilities": "network",
+  "technical-depth": "control"
+};
+
 function lineClass(tone: Tone = "primary") {
   return `visual-line${tone === "soft" ? " visual-line-soft" : ""}${tone === "accent" ? " visual-line-accent" : ""}`;
 }
@@ -446,51 +522,65 @@ function fillClass(tone: Tone = "primary") {
 
 export function CardVisual({ variant }: CardVisualProps) {
   const spec = visualSpecs[variant];
+  const motionProfile = motionProfiles[variant];
 
   return (
-    <svg
-      aria-hidden="true"
-      className="card-visual"
-      data-variant={variant}
-      focusable="false"
-      shapeRendering="geometricPrecision"
-      viewBox="0 0 400 280"
-    >
-      {spec.fills?.map((fill) => (
-        <path className={fillClass(fill.tone)} d={fill.d} key={fill.d} />
-      ))}
-      {spec.rings?.map((ring) => (
-        <circle
-          className={shapeClass("visual-ring", ring.tone)}
-          cx={ring.cx}
-          cy={ring.cy}
-          key={`${ring.cx}-${ring.cy}-${ring.r}`}
-          r={ring.r}
-        />
-      ))}
-      {spec.lines?.map((line) => (
-        <path className={lineClass(line.tone)} d={line.d} key={line.d} />
-      ))}
-      {spec.rects?.map((rect) => (
-        <rect
-          className={shapeClass("visual-card", rect.tone)}
-          height={rect.height}
-          key={`${rect.x}-${rect.y}-${rect.width}-${rect.height}`}
-          rx={rect.rx ?? 12}
-          width={rect.width}
-          x={rect.x}
-          y={rect.y}
-        />
-      ))}
-      {spec.circles?.map((circle) => (
-        <circle
-          className={shapeClass("visual-node", circle.tone)}
-          cx={circle.cx}
-          cy={circle.cy}
-          key={`${circle.cx}-${circle.cy}-${circle.r}`}
-          r={circle.r}
-        />
-      ))}
-    </svg>
+    <ScrollScene className="card-visual-scene" motionProfile={motionProfile}>
+      <svg
+        aria-hidden="true"
+        className="card-visual"
+        data-motion-profile={motionProfile}
+        data-variant={variant}
+        focusable="false"
+        shapeRendering="geometricPrecision"
+        viewBox="0 0 400 280"
+      >
+        <g className="card-visual-layer card-visual-fill-layer">
+          {spec.fills?.map((fill) => (
+            <path className={fillClass(fill.tone)} d={fill.d} key={fill.d} />
+          ))}
+        </g>
+        <g className="card-visual-layer card-visual-ring-layer">
+          {spec.rings?.map((ring) => (
+            <circle
+              className={shapeClass("visual-ring", ring.tone)}
+              cx={ring.cx}
+              cy={ring.cy}
+              key={`${ring.cx}-${ring.cy}-${ring.r}`}
+              r={ring.r}
+            />
+          ))}
+        </g>
+        <g className="card-visual-layer card-visual-line-layer">
+          {spec.lines?.map((line) => (
+            <path className={lineClass(line.tone)} d={line.d} key={line.d} />
+          ))}
+        </g>
+        <g className="card-visual-layer card-visual-structure-layer">
+          {spec.rects?.map((rect) => (
+            <rect
+              className={shapeClass("visual-card", rect.tone)}
+              height={rect.height}
+              key={`${rect.x}-${rect.y}-${rect.width}-${rect.height}`}
+              rx={rect.rx ?? 12}
+              width={rect.width}
+              x={rect.x}
+              y={rect.y}
+            />
+          ))}
+        </g>
+        <g className="card-visual-layer card-visual-node-layer">
+          {spec.circles?.map((circle) => (
+            <circle
+              className={shapeClass("visual-node", circle.tone)}
+              cx={circle.cx}
+              cy={circle.cy}
+              key={`${circle.cx}-${circle.cy}-${circle.r}`}
+              r={circle.r}
+            />
+          ))}
+        </g>
+      </svg>
+    </ScrollScene>
   );
 }

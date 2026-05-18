@@ -4,6 +4,7 @@ import Image from "next/image";
 import { CardVisual } from "@/components/card-visual";
 import { CursorAtmosphere } from "@/components/cursor-atmosphere";
 import { useLanguage } from "@/components/language-switcher";
+import { ScrollScene } from "@/components/scroll-scene";
 import { SignalToActionSlider } from "@/components/signal-to-action-slider";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { WaitlistForm } from "@/components/waitlist-form";
@@ -158,16 +159,18 @@ export function HomePage() {
           </div>
 
           <div className="platform-dark-media">
-            <Image
-              alt=""
-              className="platform-architecture"
-              height={520}
-              loading="eager"
-              sizes="(max-width: 1120px) 100vw, 48vw"
-              src="/media/intelligence-layer-architecture.svg"
-              unoptimized
-              width={720}
-            />
+            <ScrollScene className="platform-architecture-scene" motionProfile="architecture">
+              <Image
+                alt=""
+                className="platform-architecture"
+                height={520}
+                loading="eager"
+                sizes="(max-width: 1120px) 100vw, 48vw"
+                src="/media/intelligence-layer-architecture.svg"
+                unoptimized
+                width={720}
+              />
+            </ScrollScene>
           </div>
         </div>
       </section>
