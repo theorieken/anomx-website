@@ -106,7 +106,7 @@ export const homeCopy = {
     footer: {
       description:
         "Real-time System Intelligence für komplexe operative Systeme.",
-      madeAt: "Made at DESY",
+      madeAt: "Made in Hamburg",
       product: "Produkt",
       company: "Unternehmen",
       contact: "Kontakt",
@@ -190,7 +190,7 @@ export const homeCopy = {
     footer: {
       description:
         "Real-time System Intelligence for complex operational systems.",
-      madeAt: "Made at DESY",
+      madeAt: "Made in Hamburg",
       product: "Product",
       company: "Company",
       contact: "Contact",

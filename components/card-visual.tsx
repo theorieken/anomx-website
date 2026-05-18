@@ -1,7 +1,6 @@
 "use client";
 
 import type { CardVisualVariant } from "@/lib/home-content";
-import { ScrollScene } from "@/components/scroll-scene";
 
 type Tone = "accent" | "default" | "primary" | "soft";
 
@@ -42,8 +41,6 @@ type VisualSpec = {
 type CardVisualProps = {
   variant: CardVisualVariant;
 };
-
-type MotionProfile = "control" | "explain" | "flow" | "network" | "signal";
 
 const visualSpecs: Record<CardVisualVariant, VisualSpec> = {
   "abnormal-detection": {
@@ -480,34 +477,6 @@ const visualSpecs: Record<CardVisualVariant, VisualSpec> = {
   }
 };
 
-const motionProfiles: Record<CardVisualVariant, MotionProfile> = {
-  "abnormal-detection": "signal",
-  "changed-context": "explain",
-  "connect-sources": "flow",
-  "data-agnostic": "flow",
-  "data-enterprise": "flow",
-  "detect-change": "signal",
-  "edge-compute": "flow",
-  "energy-infrastructure": "network",
-  "enterprise-foundation": "control",
-  "explain-signal": "explain",
-  "explainable-findings": "explain",
-  "focused-start": "network",
-  "guide-step": "control",
-  "high-dimensional": "network",
-  "human-control": "control",
-  "industrial-ops": "network",
-  "modular-connectors": "flow",
-  "operational-memory": "control",
-  "operational-pain": "signal",
-  "operator-workspace": "control",
-  "predict-next": "signal",
-  "realtime-design": "signal",
-  "repeatable-workflows": "control",
-  "research-facilities": "network",
-  "technical-depth": "control"
-};
-
 function lineClass(tone: Tone = "primary") {
   return `visual-line${tone === "soft" ? " visual-line-soft" : ""}${tone === "accent" ? " visual-line-accent" : ""}`;
 }
@@ -522,65 +491,51 @@ function fillClass(tone: Tone = "primary") {
 
 export function CardVisual({ variant }: CardVisualProps) {
   const spec = visualSpecs[variant];
-  const motionProfile = motionProfiles[variant];
 
   return (
-    <ScrollScene className="card-visual-scene" motionProfile={motionProfile}>
-      <svg
-        aria-hidden="true"
-        className="card-visual"
-        data-motion-profile={motionProfile}
-        data-variant={variant}
-        focusable="false"
-        shapeRendering="geometricPrecision"
-        viewBox="0 0 400 280"
-      >
-        <g className="card-visual-layer card-visual-fill-layer">
-          {spec.fills?.map((fill) => (
-            <path className={fillClass(fill.tone)} d={fill.d} key={fill.d} />
-          ))}
-        </g>
-        <g className="card-visual-layer card-visual-ring-layer">
-          {spec.rings?.map((ring) => (
-            <circle
-              className={shapeClass("visual-ring", ring.tone)}
-              cx={ring.cx}
-              cy={ring.cy}
-              key={`${ring.cx}-${ring.cy}-${ring.r}`}
-              r={ring.r}
-            />
-          ))}
-        </g>
-        <g className="card-visual-layer card-visual-line-layer">
-          {spec.lines?.map((line) => (
-            <path className={lineClass(line.tone)} d={line.d} key={line.d} />
-          ))}
-        </g>
-        <g className="card-visual-layer card-visual-structure-layer">
-          {spec.rects?.map((rect) => (
-            <rect
-              className={shapeClass("visual-card", rect.tone)}
-              height={rect.height}
-              key={`${rect.x}-${rect.y}-${rect.width}-${rect.height}`}
-              rx={rect.rx ?? 12}
-              width={rect.width}
-              x={rect.x}
-              y={rect.y}
-            />
-          ))}
-        </g>
-        <g className="card-visual-layer card-visual-node-layer">
-          {spec.circles?.map((circle) => (
-            <circle
-              className={shapeClass("visual-node", circle.tone)}
-              cx={circle.cx}
-              cy={circle.cy}
-              key={`${circle.cx}-${circle.cy}-${circle.r}`}
-              r={circle.r}
-            />
-          ))}
-        </g>
-      </svg>
-    </ScrollScene>
+    <svg
+      aria-hidden="true"
+      className="card-visual"
+      data-variant={variant}
+      focusable="false"
+      shapeRendering="geometricPrecision"
+      viewBox="0 0 400 280"
+    >
+      {spec.fills?.map((fill) => (
+        <path className={fillClass(fill.tone)} d={fill.d} key={fill.d} />
+      ))}
+      {spec.rings?.map((ring) => (
+        <circle
+          className={shapeClass("visual-ring", ring.tone)}
+          cx={ring.cx}
+          cy={ring.cy}
+          key={`${ring.cx}-${ring.cy}-${ring.r}`}
+          r={ring.r}
+        />
+      ))}
+      {spec.lines?.map((line) => (
+        <path className={lineClass(line.tone)} d={line.d} key={line.d} />
+      ))}
+      {spec.rects?.map((rect) => (
+        <rect
+          className={shapeClass("visual-card", rect.tone)}
+          height={rect.height}
+          key={`${rect.x}-${rect.y}-${rect.width}-${rect.height}`}
+          rx={rect.rx ?? 12}
+          width={rect.width}
+          x={rect.x}
+          y={rect.y}
+        />
+      ))}
+      {spec.circles?.map((circle) => (
+        <circle
+          className={shapeClass("visual-node", circle.tone)}
+          cx={circle.cx}
+          cy={circle.cy}
+          key={`${circle.cx}-${circle.cy}-${circle.r}`}
+          r={circle.r}
+        />
+      ))}
+    </svg>
   );
 }

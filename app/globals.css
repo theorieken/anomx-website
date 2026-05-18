@@ -925,101 +925,10 @@ svg {
   min-height: 0;
 }
 
-.scroll-scene {
-  --scroll-progress: 0;
-  --scroll-progress-inverse: 0;
-  --scroll-progress-soft: 0;
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.card-visual-scene,
-.platform-architecture-scene {
-  min-height: inherit;
-}
-
 .card-visual {
-  display: block;
   width: 100%;
   height: 100%;
   min-height: inherit;
-  transform: translate3d(calc(var(--scroll-progress-inverse) * 3px), calc(var(--scroll-progress) * 4px), 0);
-  will-change: transform;
-}
-
-.card-visual-layer,
-.platform-architecture {
-  transform-box: fill-box;
-  transform-origin: center;
-  will-change: transform;
-}
-
-.scroll-scene[data-motion-profile="flow"] .card-visual-line-layer {
-  transform: translate3d(calc(var(--scroll-progress) * 12px), calc(var(--scroll-progress-inverse) * 2px), 0);
-}
-
-.scroll-scene[data-motion-profile="flow"] .card-visual-structure-layer {
-  transform: translate3d(calc(var(--scroll-progress-inverse) * 8px), calc(var(--scroll-progress-soft) * 3px), 0);
-}
-
-.scroll-scene[data-motion-profile="flow"] .card-visual-node-layer {
-  transform: translate3d(calc(var(--scroll-progress) * 10px), calc(var(--scroll-progress) * -4px), 0);
-}
-
-.scroll-scene[data-motion-profile="signal"] .card-visual-line-layer {
-  transform: translate3d(calc(var(--scroll-progress) * 9px), calc(var(--scroll-progress-inverse) * 6px), 0);
-}
-
-.scroll-scene[data-motion-profile="signal"] .card-visual-fill-layer,
-.scroll-scene[data-motion-profile="signal"] .card-visual-ring-layer {
-  transform: translate3d(calc(var(--scroll-progress-inverse) * 10px), calc(var(--scroll-progress) * -8px), 0);
-}
-
-.scroll-scene[data-motion-profile="signal"] .card-visual-node-layer {
-  transform: translate3d(calc(var(--scroll-progress) * 6px), calc(var(--scroll-progress-inverse) * 6px), 0);
-}
-
-.scroll-scene[data-motion-profile="explain"] .card-visual-line-layer {
-  transform: translate3d(calc(var(--scroll-progress-inverse) * 8px), calc(var(--scroll-progress) * 5px), 0);
-}
-
-.scroll-scene[data-motion-profile="explain"] .card-visual-structure-layer {
-  transform: translate3d(calc(var(--scroll-progress) * 6px), calc(var(--scroll-progress-inverse) * 4px), 0);
-}
-
-.scroll-scene[data-motion-profile="explain"] .card-visual-node-layer {
-  transform: translate3d(calc(var(--scroll-progress-inverse) * 5px), calc(var(--scroll-progress) * -5px), 0);
-}
-
-.scroll-scene[data-motion-profile="control"] .card-visual-structure-layer {
-  transform: translate3d(calc(var(--scroll-progress-inverse) * 5px), calc(var(--scroll-progress) * 8px), 0);
-}
-
-.scroll-scene[data-motion-profile="control"] .card-visual-line-layer {
-  transform: translate3d(calc(var(--scroll-progress) * 5px), calc(var(--scroll-progress-inverse) * 4px), 0);
-}
-
-.scroll-scene[data-motion-profile="control"] .card-visual-node-layer {
-  transform: translate3d(calc(var(--scroll-progress-soft) * -4px), calc(var(--scroll-progress-inverse) * 10px), 0);
-}
-
-.scroll-scene[data-motion-profile="network"] .card-visual-ring-layer,
-.scroll-scene[data-motion-profile="network"] .card-visual-node-layer {
-  transform: translate3d(calc(var(--scroll-progress) * 8px), calc(var(--scroll-progress-inverse) * 8px), 0);
-}
-
-.scroll-scene[data-motion-profile="network"] .card-visual-line-layer {
-  transform: translate3d(calc(var(--scroll-progress-inverse) * 6px), calc(var(--scroll-progress) * 4px), 0);
-}
-
-.scroll-scene[data-motion-profile="network"] .card-visual-structure-layer {
-  transform: translate3d(calc(var(--scroll-progress-soft) * 4px), calc(var(--scroll-progress-inverse) * 5px), 0);
-}
-
-.scroll-scene[data-motion-profile="architecture"] .platform-architecture {
-  transform: translate3d(calc(var(--scroll-progress-inverse) * 14px), calc(var(--scroll-progress) * 10px), 0)
-    rotate(calc(var(--scroll-progress-soft) * -1.6deg));
 }
 
 .visual-background {
@@ -1284,14 +1193,6 @@ svg {
   height: auto;
   overflow: hidden;
   border-radius: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scroll-scene .card-visual,
-  .scroll-scene .card-visual-layer,
-  .scroll-scene .platform-architecture {
-    transform: none !important;
-  }
 }
 
 .simple-card-grid {

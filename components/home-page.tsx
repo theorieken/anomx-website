@@ -4,7 +4,6 @@ import Image from "next/image";
 import { CardVisual } from "@/components/card-visual";
 import { CursorAtmosphere } from "@/components/cursor-atmosphere";
 import { useLanguage } from "@/components/language-switcher";
-import { ScrollScene } from "@/components/scroll-scene";
 import { SignalToActionSlider } from "@/components/signal-to-action-slider";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { WaitlistForm } from "@/components/waitlist-form";
@@ -83,7 +82,7 @@ export function HomePage() {
               loop
               muted
               playsInline
-              poster="/images/auth-bg.webp"
+              poster="/images/anomx-light-hd-poster.png"
               preload="metadata"
             >
               <source src="/video/anomx-light-hd.mp4" type="video/mp4" />
@@ -94,7 +93,7 @@ export function HomePage() {
               loop
               muted
               playsInline
-              poster="/images/auth-bg.webp"
+              poster="/images/anomix-dark-hd-poster.png"
               preload="metadata"
             >
               <source src="/video/anomix-dark-hd.mp4" type="video/mp4" />
@@ -159,18 +158,16 @@ export function HomePage() {
           </div>
 
           <div className="platform-dark-media">
-            <ScrollScene className="platform-architecture-scene" motionProfile="architecture">
-              <Image
-                alt=""
-                className="platform-architecture"
-                height={520}
-                loading="eager"
-                sizes="(max-width: 1120px) 100vw, 48vw"
-                src="/media/intelligence-layer-architecture.svg"
-                unoptimized
-                width={720}
-              />
-            </ScrollScene>
+            <Image
+              alt=""
+              className="platform-architecture"
+              height={520}
+              loading="eager"
+              sizes="(max-width: 1120px) 100vw, 48vw"
+              src="/media/intelligence-layer-architecture.svg"
+              unoptimized
+              width={720}
+            />
           </div>
         </div>
       </section>
