@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     canonical: "/early-access"
   },
   description:
-    "Request early access to Anomx Platform and the Anomx CLI agent for complex operational systems.",
+    "Request early access to Anomx Platform and the Anomx CLI agent for complex operational and anomaly-intelligence workflows.",
   title: "Early Access"
 };
 

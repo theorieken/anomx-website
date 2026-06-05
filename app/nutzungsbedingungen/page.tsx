@@ -6,7 +6,7 @@ export default function NutzungsbedingungenPage() {
   return (
     <main className="page-shell legal-page" id="top">
       <CursorAtmosphere />
-      <SiteHeader anchorPrefix="/" />
+      <SiteHeader />
 
       <section className="section legal-section">
         <article className="legal-document">
@@ -40,7 +40,7 @@ export default function NutzungsbedingungenPage() {
           </Link>
         </article>
 
-        <SiteFooter anchorPrefix="/" />
+        <SiteFooter />
       </section>
     </main>
   );

@@ -16,7 +16,7 @@ export default function ComingSoonPage() {
   return (
     <main className="page-shell legal-page" id="top">
       <CursorAtmosphere />
-      <SiteHeader anchorPrefix="/" />
+      <SiteHeader />
 
       <section className="section legal-section">
         <article className="legal-document">
@@ -30,12 +30,12 @@ export default function ComingSoonPage() {
             operate complex, high-value systems. A first alpha phase for early customers
             is planned soon.
           </p>
-          <Link className="legal-back-link" href="/join-waitlist">
-            Join the Waitlist
+          <Link className="legal-back-link" href="/early-access">
+            Join Early Access
           </Link>
         </article>
 
-        <SiteFooter anchorPrefix="/" />
+        <SiteFooter />
       </section>
     </main>
   );

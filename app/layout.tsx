@@ -75,11 +75,13 @@ export const metadata: Metadata = {
   category: "technology",
   creator: "Anomx",
   description:
-    "Anomx is a System Intelligence platform that detects abnormal behavior across live data streams, explains what changed, and helps teams act before deviations become critical.",
+    "Anomx combines a system intelligence platform, an installable CLI agent, and a reusable Python package for anomaly detection and operational analysis.",
   keywords: [
     "Anomx",
     "System Intelligence",
     "anomaly detection",
+    "CLI agent",
+    "Python package",
     "predictive maintenance",
     "operational intelligence",
     "DESY",
@@ -88,7 +90,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://anomx.io"),
   openGraph: {
     description:
-      "Understand your system before it fails. Anomx detects abnormal behavior across live data streams and explains what changed.",
+      "Understand your system before it fails. Anomx brings together a platform, a CLI agent, and an anomaly-detection package for live operational intelligence.",
     images: [
       {
         alt: "Anomx System Intelligence platform preview",
@@ -130,7 +132,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     description:
-      "Detect abnormal behavior across live data streams, explain what changed, and act before small deviations become critical.",
+      "Detect abnormal behavior across live data streams, explain what changed, and move from local analysis into shared operational context.",
     images: ["/images/og-image.jpg"],
     title: "Anomx | The Platform for System Intelligence"
   }

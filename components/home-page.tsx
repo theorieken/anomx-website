@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { CardVisual } from "@/components/card-visual";
 import { CursorAtmosphere } from "@/components/cursor-atmosphere";
 import { useLanguage } from "@/components/language-switcher";
@@ -52,6 +53,35 @@ function BentoGrid({
 export function HomePage() {
   const language = useLanguage();
   const copy = homeCopy[language];
+  const entryPoints = [
+    {
+      href: "/platform",
+      title: language === "de" ? "Platform" : "Platform",
+      body:
+        language === "de"
+          ? "Der gemeinsame Kontrollplan fur Datasets, Jobs, Findings, Worker und operative Infrastruktur."
+          : "The shared control plane for datasets, jobs, findings, workers, and operational infrastructure.",
+      visual: "operator-workspace" as const
+    },
+    {
+      href: "/agent",
+      title: language === "de" ? "Agent" : "Agent",
+      body:
+        language === "de"
+          ? "Der installierbare CLI-Agent fur anomalienahe Analyse direkt auf Servern, Workstations und Edge-Knoten."
+          : "The installable CLI agent for anomaly-focused analysis directly on servers, workstations, and edge nodes.",
+      visual: "human-control" as const
+    },
+    {
+      href: "/documentation",
+      title: language === "de" ? "Dokumentation" : "Documentation",
+      body:
+        language === "de"
+          ? "Arbeitsnahe Doku fur Plattform, Agent und die entstehende Python-API."
+          : "Working documentation for the platform, the agent, and the evolving Python API.",
+      visual: "modular-connectors" as const
+    }
+  ];
 
   return (
     <main className="page-shell" id="top">
@@ -65,12 +95,12 @@ export function HomePage() {
           <p className="hero-subline">{copy.hero.subtitle}</p>
 
           <div className="hero-actions">
-            <a className="button button-primary" href="/join-waitlist">
-              {copy.actions.joinWaitlist}
-            </a>
-            <a className="button button-secondary" href="mailto:hello@anomx.io">
-              {copy.actions.talkToUs}
-            </a>
+            <Link className="button button-primary" href="/platform">
+              {language === "de" ? "Platform ansehen" : "Explore the Platform"}
+            </Link>
+            <Link className="button button-secondary" href="/agent">
+              {language === "de" ? "Agent ansehen" : "Meet the Agent"}
+            </Link>
           </div>
         </div>
 
@@ -114,6 +144,28 @@ export function HomePage() {
         </div>
 
         <SignalToActionSlider cards={sliderCards} language={language} />
+      </section>
+
+      <section className="section entry-points-section">
+        <div className="section-heading section-heading-left">
+          <h2>
+            {language === "de"
+              ? "Drei Wege in dieselbe Intelligence-Schicht."
+              : "Three ways into the same intelligence layer."}
+          </h2>
+        </div>
+
+        <div className="simple-card-grid">
+          {entryPoints.map((entryPoint) => (
+            <Link className="simple-card entry-point-card" href={entryPoint.href} key={entryPoint.href}>
+              <h3>{entryPoint.title}</h3>
+              <p>{entryPoint.body}</p>
+              <div className="simple-card-visual" aria-hidden="true">
+                <CardVisual variant={entryPoint.visual} />
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
 
       <section className="section complex-section" id="platform">

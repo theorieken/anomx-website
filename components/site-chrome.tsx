@@ -1,28 +1,36 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LanguageSwitcher, useLanguage } from "@/components/language-switcher";
 import { SiteLogo } from "@/components/site-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { homeCopy } from "@/lib/home-content";
 
-type SiteChromeProps = {
-  anchorPrefix?: string;
+type NavItem = {
+  href: string;
+  label: string;
+  match: string[];
 };
 
-export function SiteHeader({ anchorPrefix = "" }: SiteChromeProps) {
+export function SiteHeader() {
   const language = useLanguage();
+  const pathname = usePathname();
   const copy = homeCopy[language];
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeNavIndex, setActiveNavIndex] = useState<number | null>(null);
   const [isAtTop, setIsAtTop] = useState(true);
 
-  const navItems = [
-    { href: `${anchorPrefix}#product`, label: copy.nav.product },
-    { href: `${anchorPrefix}#platform`, label: copy.nav.platform },
-    { href: `${anchorPrefix}#use-cases`, label: copy.nav.useCases },
-    { href: `${anchorPrefix}#early-access`, label: copy.nav.earlyAccess }
+  const navItems: NavItem[] = [
+    { href: "/platform", label: copy.nav.platform, match: ["/platform"] },
+    { href: "/agent", label: copy.nav.agent, match: ["/agent"] },
+    { href: "/documentation", label: copy.nav.documentation, match: ["/documentation"] },
+    {
+      href: "/early-access",
+      label: copy.nav.earlyAccess,
+      match: ["/early-access", "/join-waitlist"]
+    }
   ];
 
   useEffect(() => {
@@ -51,6 +59,9 @@ export function SiteHeader({ anchorPrefix = "" }: SiteChromeProps) {
     };
   }, []);
 
+  const isActiveItem = (item: NavItem) =>
+    item.match.some((value) => pathname === value || pathname.startsWith(`${value}/`));
+
   return (
     <header
       className={`site-header${isMenuOpen ? " site-header-menu-open" : ""}${isAtTop ? " site-header-at-top" : ""}`}
@@ -65,7 +76,7 @@ export function SiteHeader({ anchorPrefix = "" }: SiteChromeProps) {
     >
       <div className="site-header-inner">
         <div className="site-header-start">
-          <Link className="brand-link" href="/" aria-label="Anomx home">
+          <Link aria-label="Anomx home" className="brand-link" href="/">
             <SiteLogo />
           </Link>
 
@@ -80,7 +91,8 @@ export function SiteHeader({ anchorPrefix = "" }: SiteChromeProps) {
             onMouseLeave={() => setActiveNavIndex(null)}
           >
             {navItems.map((item, index) => (
-              <a
+              <Link
+                data-active={isActiveItem(item) ? "true" : undefined}
                 data-dimmed={activeNavIndex !== null && activeNavIndex !== index ? "true" : undefined}
                 href={item.href}
                 key={item.href}
@@ -88,7 +100,7 @@ export function SiteHeader({ anchorPrefix = "" }: SiteChromeProps) {
                 onMouseEnter={() => setActiveNavIndex(index)}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
@@ -97,7 +109,7 @@ export function SiteHeader({ anchorPrefix = "" }: SiteChromeProps) {
           <Link className="button button-text" href="/coming-soon">
             {copy.actions.logIn}
           </Link>
-          <Link className="button button-primary" href="/join-waitlist">
+          <Link className="button button-primary" href="/early-access">
             {copy.actions.joinWaitlist}
           </Link>
           <a className="button button-secondary" href="mailto:hello@anomx.io">
@@ -143,9 +155,9 @@ export function SiteHeader({ anchorPrefix = "" }: SiteChromeProps) {
 
             <nav className="mobile-menu-nav" aria-label="Mobile primary">
               {navItems.map((item) => (
-                <a href={item.href} key={item.href} onClick={() => setIsMenuOpen(false)}>
+                <Link href={item.href} key={item.href} onClick={() => setIsMenuOpen(false)}>
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
 
@@ -164,14 +176,14 @@ export function SiteHeader({ anchorPrefix = "" }: SiteChromeProps) {
   );
 }
 
-export function SiteFooter({ anchorPrefix = "" }: SiteChromeProps) {
+export function SiteFooter() {
   const language = useLanguage();
   const copy = homeCopy[language];
 
   return (
     <footer className="site-footer">
       <div className="footer-brand-block">
-        <Link className="brand-link" href="/" aria-label="Anomx home">
+        <Link aria-label="Anomx home" className="brand-link" href="/">
           <SiteLogo kind="footer" />
         </Link>
         <p>{copy.footer.description}</p>
@@ -181,14 +193,14 @@ export function SiteFooter({ anchorPrefix = "" }: SiteChromeProps) {
       <div className="footer-columns">
         <div className="footer-column">
           <span>{copy.footer.product}</span>
-          <a href={`${anchorPrefix}#product`}>{copy.nav.product}</a>
-          <a href={`${anchorPrefix}#platform`}>{copy.nav.platform}</a>
-          <a href={`${anchorPrefix}#use-cases`}>{copy.nav.useCases}</a>
-          <a href={`${anchorPrefix}#early-access`}>{copy.nav.earlyAccess}</a>
+          <Link href="/platform">{copy.nav.platform}</Link>
+          <Link href="/agent">{copy.nav.agent}</Link>
+          <Link href="/documentation">{copy.nav.documentation}</Link>
+          <Link href="/early-access">{copy.nav.earlyAccess}</Link>
         </div>
         <div className="footer-column">
           <span>{copy.footer.company}</span>
-          <a href={`${anchorPrefix}#top`}>{copy.footer.about}</a>
+          <Link href="/">{copy.footer.about}</Link>
           <Link href="/impressum">Impressum</Link>
           <Link href="/datenschutzerklaerung">Datenschutzerklärung</Link>
           <Link href="/nutzungsbedingungen">Nutzungsbedingungen</Link>

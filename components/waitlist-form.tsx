@@ -111,7 +111,7 @@ export function WaitlistForm({
             aria-label={copy.fullName}
             autoComplete="name"
             name="fullName"
-            placeholder={copy.fullName}
+            placeholder={copy.fullNamePlaceholder}
             required
             type="text"
           />
@@ -122,7 +122,7 @@ export function WaitlistForm({
             aria-label={copy.email}
             autoComplete="email"
             name="email"
-            placeholder={copy.email}
+            placeholder={copy.emailPlaceholder}
             required
             type="email"
           />
@@ -134,7 +134,7 @@ export function WaitlistForm({
           aria-label={copy.company}
           autoComplete="organization"
           name="company"
-          placeholder={copy.company}
+          placeholder={copy.companyPlaceholder}
           required
           type="text"
         />
@@ -144,7 +144,7 @@ export function WaitlistForm({
         <textarea
           aria-label={copy.useCase}
           name="useCase"
-          placeholder={copy.useCase}
+          placeholder={copy.useCasePlaceholder}
           rows={4}
         />
       </label>

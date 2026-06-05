@@ -6,7 +6,7 @@ export default function ImpressumPage() {
   return (
     <main className="page-shell legal-page" id="top">
       <CursorAtmosphere />
-      <SiteHeader anchorPrefix="/" />
+      <SiteHeader />
 
       <section className="section legal-section">
         <article className="legal-document">
@@ -39,7 +39,7 @@ export default function ImpressumPage() {
           </Link>
         </article>
 
-        <SiteFooter anchorPrefix="/" />
+        <SiteFooter />
       </section>
     </main>
   );

@@ -6,7 +6,7 @@ export default function DatenschutzerklaerungPage() {
   return (
     <main className="page-shell legal-page" id="top">
       <CursorAtmosphere />
-      <SiteHeader anchorPrefix="/" />
+      <SiteHeader />
 
       <section className="section legal-section">
         <article className="legal-document">
@@ -46,7 +46,7 @@ export default function DatenschutzerklaerungPage() {
           </Link>
         </article>
 
-        <SiteFooter anchorPrefix="/" />
+        <SiteFooter />
       </section>
     </main>
   );

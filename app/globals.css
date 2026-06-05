@@ -469,6 +469,11 @@ svg {
   opacity: 1;
 }
 
+.site-nav a[data-active="true"] {
+  color: var(--text-primary);
+  opacity: 1;
+}
+
 .site-nav:has(a:hover) a:not(:hover),
 .site-nav:has(a:focus-visible) a:not(:focus-visible),
 .site-nav a[data-dimmed="true"] {
@@ -660,6 +665,10 @@ svg {
 
 .why-now-section {
   --section-gradient: linear-gradient(238deg, rgba(16, 35, 49, 0.06), transparent 46%, rgba(0, 159, 223, 0.06));
+}
+
+.entry-points-section {
+  --section-gradient: linear-gradient(104deg, rgba(0, 159, 223, 0.075), transparent 48%, rgba(241, 143, 31, 0.05));
 }
 
 .final-cta-section {
@@ -1575,6 +1584,358 @@ svg {
   font-weight: 700;
 }
 
+.entry-point-card {
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.entry-point-card:hover,
+.entry-point-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(0, 159, 223, 0.28);
+  box-shadow: var(--surface-shadow-card);
+}
+
+.subpage-shell {
+  padding-top: 0;
+}
+
+.subpage-hero-section,
+.docs-hero-section {
+  padding-top: clamp(9rem, 13vw, 13rem);
+  padding-bottom: clamp(3rem, 5vw, 5rem);
+}
+
+.subpage-section {
+  padding-top: clamp(4.5rem, 7vw, 6rem);
+  padding-bottom: clamp(4.5rem, 7vw, 6rem);
+}
+
+.subpage-hero,
+.docs-hero {
+  display: grid;
+  gap: 2rem;
+}
+
+.subpage-hero-grid,
+.subpage-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.subpage-hero-copy,
+.subpage-copy-card,
+.subpage-code-card,
+.subpage-hero-panel,
+.subpage-cta-panel,
+.docs-sidebar-shell,
+.docs-section,
+.docs-panel,
+.docs-callout,
+.docs-code-card,
+.docs-coming-soon {
+  border: 1px solid var(--divider);
+  border-radius: var(--card-radius);
+  background: var(--card-surface);
+  box-shadow: var(--surface-shadow-1);
+  backdrop-filter: var(--surface-blur);
+  -webkit-backdrop-filter: var(--surface-blur);
+}
+
+.subpage-hero-copy,
+.subpage-copy-card,
+.subpage-code-card,
+.subpage-cta-panel,
+.docs-sidebar-shell,
+.docs-section,
+.docs-callout,
+.docs-code-card,
+.docs-coming-soon {
+  padding: 1.35rem;
+}
+
+.subpage-hero-copy h1,
+.subpage-hero-title,
+.docs-hero h1 {
+  margin: 0;
+  font-family: "DESY Headlines", "DESY Normal", sans-serif;
+  font-size: var(--h1-size);
+  font-weight: 400;
+  letter-spacing: 0.035em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.subpage-hero-panel {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1rem;
+}
+
+.subpage-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.subpage-metric {
+  display: grid;
+  gap: 0.45rem;
+  min-height: 100%;
+  padding: 1rem;
+  border: 1px solid var(--divider);
+  border-radius: 1rem;
+  background: var(--surface-background);
+}
+
+.subpage-metric-value {
+  color: var(--brand-primary);
+  font-family: "DESY Headlines", "DESY Normal", sans-serif;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  line-height: 1;
+}
+
+.subpage-metric h2,
+.subpage-mini-card h3,
+.docs-panel h3,
+.docs-callout h3,
+.docs-section-header h2,
+.docs-coming-soon h3 {
+  margin: 0;
+  font-family: "DESY Headlines", "DESY Normal", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+}
+
+.subpage-metric h2,
+.subpage-mini-card h3,
+.docs-panel h3,
+.docs-callout h3,
+.docs-coming-soon h3 {
+  font-size: 1rem;
+}
+
+.docs-section-header h2 {
+  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+}
+
+.subpage-metric p,
+.subpage-mini-card p,
+.subpage-note,
+.docs-panel p,
+.docs-callout p,
+.docs-section-header p,
+.docs-sidebar-link span {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--body-small-size);
+}
+
+.subpage-card-grid {
+  gap: 1rem;
+}
+
+.subpage-card-grid-four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.subpage-feature-card {
+  min-height: 100%;
+}
+
+.subpage-mini-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.subpage-mini-card {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem;
+  border: 1px solid var(--divider);
+  border-radius: 1rem;
+  background: var(--surface-background);
+}
+
+.subpage-list {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.subpage-note {
+  margin-top: 1rem;
+}
+
+.subpage-code-card,
+.docs-code-card,
+.docs-sidebar-card {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.subpage-code-label,
+.docs-code-label,
+.docs-sidebar-label,
+.docs-coming-soon-badge {
+  color: var(--brand-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.docs-code-block {
+  margin: 0;
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid var(--divider);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgba(0, 159, 223, 0.06), transparent 60%),
+    rgba(6, 18, 28, 0.96);
+  color: #f4fbff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.subpage-cta-panel {
+  display: grid;
+  gap: 1.5rem;
+  width: min(860px, 100%);
+  margin: 0 auto;
+  box-shadow: var(--surface-shadow-8);
+}
+
+.early-access-split {
+  align-items: stretch;
+}
+
+.early-access-panel {
+  margin: 0;
+}
+
+.docs-main-section {
+  padding-top: 0;
+}
+
+.docs-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.docs-sidebar {
+  position: sticky;
+  top: 6.25rem;
+}
+
+.docs-sidebar-shell {
+  display: grid;
+  gap: 1rem;
+}
+
+.docs-sidebar-nav {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.docs-sidebar-link {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.85rem;
+  border: 1px solid var(--divider);
+  border-radius: 1rem;
+  background: var(--surface-background);
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.docs-sidebar-link:hover,
+.docs-sidebar-link:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(0, 159, 223, 0.26);
+}
+
+.docs-sidebar-link strong {
+  font-family: "DESY Headlines", "DESY Normal", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+}
+
+.docs-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.docs-section,
+.docs-endcap {
+  scroll-margin-top: 7rem;
+}
+
+.docs-section {
+  display: grid;
+  gap: 1rem;
+}
+
+.docs-section-header {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.docs-panel-grid,
+.docs-dual-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.docs-panel-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.docs-panel-grid-tight {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.docs-panel {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.docs-callout {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.docs-dual-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.docs-coming-soon {
+  display: grid;
+  gap: 1rem;
+}
+
+.docs-inline-list {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.docs-inline-list code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
 @media (max-width: 1120px) {
   .site-nav {
     display: none;
@@ -1611,6 +1972,23 @@ svg {
   .complex-grid .bento-card,
   .anomaly-grid .bento-card {
     grid-column: span 12 !important;
+  }
+
+  .subpage-hero-grid,
+  .subpage-split,
+  .docs-layout,
+  .docs-dual-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .subpage-metrics-row,
+  .docs-panel-grid,
+  .subpage-card-grid-four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .docs-sidebar {
+    position: static;
   }
 }
 
@@ -1734,6 +2112,25 @@ svg {
 
   .footer-legal {
     margin-top: 1.2rem;
+  }
+
+  .subpage-metrics-row,
+  .docs-panel-grid,
+  .subpage-card-grid-four {
+    grid-template-columns: 1fr;
+  }
+
+  .subpage-hero-copy,
+  .subpage-copy-card,
+  .subpage-code-card,
+  .subpage-hero-panel,
+  .subpage-cta-panel,
+  .docs-sidebar-shell,
+  .docs-section,
+  .docs-callout,
+  .docs-code-card,
+  .docs-coming-soon {
+    padding: 1rem;
   }
 }
 

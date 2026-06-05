@@ -56,9 +56,9 @@ export type PlatformRow = {
 export const homeCopy = {
   de: {
     nav: {
-      product: "Produkt",
       platform: "Plattform",
-      useCases: "Anwendungsfälle",
+      agent: "Agent",
+      documentation: "Dokumentation",
       earlyAccess: "Early Access"
     },
     actions: {
@@ -141,9 +141,9 @@ export const homeCopy = {
   },
   en: {
     nav: {
-      product: "Product",
       platform: "Platform",
-      useCases: "Use Cases",
+      agent: "Agent",
+      documentation: "Documentation",
       earlyAccess: "Early Access"
     },
     actions: {
