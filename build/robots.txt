@@ -1,5 +1,0 @@
-User-Agent: *
-Allow: /
-
-Host: https://anomx.io
-Sitemap: https://anomx.io/sitemap.xml
