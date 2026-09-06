@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./experience.css";
+import "./expanded-experience.css";
 
 const themeScript = `
   (() => {

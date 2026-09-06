@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     canonical: "/agent"
   },
   description:
-    "Install `anomx` and run the Anomx CLI agent for anomaly detection, data analysis, and platform-connected edge workflows.",
+    "One AI agent across the platform, scheduled background workflows, and the terminal. Explore modes, tools, permissions, and persistent system context.",
   title: "Agent"
 };
 

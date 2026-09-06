@@ -75,7 +75,7 @@ export function WaitlistForm({
     const fallback = `mailto:hello@anomx.io?subject=${encodeURIComponent("Anomx early access — " + payload.company)}&body=${encodeURIComponent(`Name: ${payload.fullName}\nEmail: ${payload.email}\nOrganization: ${payload.company}\n\n${payload.useCase}`)}`;
 
     try {
-      const response = await fetch("/api/waitlist", {
+      const response = await fetch(process.env.NEXT_PUBLIC_STATIC_EXPORT === "1" ? "/api/waitlist.php" : "/api/waitlist", {
         body: JSON.stringify(payload),
         headers: {
           "Content-Type": "application/json"
@@ -83,9 +83,9 @@ export function WaitlistForm({
         method: "POST"
       });
 
-      await response.json().catch(() => null);
+      const result: unknown = await response.json().catch(() => null);
 
-      if (!response.ok) {
+      if (!response.ok || !result || typeof result !== "object" || !("message" in result) || typeof result.message !== "string") {
         setEmailDraft(fallback);
         setStatus({
           message: copy.error,

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { cases } from "@/lib/cases-content";
 
 const baseUrl = "https://anomx.io";
 const lastModified = new Date("2026-09-06");
@@ -7,6 +8,7 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
+    ...["/technology/", "/cases/", ...cases.map(item => `/cases/${item.slug}/`)].map(path => ({url: `${baseUrl}${path}`, lastModified, changeFrequency: "monthly" as const, priority: .8})),
     {
       changeFrequency: "weekly",
       lastModified,

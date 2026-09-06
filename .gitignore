@@ -11,3 +11,10 @@ config/database.config.json
 .env*
 !.env.example
 *.tsbuildinfo
+
+build/
+php/vendor/
+.private/
+build.next/
+.build-upload-*/
+.build-backup-*/

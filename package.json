@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint ."
+    "build": "next build && node scripts/package-static.mjs",
+    "start": "ANOMX_NODE_SERVER=1 next start",
+    "lint": "eslint .",
+    "build:server": "ANOMX_NODE_SERVER=1 next build",
+    "deploy": "node scripts/deploy-static.mjs",
+    "test:static": "node scripts/test-static.mjs"
   },
   "dependencies": {
     "mysql2": "^3.22.5",

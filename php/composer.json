@@ -1,0 +1,16 @@
+{
+  "name": "anomx/website-mail",
+  "description": "SMTP delivery for Anomx's static website on PHP shared hosting",
+  "type": "project",
+  "require": {
+    "php": ">=8.1",
+    "phpmailer/phpmailer": "^7.0"
+  },
+  "config": {
+    "allow-plugins": {},
+    "sort-packages": true,
+    "platform": {
+      "php": "8.3.0"
+    }
+  }
+}

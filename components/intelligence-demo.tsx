@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
 import { useLanguage } from "@/components/language-switcher";
+import { AgentFigure } from "@/components/agent-figures";
 import { Reveal } from "@/components/experience";
 
 const stages = {
@@ -78,7 +79,7 @@ export function BackgroundStory({ compact = false }: { compact?: boolean }) {
                 <div className="agent-narrative"><div className="stage-tabs" role="tablist" aria-label={language === "de" ? "Agentenablauf" : "Agent workflow"}>{copy.map((step, i) => <button key={step.label} role="tab" type="button" id={`${id}-tab-${i}`} aria-controls={`${id}-panel`} aria-selected={active === i} tabIndex={active === i ? 0 : -1} onClick={() => setActive(i)} onKeyDown={e => onKey(e, i)}><span>0{i + 1}</span>{step.label}</button>)}</div>
                     <div className="stage-description" id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${active}`} tabIndex={0}><h3>{copy[active].title}</h3><p>{copy[active].body}</p></div>
                 </div>
-                <div className="agent-window"><div className="window-bar"><span className="status-dot" /><span>Anomx Background</span><span className="window-tag">{language === "de" ? "BEISPIEL" : "EXAMPLE"}</span></div><div className="agent-window-body"><div className="agent-prompt">{language === "de" ? "Behalte den Kühlkreislauf im Blick. Untersuche ungewöhnliches Verhalten." : "Watch the cooling circuit. Investigate unusual behavior."}</div><SignalChart /><div className="agent-event" key={active}><span className="event-symbol">{["⌁", "◎", "↗", "⟲"][active]}</span><div><span className="event-status">{copy[active].status}</span><h4>{copy[active].event}</h4><p>{copy[active].detail}</p></div></div><div className="agent-window-footer"><span>{language === "de" ? "Nach Zeitplan aktiv" : "Runs on your schedule"}</span><span>{language === "de" ? "In Ihrem Rahmen" : "Within your boundaries"}</span></div></div></div>
+                <div className="agent-window"><div className="window-bar"><span className="status-dot" /><span>Anomx Background</span><span className="window-tag">{language === "de" ? "BEISPIEL" : "EXAMPLE"}</span></div><div className="agent-window-body"><div className="agent-prompt">{language === "de" ? "Behalte den Kühlkreislauf im Blick. Untersuche ungewöhnliches Verhalten." : "Watch the cooling circuit. Investigate unusual behavior."}</div><AgentFigure stage={active} /><div className="agent-event" key={active}><span className="event-symbol">{["⌁", "◎", "↗", "⟲"][active]}</span><div><span className="event-status">{copy[active].status}</span><h4>{copy[active].event}</h4><p>{copy[active].detail}</p></div></div><div className="agent-window-footer"><span>{language === "de" ? "Nach Zeitplan aktiv" : "Runs on your schedule"}</span><span>{language === "de" ? "In Ihrem Rahmen" : "Within your boundaries"}</span></div></div></div>
             </div>
         </div>
     </section>;
