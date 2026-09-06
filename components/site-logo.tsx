@@ -1,36 +1,8 @@
 import Image from "next/image";
 
-type SiteLogoProps = {
-  className?: string;
-  kind?: "footer" | "header";
-};
-
-export function SiteLogo({
-  className = "",
-  kind = "header"
-}: SiteLogoProps) {
-  return (
-    <span
-      aria-label="Anomx"
-      className={`site-logo site-logo-${kind}${className ? ` ${className}` : ""}`}
-      role="img"
-    >
-      <Image
-        alt=""
-        aria-hidden="true"
-        className="site-logo-image site-logo-image-for-light"
-        height={249}
-        src="/images/logo-dark.png"
-        width={1086}
-      />
-      <Image
-        alt=""
-        aria-hidden="true"
-        className="site-logo-image site-logo-image-for-dark"
-        height={249}
-        src="/images/logo-light.png"
-        width={1086}
-      />
-    </span>
-  );
+export function SiteLogo({ className = "", kind = "header" }: { className?: string; kind?: "footer" | "header" }) {
+    return <span className={`brand-wordmark brand-wordmark-${kind} ${className}`}>
+        <Image alt="" src="/images/app-icon.webp" width={36} height={36} />
+        <span>anomx<span className="brand-period">.</span></span>
+    </span>;
 }

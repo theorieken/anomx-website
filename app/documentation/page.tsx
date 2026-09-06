@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     canonical: "/documentation"
   },
   description:
-    "Documentation for the Anomx Platform, the Anomx CLI agent, and the evolving Anomx Python package.",
+    "Install the Anomx CLI agent, configure model providers, choose execution modes, connect your platform, and understand scheduled background agents.",
   title: "Documentation"
 };
 

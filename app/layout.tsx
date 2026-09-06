@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "./experience.css";
 
 const themeScript = `
   (() => {
@@ -67,82 +68,37 @@ const themeScript = `
   })();
 `;
 
+const description = "Anomx is the AI layer for autonomous systems. Background agents connect anomaly detection, forecasting, and operational context to investigate change and support action.";
+
 export const metadata: Metadata = {
   applicationName: "Anomx",
-  alternates: {
-    canonical: "/"
-  },
+  metadataBase: new URL("https://anomx.io"),
+  alternates: { canonical: "/" },
   category: "technology",
   creator: "Anomx",
-  description:
-    "Anomx combines a system intelligence platform, an installable CLI agent, and a reusable Python package for anomaly detection and operational analysis.",
-  keywords: [
-    "Anomx",
-    "System Intelligence",
-    "anomaly detection",
-    "CLI agent",
-    "Python package",
-    "predictive maintenance",
-    "operational intelligence",
-    "DESY",
-    "time-series monitoring"
-  ],
-  metadataBase: new URL("https://anomx.io"),
-  openGraph: {
-    description:
-      "Understand your system before it fails. Anomx brings together a platform, a CLI agent, and an anomaly-detection package for live operational intelligence.",
-    images: [
-      {
-        alt: "Anomx System Intelligence platform preview",
-        height: 1278,
-        url: "/images/og-image.jpg",
-        width: 1920
-      }
-    ],
-    locale: "en_US",
-    siteName: "Anomx",
-    title: "Anomx | The Platform for System Intelligence",
-    type: "website",
-    url: "/",
-    videos: [
-      {
-        height: 1080,
-        type: "video/mp4",
-        url: "https://anomx.io/video/anomix-dark-hd.mp4",
-        width: 1920
-      }
-    ]
-  },
   publisher: "Anomx",
-  robots: {
-    follow: true,
-    googleBot: {
-      follow: true,
-      index: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1
-    },
-    index: true
+  description,
+  title: { default: "Anomx | Intelligence for Autonomous Systems", template: "%s | Anomx" },
+  icons: { icon: [{ url: "/favicon-32.png", sizes: "32x32", type: "image/png" }] },
+  openGraph: {
+    title: "Anomx | Intelligence for Autonomous Systems",
+    description,
+    url: "/",
+    siteName: "Anomx",
+    type: "website",
+    locale: "en_US",
+    alternateLocale: "de_DE",
+    images: [{ url: "/media/intelligence-sculpture.webp", width: 1920, height: 1081, alt: "Anomx — a luminous signal sculpture representing system intelligence" }]
   },
-  title: {
-    default: "Anomx | The Platform for System Intelligence",
-    template: "%s | Anomx"
-  },
-  twitter: {
-    card: "summary_large_image",
-    description:
-      "Detect abnormal behavior across live data streams, explain what changed, and move from local analysis into shared operational context.",
-    images: ["/images/og-image.jpg"],
-    title: "Anomx | The Platform for System Intelligence"
-  }
+  twitter: { card: "summary_large_image", title: "Anomx | Intelligence for Autonomous Systems", description, images: ["/media/intelligence-sculpture.webp"] },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } }
 };
 
 export const viewport: Viewport = {
   themeColor: [
     {
       media: "(prefers-color-scheme: light)",
-      color: "#f8fcff"
+      color: "#ffffff"
     },
     {
       media: "(prefers-color-scheme: dark)",

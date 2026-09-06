@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useLanguage } from "@/components/language-switcher";
 
 type WaitlistFormProps = {
   buttonLabel?: string;
@@ -49,6 +50,8 @@ export function WaitlistForm({
     website: "Website"
   }
 }: WaitlistFormProps) {
+  const de = useLanguage() === "de";
+  const [emailDraft, setEmailDraft] = useState<string | null>(null);
   const [isPending, setIsPending] = useState(false);
   const [status, setStatus] = useState<SubmissionStatus>(null);
 
@@ -56,6 +59,7 @@ export function WaitlistForm({
     event.preventDefault();
     setIsPending(true);
     setStatus(null);
+    setEmailDraft(null);
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -67,6 +71,8 @@ export function WaitlistForm({
       useCase: String(formData.get("useCase") ?? ""),
       website: String(formData.get("website") ?? "")
     };
+
+    const fallback = `mailto:hello@anomx.io?subject=${encodeURIComponent("Anomx early access — " + payload.company)}&body=${encodeURIComponent(`Name: ${payload.fullName}\nEmail: ${payload.email}\nOrganization: ${payload.company}\n\n${payload.useCase}`)}`;
 
     try {
       const response = await fetch("/api/waitlist", {
@@ -80,6 +86,7 @@ export function WaitlistForm({
       await response.json().catch(() => null);
 
       if (!response.ok) {
+        setEmailDraft(fallback);
         setStatus({
           message: copy.error,
           type: "error"
@@ -94,6 +101,7 @@ export function WaitlistForm({
         type: "success"
       });
     } catch {
+      setEmailDraft(fallback);
       setStatus({
         message: copy.error,
         type: "error"
@@ -104,10 +112,12 @@ export function WaitlistForm({
   };
 
   return (
-    <form className="waitlist-form" noValidate onSubmit={handleSubmit}>
+    <form className="waitlist-form" onSubmit={handleSubmit}>
       <div className="field-grid">
         <label className="field">
+          <span>{copy.fullName}</span>
           <input
+            maxLength={150}
             aria-label={copy.fullName}
             autoComplete="name"
             name="fullName"
@@ -118,7 +128,9 @@ export function WaitlistForm({
         </label>
 
         <label className="field">
+          <span>{copy.email}</span>
           <input
+            maxLength={254}
             aria-label={copy.email}
             autoComplete="email"
             name="email"
@@ -130,7 +142,9 @@ export function WaitlistForm({
       </div>
 
       <label className="field">
+        <span>{copy.company}</span>
         <input
+          maxLength={200}
           aria-label={copy.company}
           autoComplete="organization"
           name="company"
@@ -141,7 +155,9 @@ export function WaitlistForm({
       </label>
 
       <label className="field">
+        <span>{copy.useCase}</span>
         <textarea
+          maxLength={4000}
           aria-label={copy.useCase}
           name="useCase"
           placeholder={copy.useCasePlaceholder}
@@ -162,6 +178,7 @@ export function WaitlistForm({
         {isPending ? copy.pending : buttonLabel}
       </button>
 
+      {emailDraft && <a href={emailDraft} className="text-link">{de ? "Anfrage als E-Mail öffnen" : "Open request as an email"} <span aria-hidden="true">↗</span></a>}
       {status ? (
         <p
           aria-live="polite"

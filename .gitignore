@@ -7,3 +7,7 @@ yarn-debug.log*
 yarn-error.log*
 .DS_Store
 config/database.config.json
+
+.env*
+!.env.example
+*.tsbuildinfo

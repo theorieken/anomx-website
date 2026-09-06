@@ -26,13 +26,22 @@ function escapeHtml(value: string) {
     .replaceAll("'", "&#39;");
 }
 
-function normalizeValue(value?: string) {
-  return value?.trim() ?? "";
+function normalizeValue(value: unknown) {
+  return typeof value === "string" ? value.trim() : "";
 }
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as WaitlistPayload;
+    const content = await request.text();
+    if (content.length > 12000) return NextResponse.json({ message: "Request too large." }, { status: 413 });
+    let body: WaitlistPayload;
+    try {
+      const parsed: unknown = JSON.parse(content);
+      if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) throw new Error("Invalid body");
+      body = parsed as WaitlistPayload;
+    } catch {
+      return NextResponse.json({ message: "Please send a valid request." }, { status: 400 });
+    }
     const fullName = normalizeValue(body.fullName);
     const email = normalizeValue(body.email).toLowerCase();
     const company = normalizeValue(body.company);
@@ -45,7 +54,7 @@ export async function POST(request: Request) {
       });
     }
 
-    if (!fullName || !email || !company) {
+    if (!fullName || !email || !company || fullName.length > 150 || email.length > 254 || company.length > 200 || useCase.length > 4000) {
       return NextResponse.json(
         {
           message: "Please include your name, work email, and company."
@@ -73,7 +82,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           message:
-            "Waitlist mail delivery is not configured yet. Update config/waitlist.config.json with your SMTP settings."
+            "Email delivery is temporarily unavailable. Please contact hello@anomx.io."
         },
         {
           status: 503
@@ -82,6 +91,9 @@ export async function POST(request: Request) {
     }
 
     const transporter = nodemailer.createTransport({
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 15000,
       host: config.smtp.host,
       port: config.smtp.port,
       secure: config.smtp.secure,

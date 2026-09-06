@@ -1,154 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { CardVisual } from "@/components/card-visual";
-import { CursorAtmosphere } from "@/components/cursor-atmosphere";
 import { useLanguage } from "@/components/language-switcher";
-import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { Experience } from "@/components/experience";
 import { WaitlistForm } from "@/components/waitlist-form";
-import { homeCopy } from "@/lib/home-content";
-
-const accessCards = {
-  en: [
-    {
-      title: "Platform access",
-      body: "Shape the control plane around real datasets, jobs, findings, and multi-node operations.",
-      visual: "operator-workspace"
-    },
-    {
-      title: "CLI agent workflows",
-      body: "Use the installable `anomx` agent on the machine where the data or code already lives.",
-      visual: "human-control"
-    },
-    {
-      title: "Direct product feedback",
-      body: "Work closely with us on architecture, data connectors, operational review, and the real edge-to-platform loop.",
-      visual: "guide-step"
-    }
-  ],
-  de: [
-    {
-      title: "Platform-Zugang",
-      body: "Gestalten Sie den Kontrollplan rund um echte Datasets, Jobs, Findings und Multi-Node-Betrieb mit.",
-      visual: "operator-workspace"
-    },
-    {
-      title: "CLI-Agent-Workflows",
-      body: "Nutzen Sie den installierbaren `anomx` Agenten direkt auf dem Rechner, auf dem Daten oder Code bereits vorhanden sind.",
-      visual: "human-control"
-    },
-    {
-      title: "Direktes Produktfeedback",
-      body: "Arbeiten Sie mit uns an Architektur, Konnektoren, operativem Review und dem echten Edge-zu-Plattform-Loop.",
-      visual: "guide-step"
-    }
-  ]
-} as const;
-
-const bulletCopy = {
-  en: [
-    "Early access to the Anomx Platform and the installable CLI agent.",
-    "A direct path from local server-side analysis into shared platform context.",
-    "Close collaboration on real anomaly-detection and operational intelligence workflows."
-  ],
-  de: [
-    "Fruher Zugang zur Anomx Platform und zum installierbaren CLI-Agenten.",
-    "Ein direkter Pfad von lokaler Analyse auf Servern in den gemeinsamen Plattformkontext.",
-    "Enge Zusammenarbeit an echten Anomalie- und Operational-Intelligence-Workflows."
-  ]
-} as const;
 
 export function EarlyAccessPage() {
-  const language = useLanguage();
-  const copy = homeCopy[language];
-  const cards = accessCards[language];
-
-  return (
-    <main className="page-shell subpage-shell" id="top">
-      <CursorAtmosphere />
-      <SiteHeader />
-
-      <section className="section subpage-hero-section">
-        <div className="subpage-hero">
-          <p className="eyebrow">{language === "de" ? "Early Access" : "Early Access"}</p>
-
-          <div className="subpage-split early-access-split">
-            <article className="subpage-copy-card">
-              <h1 className="subpage-hero-title">
-                {language === "de"
-                  ? "Arbeiten Sie mit uns an der ersten operativen Form von Anomx."
-                  : "Work with us on the first operational shape of Anomx."}
-              </h1>
-              <p className="hero-subline">
-                {language === "de"
-                  ? "Die erste Early-Access-Phase richtet sich an Teams mit komplexen Daten-, Maschinen- oder Infrastrukturumgebungen, bei denen Anomalien fruh verstanden und eingeordnet werden mussen."
-                  : "The first early-access phase is for teams operating complex data, machine, or infrastructure environments where anomalies must be understood early and in context."}
-              </p>
-
-              <ul className="subpage-list">
-                {bulletCopy[language].map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-
-              <div className="hero-actions">
-                <Link className="button button-secondary" href="/platform">
-                  {language === "de" ? "Platform ansehen" : "See the platform"}
-                </Link>
-                <Link className="button button-secondary" href="/agent">
-                  {language === "de" ? "Agent ansehen" : "See the agent"}
-                </Link>
-              </div>
-            </article>
-
-            <div className="waitlist-panel early-access-panel">
-              <WaitlistForm buttonLabel={copy.waitlist.buttonLabel} copy={copy.waitlist} />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section subpage-section">
-        <div className="section-heading section-heading-left">
-          <h2>
-            {language === "de"
-              ? "Was fruhe Teams von Anfang an formen."
-              : "What early teams help shape from day one."}
-          </h2>
-        </div>
-
-        <div className="simple-card-grid subpage-card-grid">
-          {cards.map((card) => (
-            <article className="simple-card subpage-feature-card" key={card.title}>
-              <h3>{card.title}</h3>
-              <p>{card.body}</p>
-              <div className="simple-card-visual" aria-hidden="true">
-                <CardVisual variant={card.visual} />
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section final-cta-section">
-        <div className="subpage-cta-panel">
-          <div className="section-heading section-heading-center">
-            <h2>
-              {language === "de"
-                ? "Wenn Ihre Umgebung zu komplex fur starre Dashboards ist, sollten wir sprechen."
-                : "If your environment is too complex for static dashboards, we should talk."}
-            </h2>
-          </div>
-
-          <div className="hero-actions">
-            <a className="button button-primary" href="mailto:hello@anomx.io">
-              {language === "de" ? "Kontakt aufnehmen" : "Talk to us"}
-            </a>
-          </div>
-        </div>
-
-        <SiteFooter />
-      </section>
-    </main>
-  );
+    const de = useLanguage() === "de";
+    const copy = de ? {
+        company: "Organisation", companyPlaceholder: "Ihre Organisation", email: "Geschäftliche E-Mail", emailPlaceholder: "sie@organisation.de", error: "Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie an hello@anomx.io.", fullName: "Name", fullNamePlaceholder: "Ihr Name", pending: "Wird gesendet …", success: "Vielen Dank. Ihre Anfrage ist angekommen. Wir melden uns bei Ihnen.", useCase: "Ihr System (optional)", useCasePlaceholder: "Was betreiben Sie — und was möchten Sie besser verstehen?", website: "Website"
+    } : {
+        company: "Organization", companyPlaceholder: "Your organization", email: "Work email", emailPlaceholder: "you@organization.com", error: "We couldn’t send your request. Please try again or email hello@anomx.io.", fullName: "Name", fullNamePlaceholder: "Your name", pending: "Sending…", success: "Thank you. Your request is in. We’ll be in touch.", useCase: "Your system (optional)", useCasePlaceholder: "What do you operate — and what would you like to understand better?", website: "Website"
+    };
+    return <Experience><section className="access-layout content-width"><div><p className="kicker">EARLY ACCESS</p><h1>{de ? <>Die Zukunft<br />wartet nicht.<br /><span className="gradient-text">Ihr System auch nicht.</span></> : <>The future<br />won’t wait.<br /><span className="gradient-text">Neither should<br />your system.</span></>}</h1><p className="section-lead">{de ? "Wir entwickeln Anomx mit Teams, die komplexe Maschinen, Daten und Infrastruktur betreiben. Gestalten Sie die nächste Generation intelligenter Systeme mit." : "We’re building Anomx with teams operating complex machines, data, and infrastructure. Help shape the next generation of intelligent systems."}</p><ul className="access-benefits">{(de ? ["Hintergrundagenten für Ihren Anwendungsfall", "Wissenschaftlich fundierte Anomalieerkennung", "Direkter Austausch mit dem Gründerteam"] : ["Background agents for your use case", "Scientifically grounded anomaly detection", "Direct collaboration with the founding team"]).map(item => <li key={item}>{item}</li>)}</ul><a className="text-link" href="mailto:hello@anomx.io">hello@anomx.io <span aria-hidden="true">↗</span></a></div><div className="access-panel"><h2>{de ? "Lernen wir Ihr System kennen." : "Let’s meet your system."}</h2><WaitlistForm buttonLabel={de ? "Early Access anfragen" : "Request early access"} copy={copy} /><p className="form-privacy">{de ? "Ihre Angaben verwenden wir, um Ihre Anfrage zu beantworten. Mehr dazu in unserer " : "We use these details to respond to your request. Learn more in our "}<Link href="/datenschutzerklaerung">{de ? "Datenschutzerklärung" : "privacy policy"}</Link>.</p></div></section></Experience>;
 }

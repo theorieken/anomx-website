@@ -2,300 +2,42 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { CardVisual } from "@/components/card-visual";
-import { CursorAtmosphere } from "@/components/cursor-atmosphere";
+import { useEffect, useRef } from "react";
 import { useLanguage } from "@/components/language-switcher";
-import { SignalToActionSlider } from "@/components/signal-to-action-slider";
-import { SiteFooter, SiteHeader } from "@/components/site-chrome";
-import { WaitlistForm } from "@/components/waitlist-form";
-import type { GridCard, Language, LocalizedText } from "@/lib/home-content";
-import {
-  anomalyIntelligenceCards,
-  complexSystemsCards,
-  earlyPreviewCards,
-  homeCopy,
-  platformRows,
-  sliderCards,
-  useCases,
-  whyNowCards
-} from "@/lib/home-content";
-
-function localized(value: LocalizedText, language: Language) {
-  return value[language] ?? value.en;
-}
-
-function BentoGrid({
-  cards,
-  className,
-  language
-}: {
-  cards: GridCard[];
-  className: string;
-  language: Language;
-}) {
-  return (
-    <div className={`bento-grid ${className}`}>
-      {cards.map((card) => (
-        <article className="bento-card" data-size={card.size} key={localized(card.title, language)}>
-          <div className="bento-card-copy">
-            <h3>{localized(card.title, language)}</h3>
-            <p>{localized(card.body, language)}</p>
-          </div>
-          <div className="bento-card-media">
-            <CardVisual variant={card.visual} />
-          </div>
-        </article>
-      ))}
-    </div>
-  );
-}
+import { Arrow, CopyCommand, Experience, FinalInvitation, Reveal } from "@/components/experience";
+import { BackgroundStory, ScienceSection } from "@/components/intelligence-demo";
 
 export function HomePage() {
-  const language = useLanguage();
-  const copy = homeCopy[language];
-  const entryPoints = [
-    {
-      href: "/platform",
-      title: language === "de" ? "Platform" : "Platform",
-      body:
-        language === "de"
-          ? "Der gemeinsame Kontrollplan fur Datasets, Jobs, Findings, Worker und operative Infrastruktur."
-          : "The shared control plane for datasets, jobs, findings, workers, and operational infrastructure.",
-      visual: "operator-workspace" as const
-    },
-    {
-      href: "/agent",
-      title: language === "de" ? "Agent" : "Agent",
-      body:
-        language === "de"
-          ? "Der installierbare CLI-Agent fur anomalienahe Analyse direkt auf Servern, Workstations und Edge-Knoten."
-          : "The installable CLI agent for anomaly-focused analysis directly on servers, workstations, and edge nodes.",
-      visual: "human-control" as const
-    },
-    {
-      href: "/documentation",
-      title: language === "de" ? "Dokumentation" : "Documentation",
-      body:
-        language === "de"
-          ? "Arbeitsnahe Doku fur Plattform, Agent und die entstehende Python-API."
-          : "Working documentation for the platform, the agent, and the evolving Python API.",
-      visual: "modular-connectors" as const
-    }
-  ];
-
-  return (
-    <main className="page-shell" id="top">
-      <CursorAtmosphere />
-
-      <SiteHeader />
-
-      <section className="section hero-section">
-        <div className="hero-shell">
-          <h1>{copy.hero.title}</h1>
-          <p className="hero-subline">{copy.hero.subtitle}</p>
-
-          <div className="hero-actions">
-            <Link className="button button-primary" href="/platform">
-              {language === "de" ? "Platform ansehen" : "Explore the Platform"}
-            </Link>
-            <Link className="button button-secondary" href="/agent">
-              {language === "de" ? "Agent ansehen" : "Meet the Agent"}
-            </Link>
-          </div>
-        </div>
-
-        <div className="media-preview-section" id="product">
-          <div className="media-preview-shell">
-            <video
-              autoPlay
-              className="product-video product-video-light"
-              loop
-              muted
-              playsInline
-              poster="/images/anomx-light-hd-poster.png"
-              preload="metadata"
-            >
-              <source src="/video/anomx-light-hd.mp4" type="video/mp4" />
-            </video>
-            <video
-              autoPlay
-              className="product-video product-video-dark"
-              loop
-              muted
-              playsInline
-              poster="/images/anomix-dark-hd-poster.png"
-              preload="metadata"
-            >
-              <source src="/video/anomix-dark-hd.mp4" type="video/mp4" />
-            </video>
-            <div className="media-preview-gradient" aria-hidden="true" />
-          </div>
-        </div>
-      </section>
-
-      <section className="section slider-section">
-        <div className="section-heading section-heading-left">
-          <h2>
-            {copy.sections.signal.titlePrimary}
-            <span className="heading-secondary">
-              {copy.sections.signal.titleSecondary}
-            </span>
-          </h2>
-        </div>
-
-        <SignalToActionSlider cards={sliderCards} language={language} />
-      </section>
-
-      <section className="section entry-points-section">
-        <div className="section-heading section-heading-left">
-          <h2>
-            {language === "de"
-              ? "Drei Wege in dieselbe Intelligence-Schicht."
-              : "Three ways into the same intelligence layer."}
-          </h2>
-        </div>
-
-        <div className="simple-card-grid">
-          {entryPoints.map((entryPoint) => (
-            <Link className="simple-card entry-point-card" href={entryPoint.href} key={entryPoint.href}>
-              <h3>{entryPoint.title}</h3>
-              <p>{entryPoint.body}</p>
-              <div className="simple-card-visual" aria-hidden="true">
-                <CardVisual variant={entryPoint.visual} />
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="section complex-section" id="platform">
-        <div className="section-heading section-heading-center">
-          <h2>{copy.sections.complex.title}</h2>
-        </div>
-
-        <BentoGrid cards={complexSystemsCards} className="complex-grid" language={language} />
-      </section>
-
-      <section className="section intelligence-section">
-        <div className="section-heading section-heading-left">
-          <h2>
-            {copy.sections.intelligence.titlePrimary}
-            <span className="heading-secondary">
-              {copy.sections.intelligence.titleSecondary}
-            </span>
-          </h2>
-        </div>
-
-        <BentoGrid cards={anomalyIntelligenceCards} className="anomaly-grid" language={language} />
-      </section>
-
-      <section className="platform-dark-band">
-        <div className="platform-dark-inner">
-          <div className="platform-dark-copy">
-            <h2>
-              {copy.sections.platform.titlePrimary}
-              <span className="heading-secondary">
-                {copy.sections.platform.titleSecondary}
-              </span>
-            </h2>
-
-            <ul className="platform-list">
-              {platformRows.map((row) => (
-                <li className="platform-list-item" key={localized(row.label, language)}>
-                  <span>{localized(row.label, language)}</span>
-                  <p>{localized(row.body, language)}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="platform-dark-media">
-            <Image
-              alt=""
-              className="platform-architecture"
-              height={520}
-              loading="eager"
-              sizes="(max-width: 1120px) 100vw, 48vw"
-              src="/media/intelligence-layer-architecture.svg"
-              unoptimized
-              width={720}
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="section validation-section">
-        <div className="section-heading section-heading-center">
-          <h2>{copy.sections.validation.title}</h2>
-        </div>
-
-        <div className="simple-card-grid">
-          {earlyPreviewCards.map((card) => (
-            <article className="simple-card" key={localized(card.title, language)}>
-              <h3>{localized(card.title, language)}</h3>
-              <p>{localized(card.body, language)}</p>
-              <div className="simple-card-visual" aria-hidden="true">
-                <CardVisual variant={card.visual} />
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section use-cases-section" id="use-cases">
-        <div className="section-heading section-heading-left">
-          <h2>
-            {copy.sections.useCases.titlePrimary}
-            <span className="heading-secondary">
-              {copy.sections.useCases.titleSecondary}
-            </span>
-          </h2>
-        </div>
-
-        <div className="use-case-grid">
-          {useCases.map((useCase) => (
-            <article className="use-case-card" key={localized(useCase.title, language)}>
-              <div className="use-case-copy">
-                <h3>{localized(useCase.title, language)}</h3>
-                <p>{localized(useCase.body, language)}</p>
-              </div>
-              <div className="use-case-media">
-                <CardVisual variant={useCase.visual} />
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section why-now-section">
-        <div className="section-heading section-heading-center">
-          <h2>{copy.sections.whyNow.title}</h2>
-        </div>
-
-        <div className="simple-card-grid">
-          {whyNowCards.map((card) => (
-            <article className="simple-card simple-card-tight" key={localized(card.title, language)}>
-              <h3>{localized(card.title, language)}</h3>
-              <p>{localized(card.body, language)}</p>
-              <div className="simple-card-marker" aria-hidden="true" />
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section final-cta-section" id="early-access">
-        <div className="final-cta-shell">
-          <div className="section-heading section-heading-center">
-            <h2>{copy.sections.earlyAccess.title}</h2>
-          </div>
-
-          <div className="waitlist-panel" id="waitlist-form">
-            <WaitlistForm buttonLabel={copy.waitlist.buttonLabel} copy={copy.waitlist} />
-          </div>
-        </div>
-
-        <SiteFooter />
-      </section>
-    </main>
-  );
+    const de = useLanguage() === "de";
+    const hero = useRef<HTMLElement>(null);
+    useEffect(() => {
+        const element = hero.current;
+        if (!element || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        let frame = 0;
+        const update = () => { frame = 0; const progress = Math.min(1, Math.max(0, -element.getBoundingClientRect().top / element.offsetHeight)); element.style.setProperty("--hero-progress", String(progress)); };
+        const scroll = () => { if (!frame) frame = requestAnimationFrame(update); };
+        window.addEventListener("scroll", scroll, { passive: true });
+        return () => { window.removeEventListener("scroll", scroll); cancelAnimationFrame(frame); };
+    }, []);
+    return <Experience>
+        <section className="cinematic-hero" ref={hero}>
+            <div className="hero-heading"><p className="kicker">ANOMX · SYSTEM INTELLIGENCE</p><h1>{de ? <>Ihr System.<br /><span className="gradient-text">Einen Schritt voraus.</span></> : <>Your system.<br /><span className="gradient-text">One step ahead.</span></>}</h1><p>{de ? "Die KI-Schicht für eine autonome Welt." : "The AI layer for an autonomous world."}</p><div className="hero-links"><Link className="text-link" href="#background-agent">{de ? "Intelligenz entdecken" : "Explore the intelligence"}<span aria-hidden="true">↓</span></Link><Link className="text-link" href="/platform">{de ? "Die Plattform" : "Meet the platform"}<Arrow /></Link></div></div>
+            <div className="hero-art"><Image src="/media/intelligence-sculpture.webp" alt="" width={1920} height={1080} priority sizes="100vw" /></div>
+            <div className="hero-bottom content-width"><p>{de ? <>Erkennt Veränderungen. Versteht Zusammenhänge.<br />Bringt Ihre Systeme ins Handeln.</> : <>Detect change. Understand why.<br />Give your systems the intelligence to act.</>}</p><span className="scroll-hint" aria-hidden="true">{de ? "WEITER ENTDECKEN" : "SCROLL TO DISCOVER"}<span>↓</span></span></div>
+        </section>
+        <section className="manifesto content-width"><Reveal><p className="kicker">{de ? "VON REAKTIV ZU AUTONOM" : "FROM REACTIVE TO AUTONOMOUS"}</p><h2>{de ? <>Maschinen erzeugen Daten.<br /><span className="muted">Anomx macht daraus</span><br />Verständnis.</> : <>Machines generate data.<br /><span className="muted">Anomx turns it into</span><br />understanding.</>}</h2><p className="section-lead">{de ? "Ein Hintergrundagent, der hinsieht, nachdenkt und vorausplant. Verbunden mit Ihren Daten, Modellen und Maschinen. Damit aus komplexen Systemen intelligente Systeme werden." : "A background agent that observes, reasons, and looks ahead. Connected to your data, models, and machines. Turning complex systems into intelligent ones."}</p></Reveal></section>
+        <BackgroundStory />
+        <section className="autonomy-section content-width"><Reveal><p className="kicker">{de ? "AUTONOMIE MIT KONTEXT" : "AUTONOMY WITH CONTEXT"}</p><h2>{de ? <>Eine Intelligenz.<br /><span className="muted">Ihr gesamtes System.</span></> : <>One intelligence.<br /><span className="muted">Your entire system.</span></>}</h2></Reveal><div className="capability-row">{(de ? [
+            ["01", "Verbunden.", "Datenströme, Dateien, Datenbanken und Kontrollsysteme in einem gemeinsamen operativen Kontext."],
+            ["02", "Vorausschauend.", "Anomalien erkennen und Veränderungen untersuchen, bevor sie zu größeren Problemen werden."],
+            ["03", "Handlungsfähig.", "Aus Belegen werden Empfehlungen und erlaubte Plattformänderungen. Sie bestimmen den Rahmen."]
+        ] : [
+            ["01", "Connected.", "Data streams, files, databases, and control systems brought into one operational context."],
+            ["02", "Anticipatory.", "Detect anomalies and investigate emerging changes before they become bigger problems."],
+            ["03", "Actionable.", "Turn evidence into recommendations and permitted platform changes. You define the boundaries."]
+        ]).map(([number, title, body]) => <Reveal key={number}><span className="small-index">{number}</span><h3>{title}</h3><p>{body}</p></Reveal>)}</div><Link href="/platform" className="text-link">{de ? "Die Plattform kennenlernen" : "Explore the platform"}<Arrow /></Link></section>
+        <ScienceSection />
+        <section className="cli-teaser content-width"><Reveal className="cli-teaser-inner"><div><p className="kicker">ANOMX CLI AGENT</p><h2>{de ? <>Große Intelligenz.<br /><span className="muted">Direkt im Terminal.</span></> : <>Big intelligence.<br /><span className="muted">Right in your terminal.</span></>}</h2><p>{de ? "Ihr KI-Partner für Code, Daten und Anomalien. Dort, wo Sie arbeiten. Verbunden mit der Plattform, wenn Sie sie brauchen." : "Your AI partner for code, data, and anomalies. Right where you work. Connected to the platform when you need it."}</p><Link className="text-link" href="/agent">{de ? "CLI Agent entdecken" : "Meet the CLI agent"}<Arrow /></Link></div><div className="install-card"><span className="terminal-mark" aria-hidden="true">&gt;_</span><CopyCommand command="pip install anomx" /><CopyCommand command="anomx" /><span className="install-meta">Python 3.11+ · Open source</span></div></Reveal></section>
+        <FinalInvitation />
+    </Experience>;
 }

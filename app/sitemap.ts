@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 const baseUrl = "https://anomx.io";
-const lastModified = new Date("2026-06-05");
+const lastModified = new Date("2026-09-06");
 
 export const dynamic = "force-static";
 

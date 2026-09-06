@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     canonical: "/platform"
   },
   description:
-    "Anomx Platform connects datasets, jobs, findings, workers, and distributed runtime services into one control and intelligence layer.",
+    "Background AI agents connect data, models, machines, and infrastructure. Investigate anomalies and enable autonomous workflows with defined permissions and budgets.",
   title: "Platform"
 };
 

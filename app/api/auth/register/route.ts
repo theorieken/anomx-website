@@ -79,9 +79,9 @@ export async function POST(request: Request) {
     });
 
     return response;
-  } catch (error: any) {
+  } catch (error: unknown) {
     // Handle duplicate email
-    if (error?.code === "ER_DUP_ENTRY") {
+    if (error && typeof error === "object" && "code" in error && error.code === "ER_DUP_ENTRY") {
       return NextResponse.json(
         { message: "An account with this email already exists." },
         { status: 409 }
