@@ -14,13 +14,25 @@ export function SiteHeader() {
     const [scrolled, setScrolled] = useState(false);
     const landing = pathname === "/";
     useEffect(() => {
-        const update = () => setScrolled(window.scrollY > 12);
+        let frame = 0;
+        const update = () => {
+            frame = 0;
+            const hero = landing ? document.querySelector<HTMLElement>(".cinematic-hero") : null;
+            const lock = hero?.querySelector<HTMLElement>(".hero-lock");
+            const threshold = hero && lock ? hero.offsetTop + hero.offsetHeight - lock.offsetHeight + 12 : 12;
+            setScrolled(window.scrollY > threshold);
+        };
+        const scroll = () => { if (!frame) frame = requestAnimationFrame(update); };
         update();
-        window.addEventListener("scroll", update, {passive:true});
-        return () => window.removeEventListener("scroll", update);
-    }, []);
+        const hero = document.querySelector(".cinematic-hero");
+        const observer = new ResizeObserver(scroll);
+        if (hero) observer.observe(hero);
+        window.addEventListener("scroll", scroll, {passive:true});
+        window.addEventListener("resize", scroll);
+        return () => { observer.disconnect();window.removeEventListener("scroll", scroll);window.removeEventListener("resize", scroll);cancelAnimationFrame(frame); };
+    }, [landing]);
     const menuButton = useRef<HTMLButtonElement>(null);
-    const links = [["/platform", de ? "Plattform" : "Platform"], ["/agent", "Agent"], ["/technology", "Technology"], ["/cases", "Cases"], ["/documentation", "Docs"]];
+    const links = [["/platform", de ? "Plattform" : "Platform"], ["/agent", "Agent"], ["/technology", "System"], ["/cases", "Cases"], ["/documentation", "Docs"]];
     useEffect(() => {
         if (!open) return;
         const close = (event: KeyboardEvent) => { if (event.key === "Escape") { setOpen(false); menuButton.current?.focus(); } };
@@ -44,7 +56,7 @@ export function SiteFooter() {
     const de = useLanguage() === "de";
     return <footer className="minimal-footer"><div className="content-width">
         <div className="footer-top"><div><Link href="/" aria-label="Anomx home"><SiteLogo kind="footer" /></Link><p>{de ? "Die Plattform für System Intelligence." : "The Platform for System Intelligence."}</p></div><a className="footer-contact" href="mailto:hello@anomx.io">{de ? "Lassen Sie uns sprechen." : "Let’s talk."}<span aria-hidden="true"> ↗</span></a></div>
-        <div className="footer-links"><nav aria-label="Product"><Link href="/platform">{de ? "Plattform" : "Platform"}</Link><Link href="/agent">Agent</Link><Link href="/technology">Technology</Link><Link href="/cases">Cases</Link><Link href="/documentation">Docs</Link><Link href="/early-access">Early Access</Link><Link href="/coming-soon">{de ? "Anmelden" : "Platform login"}</Link></nav><div className="footer-preferences"><ThemeToggle lightLabel={de ? "Hell" : "Light"} darkLabel={de ? "Dunkel" : "Dark"} /><LanguageSwitcher englishLabel="EN" germanLabel="DE" label={de ? "Sprache" : "Language"} showLabel={false} /></div></div>
+        <div className="footer-links"><nav aria-label="Product"><Link href="/platform">{de ? "Plattform" : "Platform"}</Link><Link href="/agent">Agent</Link><Link href="/technology">System</Link><Link href="/cases">Cases</Link><Link href="/documentation">Docs</Link><Link href="/early-access">Early Access</Link><Link href="/coming-soon">{de ? "Anmelden" : "Platform login"}</Link></nav><div className="footer-preferences"><ThemeToggle label={de ? "Darstellung" : "Theme"} lightLabel={de ? "Hell" : "Light"} darkLabel={de ? "Dunkel" : "Dark"} /><LanguageSwitcher englishLabel="EN" germanLabel="DE" label={de ? "Sprache" : "Language"} showLabel={false} /></div></div>
         <div className="footer-bottom"><span>© {new Date().getFullYear()} Anomx</span><nav aria-label="Legal"><Link href="/impressum">{de ? "Impressum" : "Legal notice"}</Link><Link href="/datenschutzerklaerung">{de ? "Datenschutz" : "Privacy"}</Link><Link href="/nutzungsbedingungen">{de ? "Nutzungsbedingungen" : "Terms"}</Link></nav><span>{de ? "Entwickelt in Hamburg." : "Built in Hamburg."}</span></div>
     </div></footer>;
 }

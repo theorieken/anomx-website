@@ -3,21 +3,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/components/language-switcher";
+import { useTheme } from "@/components/theme-toggle";
 import { Arrow, Experience, FinalInvitation, Reveal } from "@/components/experience";
 import { AgentFigure } from "@/components/agent-figures";
 import { cases, type CaseContent } from "@/lib/cases-content";
 
 function CaseVisual({ item, priority = false }: { item:CaseContent; priority?:boolean }) {
     const de = useLanguage() === "de";
-    return item.visual === "xfel" ? <Image src="/media/xfel-intelligence.webp" width={1600} height={900} sizes="(max-width: 760px) 100vw, 1120px" priority={priority} alt={de?"KI-generierte, stilisierte Illustration eines Beschleunigertunnels, inspiriert vom European XFEL.":"AI-generated, stylized accelerator-tunnel illustration inspired by European XFEL."}/> : <div className={`case-concept-art case-concept-${item.visual}`}><AgentFigure stage={item.visual==="machine"?1:3}/></div>;
+    const theme = useTheme();
+    return item.visual === "xfel" ? <Image src={`/media/xfel-minimal-${theme}.webp`} width={1600} height={900} sizes="(max-width: 760px) 100vw, 1120px" priority={priority} alt={de?"KI-generierte Illustration eines ruhigen Beschleunigertunnels mit gedeckt goldener Strahlführung, inspiriert vom European XFEL.":"AI-generated illustration of a quiet accelerator tunnel with a muted gold beamline, inspired by European XFEL."}/> : <div className={`case-concept-art case-concept-${item.visual}`}><AgentFigure stage={item.visual==="machine"?1:3}/></div>;
 }
 export function DesyLogo() { return <Image className="desy-logo" src="/images/desy-logo-white.png" alt="DESY" width={80} height={80}/>; }
 
 export function CasesPage() {
     const language = useLanguage();
     const de = language === "de";
-    return <Experience><section className="product-hero content-width"><p className="kicker">ANOMX CASES</p><h1>{de?<>Große Fragen.<br/><span className="gradient-text">Konkrete Systeme.</span></>:<>Big questions.<br/><span className="gradient-text">Real-world systems.</span></>}</h1><p>{de?"Wie System Intelligence Form annimmt. Einblicke in unsere Alpha-Arbeit und mögliche Anwendungen für Maschinen und Infrastruktur.":"Where system intelligence takes shape. Explore our alpha work and possible applications for machines and infrastructure."}</p></section>
-        <section className="cases-grid content-width" aria-label={de?"Cases und Anwendungskonzepte":"Cases and application concepts"}>{cases.map(item=><Reveal key={item.slug}><Link className="case-card" href={`/cases/${item.slug}`}><div className="case-card-art"><CaseVisual item={item}/><span className="case-status">{item.kind==="alpha"?"ALPHA":de?"KONZEPT":"CONCEPT"}</span></div><div className="case-card-copy"><p className="kicker">{item[language].category}</p><h2>{item[language].name}</h2><p>{item[language].summary}</p><span className="text-link">{de?"Case entdecken":"Explore the case"}<Arrow/></span>{item.kind==="alpha"&&<DesyLogo/>}</div></Link></Reveal>)}</section><FinalInvitation/></Experience>;
+    return <Experience><section className="product-hero content-width"><p className="kicker">ANOMX CASES</p><h1>{de?<>Große Fragen.<br/><span className="gradient-text">Konkrete Systeme.</span></>:<>Big questions.<br/><span className="gradient-text">Real-world systems.</span></>}</h1><p>{de?"Wie System Intelligence Form annimmt. Einblicke in unsere Alpha-Arbeit — und Raum für Ihr System.":"Where system intelligence takes shape. Explore our alpha work — and imagine what comes next for your system."}</p></section>
+        <section className="cases-grid content-width" aria-label={de?"Cases und Zusammenarbeit":"Cases and collaboration"}>{cases.map(item=><Reveal key={item.slug}><Link className="case-card" href={`/cases/${item.slug}`}><div className="case-card-art"><CaseVisual item={item} priority/><span className="case-status">{item.kind==="alpha"?"ALPHA":de?"KONZEPT":"CONCEPT"}</span></div><div className="case-card-copy"><p className="kicker">{item[language].category}</p><h2>{item[language].name}</h2><p>{item[language].summary}</p><span className="text-link">{de?"Case entdecken":"Explore the case"}<Arrow/></span>{item.kind==="alpha"&&<DesyLogo/>}</div></Link></Reveal>)}<Reveal><Link className="case-card case-contact-card" href="/early-access"><div className="case-contact-art" aria-hidden="true"><span>+</span></div><div className="case-card-copy"><p className="kicker">{de?"IHR SYSTEM. UNSER NÄCHSTER SCHRITT.":"YOUR SYSTEM. OUR NEXT CHAPTER."}</p><h2>{de?"Hier könnte Ihr Case stehen.":"This could be your case."}</h2><p>{de?"Komplexe Daten, große Fragen oder eine neue Idee für autonome Systeme? Lassen Sie uns gemeinsam daran arbeiten.":"Complex data, a big question, or a new idea for autonomous systems? Let’s build it together."}</p><span className="text-link">{de?"Jetzt Kontakt aufnehmen":"Contact now"}<Arrow/></span></div></Link></Reveal></section><FinalInvitation/></Experience>;
 }
 
 export function CaseDetailPage({ item }: { item:CaseContent }) {

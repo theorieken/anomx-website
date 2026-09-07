@@ -25,6 +25,17 @@ export function Reveal({ children, className = "" }: { children: ReactNode; clas
 }
 
 export function Experience({ children, className = "" }: { children: ReactNode; className?: string }) {
+    useEffect(() => {
+        if (!window.location.hash) return;
+        // Resolve deep links after child scenes have measured their sticky heights.
+        let frame = requestAnimationFrame(() => {
+            frame = requestAnimationFrame(() => {
+                const id = window.location.hash.slice(1);
+                document.getElementById(id)?.scrollIntoView({ behavior: "instant" });
+            });
+        });
+        return () => cancelAnimationFrame(frame);
+    }, []);
     return <div className={`experience ${className}`} id="top"><SiteHeader /><main id="main-content">{children}</main><SiteFooter /></div>;
 }
 

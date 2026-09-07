@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./experience.css";
 import "./expanded-experience.css";
+import "./scroll-experience.css";
+import "./platform-polish.css";
 
 const themeScript = `
   (() => {
@@ -89,13 +91,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     alternateLocale: "de_DE",
-    images: [{ url: "/media/intelligence-sculpture.webp", width: 1920, height: 1081, alt: "Anomx — a luminous signal sculpture representing system intelligence" }]
+    images: [{ url: "/media/time-series-intelligence.png", width: 1200, height: 630, alt: "Anomx — time-series signals revealing a deviation" }]
   },
-  twitter: { card: "summary_large_image", title: "Anomx | Intelligence for Autonomous Systems", description, images: ["/media/intelligence-sculpture.webp"] },
+  twitter: { card: "summary_large_image", title: "Anomx | Intelligence for Autonomous Systems", description, images: ["/media/time-series-intelligence.png"] },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } }
 };
 
 export const viewport: Viewport = {
+  viewportFit: "cover",
   themeColor: [
     {
       media: "(prefers-color-scheme: light)",

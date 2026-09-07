@@ -95,6 +95,10 @@ function getServerSnapshot(): ResolvedTheme {
   return "dark";
 }
 
+export function useTheme() {
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+}
+
 type ThemeToggleProps = {
   darkLabel?: string;
   label?: string;
@@ -106,7 +110,7 @@ export function ThemeToggle({
   label = "Theme",
   lightLabel = "Light"
 }: ThemeToggleProps) {
-  const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const theme = useTheme();
 
   const handleChange = (nextTheme: ResolvedTheme) => {
     applyTheme(nextTheme);
@@ -124,13 +128,17 @@ export function ThemeToggle({
     <div aria-label={label} className="theme-switch" role="group">
       {(["light", "dark"] as const).map((option) => (
         <button
+          aria-label={option === "light" ? lightLabel : darkLabel}
+          title={option === "light" ? lightLabel : darkLabel}
           aria-pressed={theme === option}
           className="theme-option"
           key={option}
           onClick={() => handleChange(option)}
           type="button"
         >
-          {option === "light" ? lightLabel : darkLabel}
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            {option === "light" ? <><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></> : <path d="M20.7 13.3A9 9 0 0 1 10.7 3.3 9 9 0 1 0 20.7 13.3Z"/>}
+          </svg>
         </button>
       ))}
     </div>

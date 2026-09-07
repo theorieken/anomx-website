@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import type { CSSProperties } from "react";
 import { useLanguage } from "@/components/language-switcher";
 import { AgentFigure } from "@/components/agent-figures";
-import { Reveal } from "@/components/experience";
+import { ScrollFade, ScrollProgress, useScrollScene } from "@/components/scroll-scenes";
 
 const stages = {
     en: [
@@ -34,7 +34,7 @@ export function SignalChart({ variant = "forecasting" }: { variant?: string }) {
         {[60, 120, 180].map(y => <path key={y} d={`M20,${y}H580`} className="chart-grid" />)}
         {variant === "representation" ? <>
             <ellipse cx="275" cy="116" rx="148" ry="72" className="cluster-boundary" />
-            {Array.from({ length: 64 }, (_, i) => { const a = i * 2.39996; const r = Math.sqrt(i / 64); return <circle key={i} cx={275 + Math.cos(a) * r * 128} cy={116 + Math.sin(a) * r * 56} r={2.6 + i % 3 * 0.7} className="cluster-point" />; })}
+            {Array.from({ length: 64 }, (_, i) => { const a = i * 2.39996; const r = Math.sqrt(i / 64); return <circle key={i} cx={275 + Math.cos(a) * r * 128} cy={116 + Math.sin(a) * r * 56} r={2.6 + i % 3 * 0.7} className="cluster-point" style={{"--point-index":i} as CSSProperties} />; })}
             <path d="M411 88L473 57" className="chart-dashed" /><circle cx="484" cy="50" r="6" fill="#f18f1f" />
         </> : <>
             <path d={chartPath()} className="chart-band" />
@@ -48,39 +48,21 @@ export function SignalChart({ variant = "forecasting" }: { variant?: string }) {
     </svg>;
 }
 
-export function BackgroundStory({ compact = false }: { compact?: boolean }) {
+export function BackgroundStory() {
     const language = useLanguage();
-    const [active, setActive] = useState(0);
-    const ref = useRef<HTMLElement>(null);
-    const id = useId();
+    const de = language === "de";
     const copy = stages[language];
-    useEffect(() => {
-        const element = ref.current;
-        if (compact || !element || window.matchMedia("(prefers-reduced-motion: reduce), (max-width: 760px)").matches) return;
-        let frame = 0;
-        const update = () => {
-            frame = 0;
-            const rect = element.getBoundingClientRect();
-            const distance = element.offsetHeight - window.innerHeight;
-            if (rect.top < 100 && rect.bottom > window.innerHeight && distance > 0) setActive(Math.min(3, Math.floor(Math.max(0, -rect.top + 100) / distance * 4)));
-        };
-        const scroll = () => { if (!frame) frame = requestAnimationFrame(update); };
-        window.addEventListener("scroll", scroll, { passive: true });
-        return () => { window.removeEventListener("scroll", scroll); cancelAnimationFrame(frame); };
-    }, [compact]);
-    const onKey = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
-        const next = event.key === "ArrowRight" ? (index + 1) % 4 : event.key === "ArrowLeft" ? (index + 3) % 4 : event.key === "Home" ? 0 : event.key === "End" ? 3 : -1;
-        if (next >= 0) { event.preventDefault(); setActive(next); document.getElementById(`${id}-tab-${next}`)?.focus(); }
-    };
-    return <section ref={ref} className={`agent-story ${compact ? "agent-story-compact" : ""}`} id="background-agent">
-        <div className="agent-sticky content-width">
-            <Reveal className="section-intro"><p className="kicker">BACKGROUND INTELLIGENCE</p><h2>{language === "de" ? <>Denkt weiter.<br /><span className="muted">Auch im Hintergrund.</span></> : <>Always thinking.<br /><span className="muted">Quietly ahead.</span></>}</h2></Reveal>
-            <div className="agent-stage">
-                <div className="agent-narrative"><div className="stage-tabs" role="tablist" aria-label={language === "de" ? "Agentenablauf" : "Agent workflow"}>{copy.map((step, i) => <button key={step.label} role="tab" type="button" id={`${id}-tab-${i}`} aria-controls={`${id}-panel`} aria-selected={active === i} tabIndex={active === i ? 0 : -1} onClick={() => setActive(i)} onKeyDown={e => onKey(e, i)}><span>0{i + 1}</span>{step.label}</button>)}</div>
-                    <div className="stage-description" id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${active}`} tabIndex={0}><h3>{copy[active].title}</h3><p>{copy[active].body}</p></div>
-                </div>
-                <div className="agent-window"><div className="window-bar"><span className="status-dot" /><span>Anomx Background</span><span className="window-tag">{language === "de" ? "BEISPIEL" : "EXAMPLE"}</span></div><div className="agent-window-body"><div className="agent-prompt">{language === "de" ? "Behalte den Kühlkreislauf im Blick. Untersuche ungewöhnliches Verhalten." : "Watch the cooling circuit. Investigate unusual behavior."}</div><AgentFigure stage={active} /><div className="agent-event" key={active}><span className="event-symbol">{["⌁", "◎", "↗", "⟲"][active]}</span><div><span className="event-status">{copy[active].status}</span><h4>{copy[active].event}</h4><p>{copy[active].detail}</p></div></div><div className="agent-window-footer"><span>{language === "de" ? "Nach Zeitplan aktiv" : "Runs on your schedule"}</span><span>{language === "de" ? "In Ihrem Rahmen" : "Within your boundaries"}</span></div></div></div>
-            </div>
+    const {ref,active,pinned,style} = useScrollScene(copy.length);
+    return <section ref={ref} className="agent-story scroll-scene background-scene" id="background-agent" style={style}>
+        <div className="scroll-scene-pin content-width">
+            <div className="section-intro"><p className="kicker">BACKGROUND INTELLIGENCE</p><h2>{de ? <>Denkt weiter.<br /><span className="muted">Auch im Hintergrund.</span></> : <>Always thinking.<br /><span className="muted">Quietly ahead.</span></>}</h2></div>
+            <ScrollProgress labels={copy.map(step=>step.label)} active={active} className="background-progress"/>
+            <div className="scroll-panels">{copy.map((step,index)=><article key={step.label} className="scroll-panel" data-scroll-step data-current={index===active} aria-hidden={pinned && index!==active ? true : undefined}>
+                <ScrollFade className="agent-stage">
+                    <div className="agent-narrative"><span className="science-number">0{index+1} · {step.label}</span><div className="stage-description"><h3>{step.title}</h3><p>{step.body}</p></div></div>
+                    <div className="agent-window"><div className="window-bar"><span className="status-dot"/><span>Anomx Background</span><span className="window-tag">{de?"BEISPIEL":"EXAMPLE"}</span></div><div className="agent-window-body"><div className="agent-prompt">{de?"Behalte den Kühlkreislauf im Blick. Untersuche ungewöhnliches Verhalten.":"Watch the cooling circuit. Investigate unusual behavior."}</div><AgentFigure stage={index}/><div className="agent-event"><span className="event-symbol">{["⌁","◎","↗","⟲"][index]}</span><div><span className="event-status">{step.status}</span><h4>{step.event}</h4><p>{step.detail}</p></div></div><div className="agent-window-footer"><span>{de?"Nach Zeitplan aktiv":"Runs on your schedule"}</span><span>{de?"In Ihrem Rahmen":"Within your boundaries"}</span></div></div></div>
+                </ScrollFade>
+            </article>)}</div>
         </div>
     </section>;
 }
@@ -100,14 +82,16 @@ const approaches = {
 
 export function ScienceSection() {
     const language = useLanguage();
-    const [active, setActive] = useState(0);
-    const id = useId();
+    const de = language === "de";
     const copy = approaches[language];
-    return <section className="science-section" id="science"><div className="content-width"><Reveal className="section-intro"><p className="kicker">{language === "de" ? "WISSENSCHAFT IM KERN" : "SCIENCE AT THE CORE"}</p><h2>{language === "de" ? <>Intelligenz braucht<br /><span className="muted">eine Grundlage.</span></> : <>Intelligence needs<br /><span className="muted">a foundation.</span></>}</h2><p className="section-lead">{language === "de" ? "Drei komplementäre Wege, Abweichungen zu erkennen. Eine gemeinsame Grundlage für fundierte Entscheidungen." : "Three complementary ways to detect the unexpected. One foundation for informed decisions."}</p></Reveal>
-        <div className="science-tabs" role="tablist" aria-label={language === "de" ? "Wissenschaftliche Ansätze" : "Scientific approaches"}>{copy.map((method, i) => <button key={method.name} type="button" role="tab" id={`${id}-tab-${i}`} aria-controls={`${id}-panel`} aria-selected={i === active} tabIndex={i === active ? 0 : -1} onClick={() => setActive(i)} onKeyDown={event => {
-            const next = event.key === "ArrowRight" ? (i + 1) % 3 : event.key === "ArrowLeft" ? (i + 2) % 3 : event.key === "Home" ? 0 : event.key === "End" ? 2 : -1;
-            if (next >= 0) { event.preventDefault(); setActive(next); document.getElementById(`${id}-tab-${next}`)?.focus(); }
-        }}>{method.name}</button>)}</div>
-        <div className="science-panel" role="tabpanel" id={`${id}-panel`} aria-labelledby={`${id}-tab-${active}`} tabIndex={0}><div className="science-copy"><span className="science-number">0{active + 1}</span><h3>{copy[active].title}</h3><p>{copy[active].body}</p><span className="model-label">{copy[active].model}</span></div><div className="science-visual" key={active}><div className="chart-legend"><span><i />{language === "de" ? "Beobachtung" : "Observation"}</span><span><i />{language === "de" ? "Normalverhalten" : "Normal behavior"}</span><span><i />{language === "de" ? "Abweichung" : "Deviation"}</span></div><SignalChart variant={copy[active].name.toLowerCase()} /><code className="formula">{copy[active].formula}</code><p className="visual-caption">{language === "de" ? "Schematische Darstellung · keine Messdaten" : "Illustrative visualization · not measured data"}</p></div></div>
-    </div></section>;
+    const {ref,active,pinned,style} = useScrollScene(copy.length);
+    return <section ref={ref} className="science-section scroll-scene science-scene" id="science" style={style}>
+        <div className="scroll-scene-pin content-width">
+            <div className="section-intro"><p className="kicker">{de?"WISSENSCHAFT IM KERN":"SCIENCE AT THE CORE"}</p><h2>{de?<>Intelligenz braucht<br/><span className="muted">eine Grundlage.</span></>:<>Intelligence needs<br/><span className="muted">a foundation.</span></>}</h2><p className="section-lead">{de?"Drei komplementäre Wege, Abweichungen zu erkennen. Eine gemeinsame Grundlage für fundierte Entscheidungen.":"Three complementary ways to detect the unexpected. One foundation for informed decisions."}</p></div>
+            <ScrollProgress labels={copy.map(method=>method.name)} active={active} className="science-progress"/>
+            <div className="scroll-panels">{copy.map((method,index)=><article className="scroll-panel" key={method.name} data-scroll-step data-current={active===index} aria-hidden={pinned && active!==index ? true : undefined}>
+                <ScrollFade className="science-panel"><div className="science-copy"><span className="science-number">0{index+1} · {method.name}</span><h3>{method.title}</h3><p>{method.body}</p><span className="model-label">{method.model}</span></div><div className="science-visual"><div className="chart-legend"><span><i/>{de?"Beobachtung":"Observation"}</span><span><i/>{de?"Normalverhalten":"Normal behavior"}</span><span><i/>{de?"Abweichung":"Deviation"}</span></div><SignalChart variant={method.name.toLowerCase()}/><code className="formula">{method.formula}</code><p className="visual-caption">{de?"Schematische Darstellung · keine Messdaten":"Illustrative visualization · not measured data"}</p></div></ScrollFade>
+            </article>)}</div>
+        </div>
+    </section>;
 }

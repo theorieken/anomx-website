@@ -1,12 +1,9 @@
 import Link from "next/link";
-import { CursorAtmosphere } from "@/components/cursor-atmosphere";
-import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { Experience } from "@/components/experience";
 
 export default function ImpressumPage() {
   return (
-    <main className="page-shell legal-page" id="top">
-      <CursorAtmosphere />
-      <SiteHeader />
+    <Experience className="legal-page">
 
       <section className="section legal-section">
         <article className="legal-document">
@@ -39,8 +36,7 @@ export default function ImpressumPage() {
           </Link>
         </article>
 
-        <SiteFooter />
       </section>
-    </main>
+    </Experience>
   );
 }

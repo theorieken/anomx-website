@@ -1,8 +1,8 @@
 # Anomx website
 
 The public Anomx website, built with Next.js 16 and React 19. The home and platform
-pages focus on background agents and system intelligence. Technology explains
-the architecture, and Cases separates alpha research from application concepts.
+pages focus on background agents and system intelligence. System explains
+the architecture, and Cases presents the DESY alpha work alongside an invitation to collaborate.
 The CLI guide is at
 `/documentation/`, checked against `anomx-package` 0.2.34 and the current platform.
 
@@ -87,12 +87,18 @@ it does not read the PHP configuration. The existing Node admin uses
 ## Content and design
 
 - `components/home-page.tsx` and `components/hero-signals.tsx`: main narrative
-  and scroll-linked time-series hero. The landing navigation is transparent at
-  the top and gains its background after scrolling.
-- `components/intelligence-demo.tsx`: scroll-driven agent story and interactive
+  and a pinned, scroll-linked time-series hero with no raster background.
+  Scrolling advances the observation window, reveals a deviation and connects
+  related signals. Reduced motion and short viewports use a complete still view.
+  The landing navigation stays transparent throughout the pinned hero and gains
+  its background once the hero releases.
+- `components/intelligence-demo.tsx`: scroll-driven agent story and scroll-driven
   forecasting/reconstruction/representation diagrams. `agent-figures.tsx`
   supplies distinct Observe, Reason, Act and Remember illustrations.
-- `components/platform-page.tsx`: platform, autonomy boundaries and artwork.
+- `components/platform-page.tsx`: platform and autonomy boundaries.
+- `components/background-assignments.tsx`: four scroll-linked ongoing assignments
+  that illustrate the agent working while the workspace is closed: hierarchy
+  discovery, channel metadata, correlations and forecasting preparation.
 - `components/agent-page.tsx`: platform, background and terminal experiences;
   four interactive modes, the separate Background mode and model providers.
 - `components/technology-page.tsx` and `components/architecture-diagram.tsx`:
@@ -100,23 +106,42 @@ it does not read the PHP configuration. The existing Node admin uses
   smaller screens and when reduced motion is requested.
 - `components/cases-page.tsx` and `lib/cases-content.ts`: bilingual case grid and
   statically generated details. DESY is explicitly alpha, with planned DAQ;
-  100M+ is a project planning scale, not measured throughput. Other cases are
-  application concepts, not customer deployments.
+  100M+ is a project planning scale, not measured throughput. The second card
+  links to Early Access; only the DESY case has a detail page.
 - `components/documentation-page.tsx`: current commands, setup, background policy,
-  local storage and an example of the actual component API.
+  local storage and an example of the actual component API. Sidebar highlighting
+  follows the section at the reading position without changing the URL.
 - `app/experience.css`: shared public design, responsive layout, reduced motion.
 - `app/expanded-experience.css`: architecture, cases, agent modes and hero motion.
+- `components/scroll-scenes.tsx` and `app/scroll-experience.css`: shared native
+  sticky sequences, shared underline progress rows, cumulative card reveals and
+  sticky copy beside scrolling items. Panels fall back to a complete vertical
+  flow on small/short screens, with reduced motion, or if a scene does not fit.
+  Science, background stories and Agent modes advance by scrolling, not clicks.
+  Figure paths draw and flow markers follow the same per-stage scroll progress;
+  scientific charts progressively reveal traces and feature-space observations.
+  Background scenes use a compact layout to stay pinned on laptop viewports.
+  Sticky split progress runs from zero at the pin start to one at release.
+  Card sequences show their numbers and titles only in the shared progress row;
+  System responsibilities use the same cumulative reveal.
+  On mobile, progress rows become a rounded floating bottom bar with a 75%
+  translucent background and blur; only the current section's bar is visible.
+- `app/platform-polish.css`: full-width legal footers, theme icon group, mobile
+  progress bars and the ongoing-assignment scene.
 - `app/globals.css`: existing legal/administration styling and shared base styles.
-- `public/media/intelligence-sculpture.webp`: original generated hero artwork.
+- `components/site-logo.tsx`: plain-text `Anomx.` on desktop and `X.` on mobile,
+  with solid primary-blue letters and an orange period. No image or SVG wordmark.
 - `public/media/platform-intelligence.webp`: generated platform artwork.
-- `public/media/xfel-intelligence.webp`: generated accelerator illustration,
-  explicitly identified as an illustration in the case.
+- `public/media/xfel-minimal-light.webp` and `xfel-minimal-dark.webp`: restrained
+  accelerator illustrations that follow the website theme on the case card and
+  detail page. Both remain explicitly identified as generated illustrations.
 - `public/images/desy-logo-white.png`: official DESY logo, adapted to the theme.
-- `public/images/app-icon.webp`: user-supplied icon; icon variants live in `app/`.
+- Existing favicon and touch-icon files remain unchanged; the generated icon
+  concept in `docs/assets/` is deferred and is not part of the public build.
 
 English and German copy are maintained together. Language and light/dark
 preferences persist locally. Motion respects `prefers-reduced-motion`; the
-scroll story becomes a normal interactive section on small screens. Content
+scroll stories become readable vertical sequences on small screens. Content
 remains visible without JavaScript. No animation library or remote fonts added.
 
 ## Release notes
@@ -126,8 +151,10 @@ with the actual publisher/address and hosting/email processing details. The
 repository originally contained placeholders; these facts cannot be inferred
 from the product code. Confirm the applicable legal text with the publisher.
 
-Validate desktop/mobile navigation, science tabs (including arrow keys), all
-agent-story steps, both languages, both themes, command copying, and form
+Validate desktop/mobile navigation, scroll stages, architecture controls
+(including arrow keys), both languages, both themes, command copying, and form
 validation/fallback. The local preview uses port 3100 in this task.
 
-See `docs/media.md` and `docs/feedback-media.md` for generated-asset provenance.
+See `docs/media.md`, `docs/feedback-media.md`, `docs/brand-refresh.md` and
+`docs/xfel-minimal-media.md` for
+generated-asset provenance and prompts.
