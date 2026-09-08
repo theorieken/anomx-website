@@ -1,0 +1,34 @@
+/* A quiet system sketch. Theme colors come directly from the public design system. */
+.xfel-system-visual { --map-reveal:1; position:relative; width:100%; height:100%; background:var(--surface); color:var(--accent); overflow:hidden; }
+.xfel-system-map { display:block; width:100%; height:100%; }
+.xfel-system-map path { fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.xfel-terrain { fill:none; stroke:var(--text-secondary); stroke-width:1; opacity:.08; }
+.xfel-system-map .xfel-system-footprint path { fill:var(--accent); fill-opacity:.035; stroke:var(--accent); stroke-opacity:.08; stroke-width:1; }
+.xfel-route-base { fill:none; stroke:var(--accent); stroke-opacity:.18; stroke-width:2; }
+.xfel-route-active path { fill:none; stroke:var(--accent); stroke-width:2; stroke-opacity:.8; stroke-dasharray:1; stroke-dashoffset:calc(1 - var(--map-reveal)); }
+.xfel-packet { fill:var(--accent); opacity:0; }
+.xfel-system-visual[data-animated] .xfel-packet { opacity:var(--map-reveal); }
+.xfel-route-active>g:first-child .xfel-packet { fill:var(--brand-accent); }
+.xfel-buildings rect,.xfel-halls rect { fill:var(--background-default); stroke:var(--accent); stroke-opacity:.3; stroke-width:1; }
+.xfel-halls rect { fill:var(--surface); stroke-opacity:.55; }
+.xfel-channel-nodes { opacity:clamp(.25,calc(var(--map-reveal) * 1.5),1); }
+.xfel-channel-nodes circle { fill:var(--surface); stroke:var(--accent); stroke-opacity:.2; stroke-width:1; }
+.xfel-channel-nodes .xfel-node-center { fill:var(--accent); stroke:none; }
+.xfel-campus-node circle { fill:var(--surface); stroke:var(--accent); stroke-width:1; }
+.xfel-campus-node circle:first-child { fill:var(--accent); fill-opacity:.05; stroke-opacity:.15; }
+.xfel-campus-node circle:nth-child(2) { stroke-opacity:.6; }
+.xfel-campus-node path { stroke:var(--accent); stroke-width:1.6; }
+.xfel-map-labels text { fill:var(--text-primary); font:500 20px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; letter-spacing:-.3px; }
+.xfel-map-labels .xfel-map-caption { fill:var(--text-secondary); font-size:11px; letter-spacing:2px; }
+.xfel-map-key text { fill:var(--text-secondary); font:10px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; letter-spacing:1.2px; }
+.xfel-map-key circle { fill:var(--accent); }
+.case-card-art:has(.xfel-system-visual) { background:var(--surface); }
+.case-card-art:has(.xfel-system-visual) .case-status { color:var(--text-secondary); background:var(--background-default); border-color:var(--divider); }
+.case-hero-art .xfel-system-visual { aspect-ratio:16/9; height:auto; border:1px solid var(--divider); border-radius:23px; }
+@media(max-width:760px) {
+    .case-hero-art .xfel-system-visual { aspect-ratio:4/3; border-radius:14px; }
+    .xfel-map-labels text { font-size:32px; }
+    .xfel-map-labels .xfel-map-caption,.xfel-map-key { display:none; }
+    .xfel-route-base,.xfel-route-active path { stroke-width:2.5; }
+}
+@media(prefers-reduced-motion:reduce),print { .xfel-route-active path { stroke-dashoffset:0; }.xfel-packet { display:none; }.xfel-channel-nodes { opacity:1; } }

@@ -1,5 +1,7 @@
 # European XFEL case media
 
+Superseded on 2026-09-07 by the native animated system map described in `xfel-system-map.md`. The original images are retained for provenance and are no longer referenced by the case pages or metadata.
+
 Generated with OpenAI Image 2 on 2026-09-07 for the Anomx website. These are illustrative images inspired by the accelerator tunnel, not documentary photographs. The official DESY logo remains a separate asset.
 
 ## Outputs

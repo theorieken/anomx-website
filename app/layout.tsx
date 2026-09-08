@@ -4,6 +4,7 @@ import "./experience.css";
 import "./expanded-experience.css";
 import "./scroll-experience.css";
 import "./platform-polish.css";
+import "./xfel-map.css";
 
 const themeScript = `
   (() => {

@@ -132,9 +132,13 @@ it does not read the PHP configuration. The existing Node admin uses
 - `components/site-logo.tsx`: plain-text `Anomx.` on desktop and `X.` on mobile,
   with solid primary-blue letters and an orange period. No image or SVG wordmark.
 - `public/media/platform-intelligence.webp`: generated platform artwork.
-- `public/media/xfel-minimal-light.webp` and `xfel-minimal-dark.webp`: restrained
-  accelerator illustrations that follow the website theme on the case card and
-  detail page. Both remain explicitly identified as generated illustrations.
+- `components/xfel-system-map.tsx` and `app/xfel-map.css`: a native vector map
+  inspired by the XFEL beamline and DESY campus. Paths draw and data markers
+  move with scrolling; theme colors apply instantly. Reduced motion shows the
+  complete still sketch. The card and detail page use the same component.
+- `public/media/xfel-system-map.png`: static social preview from the same geometry.
+  Regenerate it with `node scripts/render-xfel-poster.mjs` after artwork changes.
+  The earlier generated tunnel images are retained as unused historical assets.
 - `public/images/desy-logo-white.png`: official DESY logo, adapted to the theme.
 - Existing favicon and touch-icon files remain unchanged; the generated icon
   concept in `docs/assets/` is deferred and is not part of the public build.
@@ -156,5 +160,5 @@ Validate desktop/mobile navigation, scroll stages, architecture controls
 validation/fallback. The local preview uses port 3100 in this task.
 
 See `docs/media.md`, `docs/feedback-media.md`, `docs/brand-refresh.md` and
-`docs/xfel-minimal-media.md` for
+`docs/xfel-minimal-media.md` (previous images), and `docs/xfel-system-map.md` for
 generated-asset provenance and prompts.
