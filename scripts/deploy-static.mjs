@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 process.chdir(fileURLToPath(new URL("../", import.meta.url)));
-const host = process.env.ANOMX_DEPLOY_HOST || "ssh-w0130bf4@www.theorieken.de";
+const host = process.env.ANOMX_DEPLOY_HOST || "ssh-w0130bf4@w0130bf4.kasserver.com";
 const remoteRoot = process.env.ANOMX_DEPLOY_ROOT || "/www/htdocs/w0130bf4/anomx.io";
 if (!/^[a-zA-Z0-9_.@-]+$/.test(host) || !remoteRoot.startsWith("/") || remoteRoot.split("/").filter(Boolean).length < 3) {
   throw new Error("Invalid deployment host or repository path.");

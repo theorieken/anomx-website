@@ -35,8 +35,10 @@ npm run deploy
 Composer uses a locked dependency and the PHP 8.3 target available at ALL-INKL.
 It installs the PHP dependency locally; the deployed bundle includes it.
 
-The deployment command defaults to `ssh-w0130bf4@www.theorieken.de`, with the
+The deployment command defaults to `ssh-w0130bf4@w0130bf4.kasserver.com`, with the
 repository at `/www/htdocs/w0130bf4/anomx.io`. SSH prompts for your password.
+Use this ALL-INKL account hostname; `www.theorieken.de` points to a different
+server that does not offer password login.
 It uploads a fresh directory, checks PHP syntax, then replaces `build/` and
 retains any previous version as `.build-backup-<timestamp>/` for rollback.
 Override `ANOMX_DEPLOY_HOST` and `ANOMX_DEPLOY_ROOT` for another account.
