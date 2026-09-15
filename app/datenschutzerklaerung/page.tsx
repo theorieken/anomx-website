@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Experience } from "@/components/experience";
+import { legalContact } from "@/lib/legal-contact";
 
 export default function DatenschutzerklaerungPage() {
   return (
@@ -16,8 +17,13 @@ export default function DatenschutzerklaerungPage() {
 
           <h2>Verantwortlicher</h2>
           <p>
-            Die verantwortliche Stelle, Anschrift und Datenschutzkontakt werden hier
-            nachgetragen.
+            {legalContact.name}
+            <br />
+            Anomx
+            <br />
+            Anschrift: wird ergänzt.
+            <br />
+            E-Mail: <a href={`mailto:${legalContact.email}`}>{legalContact.email}</a>
           </p>
 
           <h2>Verarbeitete Daten</h2>

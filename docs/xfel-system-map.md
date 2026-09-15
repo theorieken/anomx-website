@@ -2,7 +2,7 @@
 
 Created on 2026-09-07 to replace the generated tunnel photographs on the case card and detail page.
 
-The user's campus-map screenshot provided the visual reference: a linear XFEL connection, branching experimental halls, and the DESY campus with its ring outline. The website drawing deliberately simplifies those shapes. It is an illustrative system sketch, not a surveyed map, engineering plan, operational status view, or depiction of live telemetry.
+The user's campus-map screenshot provided the visual reference: a linear XFEL connection, branching experimental halls, and the DESY campus with two offset ring outlines. Refined on 2026-09-15 to show the smaller campus ring overlapping the southwest edge of the larger ring, with the linear accelerator originating near the center of the smaller ring and extending northwest toward Schenefeld. The website drawing deliberately simplifies those shapes. It is an illustrative system sketch, not a surveyed map, engineering plan, operational status view, or depiction of live telemetry.
 
 - Component and shared SVG geometry: `components/xfel-system-map.tsx`
 - Theme-aware styling: `app/xfel-map.css`

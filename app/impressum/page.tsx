@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Experience } from "@/components/experience";
+import { legalContact } from "@/lib/legal-contact";
 
 export default function ImpressumPage() {
   return (
@@ -9,26 +10,26 @@ export default function ImpressumPage() {
         <article className="legal-document">
           <h1>Impressum</h1>
           <p>
-            Dies ist ein Platzhalter für das Impressum von Anomx. Die vollständigen
-            Anbieterangaben werden hier vor dem öffentlichen Launch ergänzt.
+            Angaben zum Anbieter dieser Website und zum Kontakt für Anomx.
           </p>
 
           <h2>Angaben zum Anbieter</h2>
           <p>
-            Anomx, vertreten durch die verantwortliche Person oder Organisation.
-            Anschrift, Kontaktangaben und Registerinformationen werden später
-            eingetragen.
+            {legalContact.name}
+            <br />
+            Anomx
+            <br />
+            Anschrift: wird ergänzt.
           </p>
 
           <h2>Kontakt</h2>
           <p>
-            E-Mail: <a href="mailto:hello@anomx.io">hello@anomx.io</a>
+            E-Mail: <a href={`mailto:${legalContact.email}`}>{legalContact.email}</a>
           </p>
 
           <h2>Verantwortlich für den Inhalt</h2>
           <p>
-            Die verantwortlichen Angaben werden nach finaler rechtlicher Prüfung
-            ergänzt.
+            {legalContact.name}
           </p>
 
           <Link className="legal-back-link" href="/">

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Experience } from "@/components/experience";
+import { legalContact } from "@/lib/legal-contact";
 
 export default function NutzungsbedingungenPage() {
   return (
@@ -12,6 +13,13 @@ export default function NutzungsbedingungenPage() {
             Dies sind Platzhalter-Nutzungsbedingungen für Anomx. Die verbindlichen
             Bedingungen für Website, Early Access und Produktnutzung werden später
             ergänzt.
+          </p>
+
+          <h2>Anbieter und Kontakt</h2>
+          <p>
+            Anomx wird von {legalContact.name} bereitgestellt.
+            <br />
+            E-Mail: <a href={`mailto:${legalContact.email}`}>{legalContact.email}</a>
           </p>
 
           <h2>Nutzung der Website</h2>
