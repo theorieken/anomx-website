@@ -19,6 +19,15 @@ npm run dev
 `components/agent-page.tsx` presents the same modes and backend names on the product
 page. The Docker/Podman guide is at `/documentation/#sandbox`.
 
+The interactive modes are **Request Approvals**, **Auto Approve**, and
+**Autonomous**. Request Approvals reserves human decisions for consequential risks
+and scope changes; approvals are asynchronous by default, with an explicit wait
+for critical dependencies. Auto Approve lets the evaluator allow or deny actions
+without human approval prompts. Autonomous skips command evaluation. These modes
+also apply to folder-access decisions; account permissions and sandbox boundaries
+still apply. Persisted mode values remain `standard`, `automatic`, and `autonomous`
+for compatibility.
+
 `docs:generate` also runs `scripts/generate-agent-catalog.py`, which parses
 `src/anomx/agent/store.py` without importing it and writes the bundled provider
 names, model labels, and model IDs to `lib/generated/agent-catalog.json`.
@@ -27,7 +36,8 @@ committed snapshot supports builds without the sibling checkout, using the same
 `ANOMX_PACKAGE_SOURCE` setting as the Package reference.
 
 When Agent behavior changes, review `helpers/mode.py`, `ui/views/config.py`,
-`ui/constants.py`, `helpers/sandbox.py`, `tools/mount_folder.py`, `store.py`, and
+`ui/constants.py`, `helpers/sandbox.py`, `tools/mount_folder.py`, the command and
+approval tools, `store.py`, and
 `cli.py`. Behavioral guidance and translations are intentionally reviewed prose;
 the catalog is generated. Check both languages and preserve documentation anchors.
 
