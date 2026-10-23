@@ -38,7 +38,7 @@ export function ArchitectureDiagram({ progress = 1 }: { progress?: number }) {
         {line("M165 682V651H280",1)}{line("M450 682V666",1)}{line("M735 682V651H620",1)}
         {group(1,<>{box(280,620,340,46,de?"Konnektoren":"Connectors",undefined,true)}</>)}
         {line("M360 620V599H250V580",2)}{line("M530 620V599H685V580",3)}
-        {group(2,<><rect x="40" y="365" width="420" height="215" rx="18" className="arch-layer-frame"/><text x="60" y="392" className="arch-section-label">{de?"AUSFÜHRUNG":"EXECUTION"}</text>{box(60,411,180,61,"DAQ Workers","DOOCS · ZeroMQ")}{box(260,411,180,61,"Compute Workers","CPU · GPU")}{box(60,491,380,64,"Agent Runtime",de?"Tools · Modelle · Kontext":"Tools · Models · Context")}</>)}
+        {group(2,<><rect x="40" y="365" width="420" height="215" rx="18" className="arch-layer-frame"/><text x="60" y="392" className="arch-section-label">{de?"AUSFÜHRUNG":"EXECUTION"}</text>{box(60,411,180,61,"DAQ Workers","DOOCS · ZeroMQ")}{box(260,411,180,61,"Compute Workers","CPU · GPU")}{box(60,491,380,64,"Agent & App Runtime",de?"Tools · Modelle · Kontext":"Tools · Models · Context")}</>)}
         {line("M460 522H529",3)}
         {group(3,<><rect x="510" y="365" width="350" height="215" rx="18" className="arch-layer-frame"/><text x="530" y="392" className="arch-section-label">{de?"DATEN & SPEICHER":"DATA & STORAGE"}</text>{box(530,411,145,61,"MinIO","S3 artifacts")}{box(695,411,145,61,"Redis","Cache · Queues")}{box(530,491,145,64,"TimescaleDB","Time series")}{box(695,491,145,64,"PostgreSQL","System context")}</>)}
         {line("M243 275V326H140V411",4,true)}{line("M657 275V326H355V411",4,true)}{line("M140 326H657",4,true)}{line("M760 275V411",4)}

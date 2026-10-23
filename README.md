@@ -3,8 +3,8 @@
 The public Anomx website, built with Next.js 16 and React 19. The home and platform
 pages focus on background agents and system intelligence. System explains
 the architecture, and Cases presents the DESY alpha work alongside an invitation to collaborate.
-The CLI guide is at
-`/documentation/`, checked against `anomx-package` 0.2.34 and the current platform.
+Documentation at `/documentation/` has three sections: the existing CLI Agent guide,
+the generated Python Package reference, and System guides (coming soon).
 
 ## Development
 
@@ -12,6 +12,54 @@ The CLI guide is at
 npm ci
 npm run dev
 ```
+
+## Python API documentation
+
+The package reference lives at `/documentation/package/`. Each public module has
+its own static page, with exports, typed signatures, constructor parameters,
+docstrings, class members, inherited-member links, and source links pinned to the
+package Git revision. Source docstrings remain in English; the documentation shell
+and introductory guides follow the website language. Agent internals, private
+modules, and the platform implementation are excluded. Third-party re-exports
+are identified as external APIs; their signatures are not invented.
+
+`npm run dev`, `npm run build`, and `npm run build:server` regenerate the reference
+from the sibling `../anomx-package` checkout. **Python 3.11+ is required**; no Python
+package installation or optional ML dependencies are needed. The generator parses
+source with the standard library AST and never imports or executes package code.
+
+```sh
+npm run docs:generate
+npm run docs:check
+npm run test:docs
+# Use a different source checkout:
+ANOMX_PACKAGE_SOURCE=/path/to/anomx-package npm run build
+```
+
+Commit `lib/generated/package-docs.json` after updating the package. This snapshot
+lets a website-only checkout build reproducibly when the sibling repo is absent;
+the build explicitly reports that it is using the snapshot. An explicitly configured
+missing source is an error. `docs:check` requires source and fails for stale output.
+For release CI, check out the desired package revision, set `ANOMX_PACKAGE_SOURCE`,
+run generation, and commit/check the resulting snapshot before building. No Git
+clone, package download, or network fetch happens implicitly.
+
+The generated metadata includes the package version, source digest, and Git
+revision. Source links assume the documented code has been committed to that
+revision; rebuild from the committed package revision when preparing a release.
+New public modules in `base`, `config`, `data`, `detection`, `execution`,
+`integrations`, `metrics`, and `models` are discovered automatically. Add new
+public package domains to `DOMAINS` in the generator and the navigation groups.
+Supported exports include explicit `__all__`, `_EXPORTS`, `_LAZY_IMPORTS`, relative
+imports, aliases, and the optional Darts catalog. Unknown dynamic `__all__`
+expressions fail generation so API documentation cannot silently disappear.
+Missing docstrings leave signatures available; improving the Python docstrings
+improves the next generated website build. Native members, properties, dataclass
+fields, and locally resolved inheritance are documented; external base-class
+members require the upstream library's documentation.
+
+System documentation is intentionally a coming-soon page, ready for future
+how-to guides and video walkthroughs. The preview is decorative, not a player.
 
 ## Production deployment: ALL-INKL static hosting
 
@@ -21,7 +69,7 @@ Animations, scientific tabs, language switching and navigation remain interactiv
 No Node.js process is needed on the web server. The contact form uses PHP 8.1+
 with PHPMailer over authenticated SMTP.
 
-Install Node.js 20.9+, PHP and Composer on your development machine, then run:
+Install Node.js 20.9+, Python 3.11+, PHP and Composer on your development machine, then run:
 
 ```sh
 npm ci
@@ -110,9 +158,10 @@ it does not read the PHP configuration. The existing Node admin uses
   statically generated details. DESY is explicitly alpha, with planned DAQ;
   100M+ is a project planning scale, not measured throughput. The second card
   links to Early Access; only the DESY case has a detail page.
-- `components/documentation-page.tsx`: current commands, setup, background policy,
-  local storage and an example of the actual component API. Sidebar highlighting
-  follows the section at the reading position without changing the URL.
+- `components/documentation-page.tsx`: CLI setup, commands, background policy,
+  and local storage. Existing `/documentation/#…` links remain valid.
+- `components/docs/` and `app/documentation/`: the shared product switcher,
+  searchable Python reference, and System video-guide placeholder.
 - `app/experience.css`: shared public design, responsive layout, reduced motion.
 - `app/expanded-experience.css`: architecture, cases, agent modes and hero motion.
 - `components/scroll-scenes.tsx` and `app/scroll-experience.css`: shared native

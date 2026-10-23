@@ -220,7 +220,7 @@ a:hover .link-arrow { transform: translateX(3px); }
 .doc-section li { margin-bottom: 10px; }
 .doc-section a { color: var(--accent); text-underline-offset: 4px; }
 .doc-section code { font-size: .9em; }
-.doc-note { border-left: 2px solid var(--accent); padding: 15px 20px; background: var(--surface); margin-top: 22px; border-radius: 0 10px 10px 0; }
+.doc-note { padding: 15px 20px; background: var(--surface); margin-top: 22px; border-radius: 10px; }
 .doc-table-wrap { overflow: auto; border: 1px solid var(--divider); border-radius: 14px; margin-top: 22px; }
 .doc-table { border-collapse: collapse; width: 100%; font-size: .9375rem; text-align: left; }
 .doc-table th { font-weight: 500; background: var(--surface); }

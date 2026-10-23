@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   },
   description:
     "Install the Anomx CLI agent, configure model providers, choose execution modes, connect your platform, and understand scheduled background agents.",
-  title: "Documentation"
+  title: "Anomx Agent documentation"
 };
 
 export default function Page() {

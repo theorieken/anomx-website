@@ -18,7 +18,7 @@
 .assignment-panel { display:grid; grid-template-columns:.9fr 1.1fr; gap:65px; align-items:center; }
 .assignment-copy .science-number { font-size:.65rem; letter-spacing:.07em; }
 .assignment-copy h3 { margin-top:15px; font-size:1.9rem; }
-.assignment-copy blockquote { margin:20px 0; border-left:2px solid var(--accent); padding-left:18px; font-size:1.05rem; line-height:1.55; color:var(--text-primary); }
+.assignment-copy blockquote { margin:20px 0; font-size:1.05rem; line-height:1.55; color:var(--text-primary); }
 .assignment-copy>p { font-size:.9375rem; color:var(--text-secondary); }
 .assignment-canvas { padding:24px 18px 18px; background:radial-gradient(ellipse at center,color-mix(in srgb,var(--accent) 8%,transparent),transparent 72%),var(--surface); border:1px solid var(--divider); border-radius:22px; overflow:hidden; }
 .assignment-figure { width:100%; height:auto; display:block; overflow:visible; }

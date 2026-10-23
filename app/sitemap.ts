@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { packageReference } from "@/lib/package-docs";
 import { cases } from "@/lib/cases-content";
 
 const baseUrl = "https://anomx.io";
@@ -8,6 +9,7 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
+    ...["/documentation/package/", "/documentation/system/", ...packageReference.modules.map(module => module.href)].map(path => ({ url: `${baseUrl}${path}`, changeFrequency: "weekly" as const, priority: .7 })),
     ...["/technology/", "/cases/", ...cases.map(item => `/cases/${item.slug}/`)].map(path => ({url: `${baseUrl}${path}`, lastModified, changeFrequency: "monthly" as const, priority: .8})),
     {
       changeFrequency: "weekly",

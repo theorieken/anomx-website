@@ -139,9 +139,7 @@
 }
 .doc-sidebar a[aria-current="location"] { color:var(--accent); font-weight:600; }
 .doc-sidebar a { position:relative; transition:color .2s; }
-.doc-sidebar a::before { content:""; position:absolute; left:-15px; top:10px; bottom:10px; width:2px; background:var(--accent); transform:scaleY(0); transition:transform .2s; }
-.doc-sidebar a[aria-current="location"]::before { transform:scaleY(1); }
 @media(max-width:760px) {
-    .doc-sidebar a::before { left:0; top:auto; right:0; bottom:0; width:auto; height:2px; transform:scaleX(0); }
+    .doc-sidebar a::before { content:""; position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--accent); transform:scaleX(0); transition:transform .2s; }
     .doc-sidebar a[aria-current="location"]::before { transform:scaleX(1); }
 }

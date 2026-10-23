@@ -44,7 +44,7 @@ export function SiteHeader() {
         <div className="masthead-inner">
             <Link href="/" aria-label="Anomx home" className="brand-link"><SiteLogo /></Link>
             <nav aria-label={de ? "Hauptnavigation" : "Main navigation"} className="desktop-nav">{links.map(([href, name]) => <Link key={href} href={href} aria-current={(pathname.replace(/\/$/, "") === href || pathname.startsWith(href + "/")) ? "page" : undefined}>{name}</Link>)}</nav>
-            <div className="masthead-actions"><Link href="/early-access" className="pill pill-small pill-primary">{de ? "Early Access" : "Get early access"}</Link>
+            <div className="masthead-actions"><Link href="/early-access" className="pill pill-small pill-primary">{de ? "Sprechen Sie mit uns" : "Talk to us"}</Link>
                 <button ref={menuButton} type="button" className="menu-toggle" aria-label={open ? (de ? "Menü schließen" : "Close menu") : (de ? "Menü öffnen" : "Open menu")} aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(!open)}><span /><span /></button>
             </div>
         </div>
