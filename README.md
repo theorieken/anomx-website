@@ -13,6 +13,24 @@ npm ci
 npm run dev
 ```
 
+## Agent documentation
+
+`components/documentation-page.tsx` describes the CLI in English and German;
+`components/agent-page.tsx` presents the same modes and backend names on the product
+page. The Docker/Podman guide is at `/documentation/#sandbox`.
+
+`docs:generate` also runs `scripts/generate-agent-catalog.py`, which parses
+`src/anomx/agent/store.py` without importing it and writes the bundled provider
+names, model labels, and model IDs to `lib/generated/agent-catalog.json`.
+Both Agent pages use that snapshot. `docs:check` detects catalog drift, and the
+committed snapshot supports builds without the sibling checkout, using the same
+`ANOMX_PACKAGE_SOURCE` setting as the Package reference.
+
+When Agent behavior changes, review `helpers/mode.py`, `ui/views/config.py`,
+`ui/constants.py`, `helpers/sandbox.py`, `tools/mount_folder.py`, `store.py`, and
+`cli.py`. Behavioral guidance and translations are intentionally reviewed prose;
+the catalog is generated. Check both languages and preserve documentation anchors.
+
 ## Python API documentation
 
 The package reference lives at `/documentation/package/`. Each public module has
@@ -36,7 +54,7 @@ npm run test:docs
 ANOMX_PACKAGE_SOURCE=/path/to/anomx-package npm run build
 ```
 
-Commit `lib/generated/package-docs.json` after updating the package. This snapshot
+Commit both `lib/generated/package-docs.json` and `lib/generated/agent-catalog.json` after updating the package. This snapshot
 lets a website-only checkout build reproducibly when the sibling repo is absent;
 the build explicitly reports that it is using the snapshot. An explicitly configured
 missing source is an error. `docs:check` requires source and fails for stale output.
@@ -150,7 +168,7 @@ it does not read the PHP configuration. The existing Node admin uses
   that illustrate the agent working while the workspace is closed: hierarchy
   discovery, channel metadata, correlations and forecasting preparation.
 - `components/agent-page.tsx`: platform, background and terminal experiences;
-  four interactive modes, the separate Background mode and model providers.
+  three interactive modes, the separate Background mode, container sandboxing, and model providers.
 - `components/technology-page.tsx` and `components/architecture-diagram.tsx`:
   six-layer scroll-linked architecture; manual tabs and a complete diagram on
   smaller screens and when reduced motion is requested.

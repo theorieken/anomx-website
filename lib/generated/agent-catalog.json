@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "version": "0.2.88",
+  "sourceDigest": "51a431e71955f4f63ebe40f4d5a0c4e169a11f8cb45d72c72bb4fc0dbc8a66f3",
+  "providers": [
+    {
+      "key": "desy",
+      "label": "DESY",
+      "requiresApiKey": true,
+      "models": [
+        {
+          "id": "coding",
+          "label": "DeepSeek V4.1 Flash"
+        },
+        {
+          "id": "desy-assistant",
+          "label": "Mistral Medium 3.5"
+        }
+      ]
+    },
+    {
+      "key": "blablador",
+      "label": "JSC Jülich",
+      "requiresApiKey": true,
+      "models": [
+        {
+          "id": "alias-kimi-k3-1m",
+          "label": "Kimi K3 1M"
+        },
+        {
+          "id": "alias-glm-5.3-flash",
+          "label": "GLM 5.3 Flash"
+        },
+        {
+          "id": "alias-deepseek-v41-flash-booster",
+          "label": "DeepSeek V4.1 Flash"
+        },
+        {
+          "id": "alias-muse-spark",
+          "label": "Muse Spark Open"
+        },
+        {
+          "id": "alias-fast",
+          "label": "GPT-OSS-120B"
+        },
+        {
+          "id": "alias-qwen3.8-flash-next",
+          "label": "Qwen3.8 Flash Next"
+        },
+        {
+          "id": "alias-qwen38-27b",
+          "label": "Qwen3.8-27B"
+        }
+      ]
+    },
+    {
+      "key": "anthropic",
+      "label": "Anthropic",
+      "requiresApiKey": true,
+      "models": [
+        {
+          "id": "claude-opus-5-5",
+          "label": "Opus 5.5"
+        },
+        {
+          "id": "claude-sonnet-5-5",
+          "label": "Sonnet 5.5"
+        },
+        {
+          "id": "claude-haiku-5-5",
+          "label": "Haiku 5.5"
+        }
+      ]
+    },
+    {
+      "key": "openai",
+      "label": "OpenAI",
+      "requiresApiKey": true,
+      "models": [
+        {
+          "id": "gpt-6.1-sol",
+          "label": "6.1 Sol"
+        },
+        {
+          "id": "gpt-6-luna",
+          "label": "6 Luna"
+        },
+        {
+          "id": "gpt-6-astra",
+          "label": "6 Astra"
+        }
+      ]
+    },
+    {
+      "key": "ollama",
+      "label": "Ollama",
+      "requiresApiKey": false,
+      "models": [
+        {
+          "id": "qwen3.6",
+          "label": "qwen3.6"
+        },
+        {
+          "id": "qwen3-coder:30b",
+          "label": "qwen3-coder:30b"
+        },
+        {
+          "id": "qwen2.5-coder:32b",
+          "label": "qwen2.5-coder:32b"
+        }
+      ]
+    },
+    {
+      "key": "kimi",
+      "label": "Kimi",
+      "requiresApiKey": true,
+      "models": [
+        {
+          "id": "kimi-k3",
+          "label": "Kimi K3"
+        },
+        {
+          "id": "kimi-k2.7-code",
+          "label": "Kimi K2.7 Code"
+        }
+      ]
+    }
+  ]
+}

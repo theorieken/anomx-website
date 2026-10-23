@@ -196,3 +196,8 @@
 @media (prefers-reduced-motion: reduce) { .documentation-products > a, .package-domain-card, .package-navigation summary::before { transition: none; } }
 .package-navigation .package-submodules summary { font-size: .75rem; font-weight: 400; padding: 7px 8px; justify-content: start; color: var(--text-secondary); }
 .package-navigation .package-submodules > div { margin-left: 12px; }
+
+/* Keep provider model labels and their exact CLI identifiers readable on mobile. */
+.doc-model-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.doc-model-list li { display: grid; gap: 2px; }
+.doc-model-list code { overflow-wrap: anywhere; font-size: .8rem; }

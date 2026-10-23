@@ -10,12 +10,12 @@
     "build:server": "ANOMX_NODE_SERVER=1 next build",
     "deploy": "node scripts/deploy-static.mjs",
     "test:static": "node scripts/test-static.mjs",
-    "docs:generate": "python3 scripts/generate-package-docs.py",
-    "docs:check": "python3 scripts/generate-package-docs.py --check",
+    "docs:generate": "python3 scripts/generate-package-docs.py && python3 scripts/generate-agent-catalog.py",
+    "docs:check": "python3 scripts/generate-package-docs.py --check && python3 scripts/generate-agent-catalog.py --check",
     "predev": "npm run docs:generate",
     "prebuild": "npm run docs:generate",
     "prebuild:server": "npm run docs:generate",
-    "test:docs": "python3 -B scripts/test-package-docs.py"
+    "test:docs": "python3 -B scripts/test-package-docs.py && python3 -B scripts/test-agent-catalog.py"
   },
   "dependencies": {
     "mysql2": "^3.22.5",
