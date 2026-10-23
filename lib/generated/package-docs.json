@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "version": "0.2.86",
+  "version": "0.2.87",
   "python": ">=3.11",
   "repository": "https://github.com/theorieken/anomx",
-  "revision": "4db375697b959978d65fccd8af5a460968281c79",
-  "sourceDigest": "18e308416be68f6c9b64954739738c4b826776ada3f786369e5408f6fc487113",
+  "revision": "4c6df64ca6c478b0312931158ea51d84c9ae911e",
+  "sourceDigest": "a228bbda66195bea371c35eec994f0804bcd650d0cf288460b3fec222c4c9fbf",
   "extras": {
     "visualization": [
       "matplotlib>=3.7",
@@ -30313,7 +30313,7 @@
         {
           "name": "WorkContext",
           "kind": "class",
-          "docstring": "Host-injected logging, findings, metrics, datasets, and compute services.\n\nCallback keys are ``log``, ``notify``, ``detection``, ``metric``,\n``artifact``, ``publish_model``, ``model_artifact``, and ``compute``. Callbacks receive keyword\narguments matching the public methods. They execute synchronously; ``compute`` may\nreturn a submission reference rather than the computation's final result.\nLocal events reserve ``kind`` and ``timestamp`` for dispatch metadata;\n``payload`` preserves all original callback arguments.",
+          "docstring": "Host-injected logging, findings, metrics, datasets, and compute services.\n\nCallback keys are ``log``, ``notify``, ``detection``, ``metric``,\n``artifact``, ``publish_model``, ``model_artifact``, and ``compute``. Dataset callbacks\nare ``describe_dataset``, ``describe_dataset_selection``, and ``read_dataset``;\n``dataset_cache_namespace`` optionally enables caching scoped to the host and user.\nCallbacks receive keyword\narguments matching the public methods. They execute synchronously; ``compute`` may\nreturn a submission reference rather than the computation's final result.\nLocal events reserve ``kind`` and ``timestamp`` for dispatch metadata;\n``payload`` preserves all original callback arguments.",
           "signature": "WorkContext(callbacks: Mapping[str, Callable[..., object]] | None = None, data_loader: Callable[..., object] | None = None, *, inputs: Mapping[str, Any] | None = None, job_id: str | None = None, run_id: str | None = None, artifact_directory: str | Path | None = None)",
           "source": {
             "path": "src/anomx/execution/work/__init__.py",
@@ -30368,7 +30368,7 @@
               "docstring": "Bind this context to the current thread/async context temporarily.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 61
+                "line": 64
               },
               "async": false
             },
@@ -30400,7 +30400,7 @@
               "docstring": "Append an inspectable job log entry.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 91
+                "line": 94
               },
               "async": false
             },
@@ -30432,7 +30432,7 @@
               "docstring": "Request a notification from the host.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 97
+                "line": 100
               },
               "async": false
             },
@@ -30464,7 +30464,7 @@
               "docstring": "Create a finding with a score, explanation and source evidence.\n\nThe host persists and links the finding to this execution. Metadata can\ninclude ``message``, ``kind``, dataset/model references and observations.\nThe existing ``detection`` callback keeps older hosts compatible.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 103
+                "line": 106
               },
               "async": false
             },
@@ -30496,7 +30496,7 @@
               "docstring": "Compatibility alias for :meth:`finding`.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 121
+                "line": 124
               },
               "async": false
             },
@@ -30528,7 +30528,7 @@
               "docstring": "Record a named finite KPI, optionally at a training step.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 125
+                "line": 128
               },
               "async": false
             },
@@ -30566,7 +30566,7 @@
               "docstring": "Publish a local ONNX file through the host's durable model storage.\n\nThe host owns authorization, storage, versioning, and registry sync.\nThis call returns only after the host has accepted the artifact.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 133
+                "line": 136
               },
               "async": false
             },
@@ -30598,7 +30598,7 @@
               "docstring": "Save a regular output file of at most 64 MiB with a SHA-256 checksum.\n\nHosted work must create the file inside its execution directory. The\nhost persists it under the run's owner and returns its file reference.\nA standalone context keeps a copy under ``artifact_directory`` (default\n``.anomx/artifacts`` in the directory where the context was created).\nNames are portable basenames; metadata must be finite JSON, at most\n64 KiB. Repeated hosted uploads of the same name and bytes are idempotent.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 161
+                "line": 164
               },
               "async": false
             },
@@ -30630,7 +30630,7 @@
               "docstring": "Submit a compute block to the work item's selected compute target.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 201
+                "line": 204
               },
               "async": false
             },
@@ -30650,7 +30650,7 @@
               "docstring": "Execute a portable graph with this context's host and data services.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 218
+                "line": 221
               },
               "async": false
             },
@@ -30670,7 +30670,7 @@
               "docstring": "Load a stored ONNX model through the host's scoped artifact access.\n\nTraining code and storage credentials never enter the inference session.\nThe host returns the self-contained graph and its SHA-256 checksum.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 254
+                "line": 257
               },
               "async": false
             },
@@ -30708,7 +30708,7 @@
               "docstring": "Load channel references through the legacy Darts-compatible channel API.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 275
+                "line": 278
               },
               "async": false
             }
@@ -30724,7 +30724,7 @@
           "signature": "get_work_context() -> WorkContext",
           "source": {
             "path": "src/anomx/execution/work/__init__.py",
-            "line": 297
+            "line": 300
           },
           "parameters": [],
           "returns": "WorkContext",
@@ -30973,6 +30973,45 @@
               "async": false
             },
             {
+              "name": "describe_dataset_selection",
+              "kind": "method",
+              "signature": "describe_dataset_selection(reference: str, *, selection: dict[str, str]) -> dict[str, Any]",
+              "parameters": [
+                {
+                  "name": "reference",
+                  "annotation": "str",
+                  "default": "",
+                  "kind": "positional"
+                },
+                {
+                  "name": "selection",
+                  "annotation": "dict[str, str]",
+                  "default": "",
+                  "kind": "keyword-only"
+                }
+              ],
+              "returns": "dict[str, Any]",
+              "docstring": "Resolve a versioned view through the host, without direct network access.",
+              "source": {
+                "path": "src/anomx/execution/work/data.py",
+                "line": 27
+              },
+              "async": false
+            },
+            {
+              "name": "cache_namespace",
+              "kind": "property",
+              "signature": "cache_namespace: str | None",
+              "parameters": [],
+              "returns": "str | None",
+              "docstring": "Let hosts opt into caching with an opaque server and authorization scope.",
+              "source": {
+                "path": "src/anomx/execution/work/data.py",
+                "line": 36
+              },
+              "async": false
+            },
+            {
               "name": "read_dataset",
               "kind": "method",
               "signature": "read_dataset(reference: str, *, version: str, cursor: str | None = None, limit: int = 5000) -> dict[str, Any]",
@@ -31006,7 +31045,7 @@
               "docstring": "",
               "source": {
                 "path": "src/anomx/execution/work/data.py",
-                "line": 27
+                "line": 46
               },
               "async": false
             },
@@ -31044,7 +31083,7 @@
               "docstring": "",
               "source": {
                 "path": "src/anomx/execution/work/data.py",
-                "line": 34
+                "line": 53
               },
               "async": false
             }
