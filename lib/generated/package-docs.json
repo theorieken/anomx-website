@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "version": "0.2.90",
+  "version": "0.2.92",
   "python": ">=3.11",
   "repository": "https://github.com/theorieken/anomx",
-  "revision": "46b030d22ff11383689a5fa2eec180721c86bf7b",
-  "sourceDigest": "29dc165885da24ad8568a0e32ddbf276057c3ae74a5c4ca72c2d113af56b2d97",
+  "revision": "338cb8bf6f72fc4329aac2948de69fdbec4a1462",
+  "sourceDigest": "406be2286f7393d1aec0449d60c881c88bbaf37cb13995d872ad94cf0c5b03d3",
   "extras": {
     "visualization": [
       "matplotlib>=3.7",
@@ -4265,7 +4265,7 @@
             {
               "name": "describe_dataset_selection",
               "kind": "method",
-              "signature": "describe_dataset_selection(reference: str, *, selection: dict[str, str]) -> dict[str, Any]",
+              "signature": "describe_dataset_selection(reference: str, *, selection: dict[str, Any]) -> dict[str, Any]",
               "parameters": [
                 {
                   "name": "reference",
@@ -4275,7 +4275,7 @@
                 },
                 {
                   "name": "selection",
-                  "annotation": "dict[str, str]",
+                  "annotation": "dict[str, Any]",
                   "default": "",
                   "kind": "keyword-only"
                 }
@@ -5184,6 +5184,106 @@
               "async": false
             },
             {
+              "name": "select_files",
+              "kind": "method",
+              "signature": "select_files(*, variables: Sequence[str] | None = None, columns: Sequence[str] | None = None, path_prefix: str | None = None, path_start: str | None = None, path_end: str | None = None, row_start: int | None = None, row_end: int | None = None, row_step: int | None = None, sample_start: int | None = None, sample_end: int | None = None, sample_step: int | None = None) -> Dataset",
+              "parameters": [
+                {
+                  "name": "variables",
+                  "annotation": "Sequence[str] | None",
+                  "default": "None",
+                  "kind": "keyword-only"
+                },
+                {
+                  "name": "columns",
+                  "annotation": "Sequence[str] | None",
+                  "default": "None",
+                  "kind": "keyword-only"
+                },
+                {
+                  "name": "path_prefix",
+                  "annotation": "str | None",
+                  "default": "None",
+                  "kind": "keyword-only"
+                },
+                {
+                  "name": "path_start",
+                  "annotation": "str | None",
+                  "default": "None",
+                  "kind": "keyword-only"
+                },
+                {
+                  "name": "path_end",
+                  "annotation": "str | None",
+                  "default": "None",
+                  "kind": "keyword-only"
+                },
+                {
+                  "name": "row_start",
+                  "annotation": "int | None",
+                  "default": "None",
+                  "kind": "keyword-only"
+                },
+                {
+                  "name": "row_end",
+                  "annotation": "int | None",
+                  "default": "None",
+                  "kind": "keyword-only"
+                },
+                {
+                  "name": "row_step",
+                  "annotation": "int | None",
+                  "default": "None",
+                  "kind": "keyword-only"
+                },
+                {
+                  "name": "sample_start",
+                  "annotation": "int | None",
+                  "default": "None",
+                  "kind": "keyword-only"
+                },
+                {
+                  "name": "sample_end",
+                  "annotation": "int | None",
+                  "default": "None",
+                  "kind": "keyword-only"
+                },
+                {
+                  "name": "sample_step",
+                  "annotation": "int | None",
+                  "default": "None",
+                  "kind": "keyword-only"
+                }
+              ],
+              "returns": "Dataset",
+              "docstring": "Select indexed files and bounded observations without materialization.\n\nVariables are filename stems reported by the source catalog. Path bounds\nare lexical integration paths; row bounds are per file. Sample bounds\nslice the first array dimension inside each observation, preserving all\nremaining dimensions. End bounds are exclusive. Steps subsample by\nstride; they do not average, filter or invent timestamps.",
+              "source": {
+                "path": "src/anomx/data/dataset.py",
+                "line": 120
+              },
+              "async": false
+            },
+            {
+              "name": "source_entries",
+              "kind": "method",
+              "signature": "source_entries(*, page_size: int = 100) -> Iterator[dict[str, Any]]",
+              "parameters": [
+                {
+                  "name": "page_size",
+                  "annotation": "int",
+                  "default": "100",
+                  "kind": "keyword-only"
+                }
+              ],
+              "returns": "Iterator[dict[str, Any]]",
+              "docstring": "Iterate immutable source fingerprints without loading their contents.",
+              "source": {
+                "path": "src/anomx/data/dataset.py",
+                "line": 164
+              },
+              "async": false
+            },
+            {
               "name": "describe",
               "kind": "method",
               "signature": "describe(*, refresh: bool = False) -> dict[str, Any]",
@@ -5199,7 +5299,7 @@
               "docstring": "Resolve source identity and schema without loading all observations.",
               "source": {
                 "path": "src/anomx/data/dataset.py",
-                "line": 129
+                "line": 200
               },
               "async": false
             },
@@ -5231,7 +5331,7 @@
               "docstring": "Yield bounded, ordered batches pinned to one resolved source version.\n\nEach remote page is checkpointed before yielding. A new iterator\nreplays saved pages, then resumes at the saved cursor. Close the\niterator when stopping early to release the download lock.\n``progress=False`` silences tqdm in applications and automated jobs.",
               "source": {
                 "path": "src/anomx/data/dataset.py",
-                "line": 157
+                "line": 228
               },
               "async": false
             },
@@ -5251,7 +5351,7 @@
               "docstring": "Clear this selection's saved pages without contacting the host.\n\nPages are shared by all prefix lengths. ``max_rows`` also selects an\nold-format materialized prefix entry to remove, when one exists.",
               "source": {
                 "path": "src/anomx/data/dataset.py",
-                "line": 405
+                "line": 476
               },
               "async": false
             },
@@ -5289,7 +5389,7 @@
               "docstring": "Materialize a dataset or view, resuming saved pages automatically.\n\nEvery load resolves current metadata and permissions. Interrupted\ndownloads resume at a pinned source version, even beyond cache_ttl.\nWithout a content validator this is a resumable local snapshot, not a\nguarantee against upstream corrections. Completed downloads require a\nmatching content token or an explicit TTL; ``cache_ttl=None`` opts into\nsnapshot reuse until refresh or a source version change.\n\n``refresh=True`` restarts the download. ``max_rows`` caps output rows\nafter selection/aggregation; whole downloaded pages are retained so a\nlater larger request can reuse their tails. ``iter_batches`` uses the\nsame checkpoints without materializing the full dataset in memory.",
               "source": {
                 "path": "src/anomx/data/dataset.py",
-                "line": 422
+                "line": 493
               },
               "async": false
             },
@@ -5333,7 +5433,7 @@
               "docstring": "Create an Anomx TimeSeries, optionally resampling irregular observations.\n\nThe native forecasting container uses regular, timezone-free indices;\naware times are normalized to UTC and their original timezone is stored\nin metadata. Resampling leaves empty bins as NaN unless ``fill`` is\nexplicitly selected. Without a frequency, irregular data is rejected\nby TimeSeries; the original observations remain available as a frame.",
               "source": {
                 "path": "src/anomx/data/dataset.py",
-                "line": 525
+                "line": 596
               },
               "async": false
             },
@@ -5359,7 +5459,7 @@
               "docstring": "Plot observations on a Matplotlib axes and return that axes.",
               "source": {
                 "path": "src/anomx/data/dataset.py",
-                "line": 568
+                "line": 639
               },
               "async": false
             },
@@ -5372,7 +5472,7 @@
               "docstring": "Load and return the observations as a DataFrame.",
               "source": {
                 "path": "src/anomx/data/dataset.py",
-                "line": 573
+                "line": 644
               },
               "async": false
             },
@@ -5385,7 +5485,7 @@
               "docstring": "Return observations as a NumPy array.",
               "source": {
                 "path": "src/anomx/data/dataset.py",
-                "line": 577
+                "line": 648
               },
               "async": false
             },
@@ -5435,7 +5535,7 @@
               "docstring": "Create a local dataset, preserving a supplied temporal index.",
               "source": {
                 "path": "src/anomx/data/dataset.py",
-                "line": 582
+                "line": 653
               },
               "async": false
             },
@@ -5479,7 +5579,7 @@
               "docstring": "Create a regularly indexed time series from a 1D or 2D array.",
               "source": {
                 "path": "src/anomx/data/dataset.py",
-                "line": 607
+                "line": 678
               },
               "async": false
             },
@@ -5529,7 +5629,7 @@
               "docstring": "Resolve recorded channels through an API connection or host loader.",
               "source": {
                 "path": "src/anomx/data/dataset.py",
-                "line": 630
+                "line": 701
               },
               "async": false
             },
@@ -5542,7 +5642,7 @@
               "docstring": "Return the first temporal index value; materializes a remote selection.",
               "source": {
                 "path": "src/anomx/data/dataset.py",
-                "line": 668
+                "line": 739
               },
               "async": false
             },
@@ -5555,7 +5655,7 @@
               "docstring": "Return the last temporal index value; materializes a remote selection.",
               "source": {
                 "path": "src/anomx/data/dataset.py",
-                "line": 672
+                "line": 743
               },
               "async": false
             },
@@ -5568,7 +5668,7 @@
               "docstring": "Convert temporal data for optional Darts models without a core dependency.",
               "source": {
                 "path": "src/anomx/data/dataset.py",
-                "line": 676
+                "line": 747
               },
               "async": false
             }
@@ -14310,7 +14410,7 @@
           "signature": "DCacheDataset(reference: str, *, mount_root: str | Path, client: DatasetClient | PlatformClient | None = None)",
           "source": {
             "path": "src/anomx/data/sources/mounted.py",
-            "line": 261
+            "line": 268
           },
           "parameters": [
             {
@@ -14335,15 +14435,15 @@
           "returns": "",
           "members": [
             {
-              "name": "sources",
+              "name": "iter_sources",
               "kind": "method",
-              "signature": "sources() -> tuple[MountedSource, ...]",
+              "signature": "iter_sources() -> Iterator[MountedSource]",
               "parameters": [],
-              "returns": "tuple[MountedSource, ...]",
+              "returns": "Iterator[MountedSource]",
               "docstring": "",
               "source": {
                 "path": "src/anomx/data/sources/mounted.py",
-                "line": 264
+                "line": 271
               },
               "async": false
             }
@@ -14355,6 +14455,11 @@
             }
           ],
           "inherited": [
+            {
+              "name": "sources",
+              "from": "MountedDataset",
+              "href": "/documentation/package/data/sources/mounted/#MountedDataset.sources"
+            },
             {
               "name": "anomx_reference",
               "from": "Dataset",
@@ -14369,6 +14474,16 @@
               "name": "downsample",
               "from": "Dataset",
               "href": "/documentation/package/data/dataset/#Dataset.downsample"
+            },
+            {
+              "name": "select_files",
+              "from": "Dataset",
+              "href": "/documentation/package/data/dataset/#Dataset.select_files"
+            },
+            {
+              "name": "source_entries",
+              "from": "Dataset",
+              "href": "/documentation/package/data/dataset/#Dataset.source_entries"
             },
             {
               "name": "describe",
@@ -14507,6 +14622,19 @@
                 "line": 188
               },
               "async": false
+            },
+            {
+              "name": "iter_sources",
+              "kind": "method",
+              "signature": "iter_sources() -> Iterator[MountedSource]",
+              "parameters": [],
+              "returns": "Iterator[MountedSource]",
+              "docstring": "Page source fingerprints lazily for large folder inventories.",
+              "source": {
+                "path": "src/anomx/data/sources/mounted.py",
+                "line": 192
+              },
+              "async": false
             }
           ],
           "bases": [
@@ -14530,6 +14658,16 @@
               "name": "downsample",
               "from": "Dataset",
               "href": "/documentation/package/data/dataset/#Dataset.downsample"
+            },
+            {
+              "name": "select_files",
+              "from": "Dataset",
+              "href": "/documentation/package/data/dataset/#Dataset.select_files"
+            },
+            {
+              "name": "source_entries",
+              "from": "Dataset",
+              "href": "/documentation/package/data/dataset/#Dataset.source_entries"
             },
             {
               "name": "describe",
@@ -14829,7 +14967,7 @@
             {
               "name": "describe_dataset_selection",
               "kind": "method",
-              "signature": "describe_dataset_selection(reference: str, *, selection: dict[str, str]) -> dict[str, Any]",
+              "signature": "describe_dataset_selection(reference: str, *, selection: dict[str, Any]) -> dict[str, Any]",
               "parameters": [
                 {
                   "name": "reference",
@@ -14839,7 +14977,7 @@
                 },
                 {
                   "name": "selection",
-                  "annotation": "dict[str, str]",
+                  "annotation": "dict[str, Any]",
                   "default": "",
                   "kind": "keyword-only"
                 }
@@ -14849,6 +14987,44 @@
               "source": {
                 "path": "src/anomx/data/sources/platform.py",
                 "line": 44
+              },
+              "async": false
+            },
+            {
+              "name": "dataset_sources",
+              "kind": "method",
+              "signature": "dataset_sources(reference: str, *, version: str, offset: int = 0, limit: int = 100) -> dict[str, Any]",
+              "parameters": [
+                {
+                  "name": "reference",
+                  "annotation": "str",
+                  "default": "",
+                  "kind": "positional"
+                },
+                {
+                  "name": "version",
+                  "annotation": "str",
+                  "default": "",
+                  "kind": "keyword-only"
+                },
+                {
+                  "name": "offset",
+                  "annotation": "int",
+                  "default": "0",
+                  "kind": "keyword-only"
+                },
+                {
+                  "name": "limit",
+                  "annotation": "int",
+                  "default": "100",
+                  "kind": "keyword-only"
+                }
+              ],
+              "returns": "dict[str, Any]",
+              "docstring": "Read one page of pinned source metadata, including named variables.",
+              "source": {
+                "path": "src/anomx/data/sources/platform.py",
+                "line": 107
               },
               "async": false
             },
@@ -14886,7 +15062,7 @@
               "docstring": "Read a bounded batch pinned to an explicitly resolved source version.",
               "source": {
                 "path": "src/anomx/data/sources/platform.py",
-                "line": 86
+                "line": 119
               },
               "async": false
             },
@@ -14924,7 +15100,7 @@
               "docstring": "Load aligned channel records using the data domain's channel endpoint.",
               "source": {
                 "path": "src/anomx/data/sources/platform.py",
-                "line": 98
+                "line": 131
               },
               "async": false
             }
@@ -30975,7 +31151,7 @@
             {
               "name": "describe_dataset_selection",
               "kind": "method",
-              "signature": "describe_dataset_selection(reference: str, *, selection: dict[str, str]) -> dict[str, Any]",
+              "signature": "describe_dataset_selection(reference: str, *, selection: dict[str, Any]) -> dict[str, Any]",
               "parameters": [
                 {
                   "name": "reference",
@@ -30985,7 +31161,7 @@
                 },
                 {
                   "name": "selection",
-                  "annotation": "dict[str, str]",
+                  "annotation": "dict[str, Any]",
                   "default": "",
                   "kind": "keyword-only"
                 }
@@ -30999,6 +31175,44 @@
               "async": false
             },
             {
+              "name": "dataset_sources",
+              "kind": "method",
+              "signature": "dataset_sources(reference: str, *, version: str, offset: int = 0, limit: int = 100) -> dict[str, Any]",
+              "parameters": [
+                {
+                  "name": "reference",
+                  "annotation": "str",
+                  "default": "",
+                  "kind": "positional"
+                },
+                {
+                  "name": "version",
+                  "annotation": "str",
+                  "default": "",
+                  "kind": "keyword-only"
+                },
+                {
+                  "name": "offset",
+                  "annotation": "int",
+                  "default": "0",
+                  "kind": "keyword-only"
+                },
+                {
+                  "name": "limit",
+                  "annotation": "int",
+                  "default": "100",
+                  "kind": "keyword-only"
+                }
+              ],
+              "returns": "dict[str, Any]",
+              "docstring": "Page pinned source metadata through the execution host.",
+              "source": {
+                "path": "src/anomx/execution/work/data.py",
+                "line": 35
+              },
+              "async": false
+            },
+            {
               "name": "cache_namespace",
               "kind": "property",
               "signature": "cache_namespace: str | None",
@@ -31007,7 +31221,7 @@
               "docstring": "Let hosts opt into caching with an opaque server and authorization scope.",
               "source": {
                 "path": "src/anomx/execution/work/data.py",
-                "line": 36
+                "line": 44
               },
               "async": false
             },
@@ -31045,7 +31259,7 @@
               "docstring": "",
               "source": {
                 "path": "src/anomx/execution/work/data.py",
-                "line": 46
+                "line": 54
               },
               "async": false
             },
@@ -31083,7 +31297,7 @@
               "docstring": "",
               "source": {
                 "path": "src/anomx/execution/work/data.py",
-                "line": 53
+                "line": 61
               },
               "async": false
             }
