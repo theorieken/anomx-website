@@ -25,9 +25,11 @@ const previous = spawnSync("ssh", [...sshArgs, host, `test -d ${quote(target)}`]
 const reuse = previous.status === 0 ? [`--link-dest=${target}`] : [];
 // The release runner keeps its logs private (umask 077). Public static output
 // still needs to be readable by Apache, including the build directory itself.
-run("rsync", ["-az", "--chmod=D755,F644", "--delay-updates", ...reuse, "-e", ["ssh", ...sshArgs].map(quote).join(" "), "build/", `${host}:${quote(stage)}/`]);
+run("rsync", ["-az", "--delay-updates", ...reuse, "-e", ["ssh", ...sshArgs].map(quote).join(" "), "build/", `${host}:${quote(stage)}/`]);
 run("ssh", [...sshArgs, host, [
   `set -eu`,
+  `find ${quote(stage)} -type d -exec chmod 755 {} +`,
+  `find ${quote(stage)} -type f -exec chmod 644 {} +`,
   `php -l ${quote(stage + "/api/waitlist.php")}`,
   `test -s ${quote(stage + "/index.html")}`,
   `test -s ${quote(stage + "/api/vendor/autoload.php")}`,
