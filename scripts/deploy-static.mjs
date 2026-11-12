@@ -23,7 +23,9 @@ const target = `${remoteRoot}/build`;
 run("ssh", [...sshArgs, host, `test -d ${quote(remoteRoot)} && mkdir ${quote(stage)}`]);
 const previous = spawnSync("ssh", [...sshArgs, host, `test -d ${quote(target)}`]);
 const reuse = previous.status === 0 ? [`--link-dest=${target}`] : [];
-run("rsync", ["-az", "--delay-updates", ...reuse, "-e", ["ssh", ...sshArgs].map(quote).join(" "), "build/", `${host}:${quote(stage)}/`]);
+// The release runner keeps its logs private (umask 077). Public static output
+// still needs to be readable by Apache, including the build directory itself.
+run("rsync", ["-az", "--chmod=D755,F644", "--delay-updates", ...reuse, "-e", ["ssh", ...sshArgs].map(quote).join(" "), "build/", `${host}:${quote(stage)}/`]);
 run("ssh", [...sshArgs, host, [
   `set -eu`,
   `php -l ${quote(stage + "/api/waitlist.php")}`,
