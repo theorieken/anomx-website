@@ -1,11 +1,14 @@
 {
   "schemaVersion": 1,
-  "version": "2.3.5",
+  "version": "2.3.6",
   "python": ">=3.11",
   "repository": "https://github.com/theorieken/anomx",
-  "revision": "aa8057b3a2099f9ec9baaca99b170efefa2d14b0",
-  "sourceDigest": "db1a65b3ae234c70031d5815a5a615fc792905fca3c40c720be6edcb4c6232bd",
+  "revision": "b4653e9f0c7ce01a8e0e73d24f3a929857dc25eb",
+  "sourceDigest": "2a86fcaf9f3b111749109817174f383820b0ed0a314263e4f83def2f0c359075",
   "extras": {
+    "mcp": [
+      "mcp>=1.28,<2"
+    ],
     "visualization": [
       "matplotlib>=3.7",
       "plotly>=5.13"
