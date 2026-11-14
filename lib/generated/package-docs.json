@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "version": "2.3.6",
+  "version": "2.3.7",
   "python": ">=3.11",
   "repository": "https://github.com/theorieken/anomx",
-  "revision": "b4653e9f0c7ce01a8e0e73d24f3a929857dc25eb",
-  "sourceDigest": "2a86fcaf9f3b111749109817174f383820b0ed0a314263e4f83def2f0c359075",
+  "revision": "367d2b7487d6b5daf6598a3d805307e511d92824",
+  "sourceDigest": "04a806d19fd25a14bb9571178879acfdbaa900cd19493e6183efd28b5eb7a70c",
   "extras": {
     "mcp": [
       "mcp>=1.28,<2"
