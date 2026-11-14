@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "version": "2.3.4",
+  "version": "2.3.5",
   "python": ">=3.11",
   "repository": "https://github.com/theorieken/anomx",
-  "revision": "74b083579df911b8b4158c33d62a54f2dc6c6826",
-  "sourceDigest": "c2788ac7db358aad27cdf4e89c0f3007d62f64caa53860f5f14211595b53af83",
+  "revision": "aa8057b3a2099f9ec9baaca99b170efefa2d14b0",
+  "sourceDigest": "db1a65b3ae234c70031d5815a5a615fc792905fca3c40c720be6edcb4c6232bd",
   "extras": {
     "visualization": [
       "matplotlib>=3.7",
@@ -33227,12 +33227,48 @@
         "workspaces"
       ],
       "href": "/documentation/package/integrations/workspaces/",
-      "docstring": "Check out and save a shared job workspace through the authenticated API.\n\n``python -m anomx.integrations.workspaces mount <component> <directory>``\ncreates a local working copy and a revision manifest. Edit with ordinary file\nand shell tools, then ``python -m anomx.integrations.workspaces save <directory>``.\nSaving uses optimistic concurrency: HTTP 409 requires a reload and merge.\nNo credentials are written to the checkout; PlatformClient reads explicit\nANOMX_URL/ANOMX_TOKEN configuration. Mounting does not start the job.",
+      "docstring": "Check out and save a shared job workspace through the authenticated API.\n\n``python -m anomx.integrations.workspaces mount <component> <directory>``\ncreates a local working copy and a revision manifest. Edit with ordinary file\nand shell tools, then ``python -m anomx.integrations.workspaces save <directory>``.\nSaving uses optimistic concurrency: HTTP 409 requires a reload and merge.\nCreate a version separately with ``commit <directory> -m \"Describe the change\"``.\nNo credentials are written to the checkout; PlatformClient reads explicit\nANOMX_URL/ANOMX_TOKEN configuration. Mounting does not start the job.",
       "source": {
         "path": "src/anomx/integrations/workspaces.py",
         "line": 1
       },
       "symbols": [
+        {
+          "name": "commit",
+          "kind": "function",
+          "docstring": "Commit an already saved checkout, rejecting unsaved or concurrent edits.\n\nThe platform creates an explicit, restorable job version and queues any\nconfigured remote sync. This operation never starts a job or a run.",
+          "signature": "commit(directory: str | Path, message: str, *, client: PlatformClient | None = None) -> dict[str, Any]",
+          "source": {
+            "path": "src/anomx/integrations/workspaces.py",
+            "line": 153
+          },
+          "parameters": [
+            {
+              "name": "directory",
+              "annotation": "str | Path",
+              "default": "",
+              "kind": "positional"
+            },
+            {
+              "name": "message",
+              "annotation": "str",
+              "default": "",
+              "kind": "positional"
+            },
+            {
+              "name": "client",
+              "annotation": "PlatformClient | None",
+              "default": "None",
+              "kind": "keyword-only"
+            }
+          ],
+          "returns": "dict[str, Any]",
+          "members": [],
+          "bases": [],
+          "inherited": [],
+          "constructorDocstring": "",
+          "async": false
+        },
         {
           "name": "component_id",
           "kind": "function",
@@ -33240,7 +33276,7 @@
           "signature": "component_id(reference: str) -> str",
           "source": {
             "path": "src/anomx/integrations/workspaces.py",
-            "line": 24
+            "line": 25
           },
           "parameters": [
             {
@@ -33264,7 +33300,7 @@
           "signature": "main() -> None",
           "source": {
             "path": "src/anomx/integrations/workspaces.py",
-            "line": 144
+            "line": 206
           },
           "parameters": [],
           "returns": "None",
@@ -33281,7 +33317,7 @@
           "signature": "mount(reference: str, directory: str | Path, *, client: PlatformClient | None = None) -> dict[str, Any]",
           "source": {
             "path": "src/anomx/integrations/workspaces.py",
-            "line": 68
+            "line": 69
           },
           "parameters": [
             {
@@ -33311,13 +33347,37 @@
           "async": false
         },
         {
+          "name": "read_checkout",
+          "kind": "function",
+          "docstring": "Read a local workspace and validate its manifest and text files.",
+          "signature": "read_checkout(directory: str | Path) -> tuple[Path, dict[str, Any], dict[str, str]]",
+          "source": {
+            "path": "src/anomx/integrations/workspaces.py",
+            "line": 103
+          },
+          "parameters": [
+            {
+              "name": "directory",
+              "annotation": "str | Path",
+              "default": "",
+              "kind": "positional"
+            }
+          ],
+          "returns": "tuple[Path, dict[str, Any], dict[str, str]]",
+          "members": [],
+          "bases": [],
+          "inherited": [],
+          "constructorDocstring": "",
+          "async": false
+        },
+        {
           "name": "save",
           "kind": "function",
           "docstring": "Save the complete working copy if the remote revision still matches.",
           "signature": "save(directory: str | Path, *, client: PlatformClient | None = None) -> dict[str, Any]",
           "source": {
             "path": "src/anomx/integrations/workspaces.py",
-            "line": 100
+            "line": 135
           },
           "parameters": [
             {
@@ -33347,7 +33407,7 @@
           "signature": "validate_files(files: dict[str, str]) -> None",
           "source": {
             "path": "src/anomx/integrations/workspaces.py",
-            "line": 31
+            "line": 32
           },
           "parameters": [
             {
@@ -33371,7 +33431,7 @@
           "signature": "workspace_path(client: PlatformClient, identifier: str, *, job: bool = False) -> str",
           "source": {
             "path": "src/anomx/integrations/workspaces.py",
-            "line": 61
+            "line": 62
           },
           "parameters": [
             {
@@ -33407,7 +33467,7 @@
           "signature": "MANIFEST = '.anomx-workspace.json'",
           "source": {
             "path": "src/anomx/integrations/workspaces.py",
-            "line": 21
+            "line": 22
           },
           "parameters": [],
           "returns": "",
