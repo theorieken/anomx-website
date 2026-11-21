@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "version": "2.3.25",
+  "version": "2.3.26",
   "python": ">=3.11",
   "repository": "https://github.com/theorieken/anomx",
-  "revision": "b2e3cb316c172c1aac97d03cf442997f0bba23a5",
-  "sourceDigest": "0558b86f026fdd8da80669f04a4a9e97bc17b00743c4a80f9eedca80ae1c40fd",
+  "revision": "126660ec3f467e3fffe239a5ca23c6a742e65deb",
+  "sourceDigest": "40abcec2f1df09ce2ba953721d1c9b634d1f7a4c24c30dfac01c1b2d24021c8a",
   "extras": {
     "mcp": [
       "mcp>=1.28,<2"
@@ -30700,7 +30700,7 @@
                 }
               ],
               "returns": "object",
-              "docstring": "Create a finding with a score, explanation and source evidence.\n\nThe host persists and links the finding to this execution. Metadata can\ninclude ``message``, ``kind``, dataset/model references and observations.\nThe existing ``detection`` callback keeps older hosts compatible.",
+              "docstring": "Create a finding with a score, explanation and source evidence.\n\nThe host persists and links the finding to this execution. Metadata can\ninclude ``message``, ``kind``, dataset/model references and observations.\n``sources`` accepts a JSON list of website, text or object evidence;\nthe host owns validation, access checks and provenance attribution.\nThe existing ``detection`` callback keeps older hosts compatible.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
                 "line": 133
@@ -30735,7 +30735,7 @@
               "docstring": "Compatibility alias for :meth:`finding`.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 151
+                "line": 153
               },
               "async": false
             },
@@ -30767,7 +30767,7 @@
               "docstring": "Record a named finite KPI, optionally at a training step.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 155
+                "line": 157
               },
               "async": false
             },
@@ -30805,7 +30805,7 @@
               "docstring": "Publish a local ONNX file through the host's durable model storage.\n\nThe host owns authorization, storage, versioning, and registry sync.\nThis call returns only after the host has accepted the artifact.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 163
+                "line": 165
               },
               "async": false
             },
@@ -30837,7 +30837,7 @@
               "docstring": "Save a regular output file of at most 64 MiB with a SHA-256 checksum.\n\nHosted work must create the file inside its execution directory. The\nhost persists it under the run's owner and returns its file reference.\nA standalone context keeps a copy under ``artifact_directory`` (default\n``.anomx/artifacts`` in the directory where the context was created).\nNames are portable basenames; metadata must be finite JSON, at most\n64 KiB. Repeated hosted uploads of the same name and bytes are idempotent.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 191
+                "line": 193
               },
               "async": false
             },
@@ -30869,7 +30869,7 @@
               "docstring": "Submit a compute block to the work item's selected compute target.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 231
+                "line": 233
               },
               "async": false
             },
@@ -30889,7 +30889,7 @@
               "docstring": "Execute a portable graph with this context's host and data services.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 248
+                "line": 250
               },
               "async": false
             },
@@ -30909,7 +30909,7 @@
               "docstring": "Load a stored ONNX model through the host's scoped artifact access.\n\nTraining code and storage credentials never enter the inference session.\nThe host returns the self-contained graph and its SHA-256 checksum.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 284
+                "line": 286
               },
               "async": false
             },
@@ -30947,7 +30947,7 @@
               "docstring": "Load channel references through the legacy Darts-compatible channel API.",
               "source": {
                 "path": "src/anomx/execution/work/__init__.py",
-                "line": 305
+                "line": 307
               },
               "async": false
             }
@@ -30963,7 +30963,7 @@
           "signature": "get_work_context() -> WorkContext",
           "source": {
             "path": "src/anomx/execution/work/__init__.py",
-            "line": 327
+            "line": 329
           },
           "parameters": [],
           "returns": "WorkContext",
